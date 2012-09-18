@@ -1,5 +1,7 @@
 Intro to C++ / compilers
 
+changes!
+
 When we are writing code, the main objective is to get from text that we are typing into some machine instructions the computer can operate on.  The process looks like
 
 ```Txt ( human ) -> Binary (machine instruction)```
