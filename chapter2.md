@@ -144,7 +144,7 @@ In our code, we are often times calling functions that exist in other files (oth
 		
 The linker takes all of the .o files and figures out how to combine them together, and what the jumps from file to file are. 
 
-		graphic example
+		graphic example by Juan
 
 ### linker target 
 
