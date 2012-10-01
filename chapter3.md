@@ -1,46 +1,18 @@
 
 
-#OF DOWNLOAD
+# OF structure
+
+#### download
 
 One of the important things to have in mind when you download your openFrameworks release zip file from [http://www.openframeworks.cc/download/](http://www.openframeworks.cc/download/) is that inside it you are going to find a bunch of files. Yes!!, lot of files and folders with out any executable file (or un less anyone that gives you the idea that IT IS openFrameworks). It's not like Processing that you download an actual application that you can run it and say to your self "Hey! this is great I'm working on Processing". 
 Here is a different picture. This maybe be scary you at the beginning. Why it's this?
 Have in mind that openFrameworks it's really a bouncy of libraries that wraps other powerful libraries. So in essences openFrameworks it's 100% pure code. It's completely independed of the IDE you are using.  
 
-(side note)
+The core of open frameworks is a library, and the code you write is based on that library.  The OF library extends other libraries, such as FMOD, opengl, cairo, etc.  
 
-```
-	What is a library?
-	-------------------------------
-	
-	A library is a compilation of building blocks that make programmers' lives easier. These building blocks usually help you do things that many people will want to do many times, but that would be a pain to write from scratch.
+for more information about libraries, see the glossary
 
-	Take drawing a circle, for example. In openFrameworks, we would draw a circle of radius 20, centered at (50,100), by writing this simple line:
-           
-           ofCircle(50,100,20);  
-           
-	Our computer does not know what ofCircle is. ofCircle is a bulding block (or shoshortcut created by openFrameworks that allows us to draw a circle with one line of code. When our compiler sees the word ofCircle, it immediately goes to the openFrameworks library and asks, "what is ofCircle?". openFrameworks gives it the formula to draw a circle.
-
-	If it weren't for these "shortcuts", every time we wanted to draw a circle we would have to write all of this code:
-
-
-	void ofGLRenderer::drawCircle(float x, float y, float z,  float radius){
-        vector<ofPoint> & circleCache = circlePolyline.getVertices();
-        for(int i=0;i<(int)circleCache.size();i++){
-                circlePoints[i].set(radius*circleCache[i].x+x,radius*circleCache[i].y+y,z);
-        }
-
-        // use smoothness, if requested:
-        if (bSmoothHinted && bFilled == OF_OUTLINE) startSmoothing();
-
-        glEnableClientState(GL_VERTEX_ARRAY);
-        glVertexPointer(3, GL_FLOAT, sizeof(ofVec3f), &circlePoints[0].x);
-        glDrawArrays((bFilled == OF_FILLED) ? GL_TRIANGLE_FAN : GL_LINE_STRIP, 0, circlePoints.size());
-
-        // use smoothness, if requested:
-        if (bSmoothHinted && bFilled == OF_OUTLINE) endSmoothing();
-
-	}
-```
+#### what you see in OF
 
 So, you download the last release. You unzip it. And you are looking at all that files and folders. What are you looking it's to a package of libraries and examples that know how to work together. The OF core classes and methods are in the ```/lib``` folder together with the other openSource powerful libraries that they wrap. In this package you can also find some ```/examples``` and ```/addons``` that are specially designed for does libraries. 
 
@@ -101,10 +73,3 @@ This folder includes an arduino sketch in it. (It allows OF to interface with Ar
 Only the 0071 version of OF has this folder. The project generator relies on the script folder to generate new empty blank projects.
 
 
-#IDE
-IDE stands for integrated development environment.
-As we said before one big difference between Processing and OF it's that OF it doesn't have it's own IDE. You can implement OF applications in virtually any Development Environment.
-
-What's essentially an IDE? Well its a place where you write your code. Like a Text Editor but with build in functions that make the code editing easier. For does how comes from Processing will found extraordinary the fact that almost all IDEs color your code in a much more rich way. Helping you to have a clear view and feedback of your code.
-
-Other thing IDEs general do it's to  
