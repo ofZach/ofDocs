@@ -1,10 +1,10 @@
-Intro to C++ / compilers
+#### Chp_2: Intro to C++ / compilers
 
 BIG CHANGES!
 
 When we are writing code, the main objective is to get from text that we are typing into some machine instructions the computer can operate on.  The process looks like
 
-```Txt ( human ) -> Binary (machine instruction)```
+`Txt ( human ) -> Binary (machine instruction)`
 
 Most programming languages use text files, plain text that you can open in any text editing document, but in the most cases we use IDEs, Integrated development environemtns which make it easier [more]
 
@@ -12,11 +12,17 @@ In the case of c++, we are compiling code, and in our case, the The compiler tak
 
 MORE ABOUT MACHINE LEVEL INSTRUCTIONS
 
-There are 4 steps in compiling OF. 
+#### There are 4 steps in compiling OF: 
+`1. Txt -> 2. Pre processor -> 3. Compile -> 4. link`
 
-```Txt -> preprocessor -> compile -> link```
+<br />
 
-# text files
+---
+<br />
+
+# 1. Txt 
+#### The Text Files
+<br />
 
 We start off writing text, and in c++ there's two kinds of files you will see,  .h and .cpp files.  The .h files are the "header" files, they contain definitions and the .cpp files are implementation files.   Here's a few ways of thinkinging about the difference between two files -- one way is cooking, when you have a recipe, you have typically two parts, the list of ingedients and the actual steps when you are cooking.  In this case, the h file is like the ingredients, just a list of what's there and the .cpp file is like the actual steps.   Another anology is the index of a book -- you can think of the header like an index, and the cpp files are the actual chapters of the book.   
 
@@ -26,7 +32,7 @@ The compilers job is just to compile .cpp files, but it uses the h files to get 
 
 [MORE: how this relates to OF -- > reading h files, looking at the core of OF, etc]
 
-# pre processor
+# 2. Pre processor
 
 The preprocessor is the next step in our progression from text to something you can run. All code that start with # are preprocessor comands. They will look like:
 
@@ -117,7 +123,7 @@ Another important point about includes is that search paths are really important
 
     
 
-#Compiler
+# 3. Compiler
  
 The compiler's job in life is simple: to take the code that you've written and turn it into machine language instructions for the compiler that you are using. In other words, to take your .cpp files and turn them into .o files.   It gets the text, after it's been preprocessed, and will go .cpp file by .cpp to make .o files. 
 
@@ -136,7 +142,7 @@ With either compile setting, this process ends with lot's of .o files. Those are
 	wrong function names... types... bad syntacs
 	( ADD ERROR EXAMPLES )
 
-#Linker
+# 4. Linker
 
 In our code, we are often times calling functions that exist in other files (otherwise we would have to code everything from scratch in one file -- a nightmare!). Our programs must make jumps to get stuff from those files we are referencing.  here's an example of the jumps that might occur in a typical function
 
