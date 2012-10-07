@@ -1,8 +1,19 @@
 glossary
 ======
 
+##C
 
+#### compiler
+
+#### constant
+
+##F
+
+#### function
+
+##I
 #### IDE
+
 
 IDE stands for integrated development environment.
 
@@ -18,18 +29,7 @@ It's a program where you write your code. Like a Text Editor but with build in f
 * errors, warnings
 
 
-#### compiler
-
-
-#### scope
-
-
-#### variable
-
-
-#### function
-
-
+##L
 #### library
 	
 A library is a compilation of building blocks that make programmers' lives easier. These building blocks usually help you do things that many people will want to do many times, but that would be a pain to write from scratch.
@@ -60,4 +60,14 @@ If it weren't for these "shortcuts", every time we wanted to draw a circle we wo
         if (bSmoothHinted && bFilled == OF_OUTLINE) endSmoothing();
 
 	}
+
+##S
+
+#### scope
+
+##V
+
+#### variable
+
+
 	

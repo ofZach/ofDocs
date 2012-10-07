@@ -1,10 +1,25 @@
-#### Chp_2: Intro to C++ / compilers
-
-BIG CHANGES!
+#### Chapter_02:
+#Intro to C++ / compilers
 
 When we are writing code, the main objective is to get from text that we are typing into some machine instructions the computer can operate on.  The process looks like
 
 `Txt ( human ) -> Binary (machine instruction)`
+
+   
+Txt [ human ] :
+
+	'HELLO WORLD' 
+![image](/Users/noadol/_MFADT/of_0071_osx_release/ofDocs_s/img/arrow.jpg)	
+
+Binary [ machine ] :
+	
+	01001000 01000101 01001100 
+	01001100 01001111 00100000 
+	01010111 01001111 01010010 
+	01001100 01000100 
+
+
+
 
 Most programming languages use text files, plain text that you can open in any text editing document, but in the most cases we use IDEs, Integrated development environemtns which make it easier [more]
 
@@ -13,7 +28,10 @@ In the case of c++, we are compiling code, and in our case, the The compiler tak
 MORE ABOUT MACHINE LEVEL INSTRUCTIONS
 
 #### There are 4 steps in compiling OF: 
-`1. Txt -> 2. Pre processor -> 3. Compile -> 4. link`
+1. Txt
+2. Pre processor
+3. Compile
+4. link
 
 <br />
 
@@ -31,6 +49,12 @@ We start off writing text, and in c++ there's two kinds of files you will see,  
 The compilers job is just to compile .cpp files, but it uses the h files to get information that helps it compile.  The h files in some way provide a bridge, from one cpp file to another…
 
 [MORE: how this relates to OF -- > reading h files, looking at the core of OF, etc]
+
+<br />
+
+---
+<br />
+
 
 # 2. Pre processor
 
@@ -121,7 +145,11 @@ Another important point about includes is that search paths are really important
 ### example include errors
 
 
-    
+<br />
+
+---
+<br />
+
 
 # 3. Compiler
  
@@ -141,6 +169,11 @@ With either compile setting, this process ends with lot's of .o files. Those are
 
 	wrong function names... types... bad syntacs
 	( ADD ERROR EXAMPLES )
+
+<br />
+
+---
+<br />
 
 # 4. Linker
 
