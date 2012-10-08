@@ -3,23 +3,22 @@
 
 When we are writing code, the main objective is to get from text that we are typing into some machine instructions the computer can operate on.  This process is called compiling and it looks like
 
+When we are writing code, the main objective is to get from text that we are typing into some machine instructions the computer can operate on.  The process looks like
+
 `Txt ( human ) -> Binary (machine instruction)`
 
    
 Txt [ human ] :
 
 	'HELLO WORLD' 
-![image](img/arrow.jpg)	
 
+![image](/Users/noadol/_MFADT/of_0071_osx_release/ofDocs_s/img/arrow.jpg)	
 Binary [ machine ] :
 	
 	01001000 01000101 01001100 
 	01001100 01001111 00100000 
 	01010111 01001111 01010010 
 	01001100 01000100 
-
-
-
 
 Most programming languages use text files, plain text that you can open in any text editing software, but in the most cases we use an [IDE](http://), Integrated Development Environment, which allows to work in a specific programming language.
 
