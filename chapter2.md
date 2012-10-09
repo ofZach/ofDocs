@@ -12,7 +12,8 @@ Txt [ human ] :
 
 	'HELLO WORLD' 
 
-![image](img/arrow.jpg)	
+![image](https://raw.github.com/ofZach/ofDocs/master/img/arrow.jpg)	
+
 Binary [ machine ] :
 	
 	01001000 01000101 01001100 
