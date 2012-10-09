@@ -1,171 +1,17 @@
-Chap_4: DRAWING
+#### Chapter_02:
+# Setting up the drawing environment and Drawing basic 2d Graphics
 
 
-open GL - library for interfacing with graphics card in your computer
-- people will typically draw to the screen using their open GL
-- its been around for a while, so there is a lot of documentation for it
-Openframeworks provides us with high level drawing tools that are translated to a more complicated OPENGL language.
+##### Intro to OpenGL:
 
-Other options for drawing to screen: other graphics engines like Cairo
+To draw to the screen, OpenFrameworks uses a cross-language API that allows us to interact and draw to the GPU (Graphics Processing Unit). OpenGL has been around since 1992 and has been widely used in computer graphics.
+OpenFrameworks makes it easier for us to draw to the GPU using OpenGL, providing us with more abstract, high level functions.
 
 
+######Setting up the environment:
 
-OpenGL is an engine that draws in triangles. Other shapes are based on triangles. (ofSetCircleResolution() increases the number of triangles that make up that circle, effectively making it smoother)
-Insert circle graphic here, there's one in the OF documentation website in ofSetCircleResolution()
-
-
-Graphic state:
-setting states like ofSetColor - adjusting the color
-ofSetFill - allows you to create shapes with filling or with no filling
-that applies to any graphic  until there's a new state 
-
-For all drawing functionalities, the user should be in the draw function
-- at the beginning of the draw function, the entire screen is cleared. This happens every time the draw loop starts over
-
-Drawing in the update will be updated every frame, you won't even see it.
-ofSetBackgroundAuto(boolean value);
-
-ofSetVerticalSync = whenever you draw it is synchronized with your screen refresh rate
-
-ofsetFrameRate = how fast frames are refreshed (60 frames / per sec);
-limits the the frame rate by giving a maximum upper bound
-
-
-Primitive Shapes
-
-primitive shapes in OF (include primitive shape functions here): 
-- ofRect();
-- ofCircle();
-- ofLine(); 
-- ofTriangle();
-
-coordinate system is based on upper left corner (0,0) [insert a simple coordinate system illustration here] [ code example - with graphics that explains exactly which line of code doing what in the graphic(commented code)]
-
-more complex drawing example explained, line by line, describing what each and every function, variable and value does. - i.e: draw the OF logo.
-
-
-If you want to draw a red rectangle located at (0,0) that is 20px by 10px you would write the following lines in the draw loop:
-    ofFill();
-    ofSetColor (255,0,0);
-    ofRect (0,0,20,10);
-
-include examples here that use native variables (i.e., mouseX, mouseY, etc)
-
-To draw a polyline (a line with multiple points, and no color filling (just outline)):
-    
-    ofNoFill();
-    ofBeginShape();
-        ofVertex(100,100);
-        ofVertex(200,100);
-        ofVertex(250,150);
-        ofVertex(50,150);
-    ofEndShape(true); //the 'true' tells oF to connect the last point to the first
-
-More complex shapes:
-    
-To draw a polygon - a filled in shapeWhen with ofFill() - creates a filled shape = polygon  
-    
-    ofSetColor (255,0,0);
-    ofFill();
-    ofBeginShape();
-        ofVertex(100,100);
-        ofVertex(200,100);
-        ofVertex(250,150);
-        ofVertex(50,150);
-    ofEndShape(true); //the 'true' tells oF to connect the last point to the first
-
-
-Two types of curves that we use in OF:
-
-- Bezier (using controll points) - your line goes from the first point to the second point, going through the third and fourth points as controllers)
-    ofBezier [illustration of bezier first and last points + two control points]
-     [illustration of Catmull first and last points + two control points]
-
-- Catmull (we have four points, the first and the last point are controlles, and the two in the middle are the beginning and end of our curved line)
-
--ofpath and polyline are objects that help us draw complex objects more easily.
-
-Color
-
- RGB, Alpha - the 4th parameter. alpha values- 0 to 255 (same as the RGB channels)
-By default alpha channel is turned off. In order to start using the alpha channel and blending, meaning that if we want to play with transparency and see the mixture of overlaying colors, we call the ofEnableAlphaBlending();
-
-To set the color to a blue 50% opacity:
- Enable and disable the alpha processing to keep it light
-
-ofEnableAlphaBlending();
-ofSetColor (0, 250, 0, 127);
-Don't forget to Disable when done 'using' alpha
-
-Painter's algorithm 
-
-ofColor object.
-Enable HSB color mode (hue - saturation - brigthness) 
-
-Super useful for drawing:
-ofPath();
-ofPolyLine();
-ofMesh();
-
-we can use the ofMesh object to define different properties for different points. ofMesh object allows us to draw on a lower level.
-
-
-
-// ofPath;
-    // ofPolyline;
-    ofMesh myMesh;
-    myMesh.setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
-    
-    myMesh.addColor(ofColor::red);
-    myMesh.addVertex(ofPoint(100,100));
-    myMesh.addColor(ofColor::white);
-    myMesh.addVertex(ofPoint(200,100));
-    // myMesh.addColor(ofColor::white);
-    myMesh.addVertex(ofPoint(100,200));
-     //myMesh.addColor(ofColor::white);
-    myMesh.addVertex(ofPoint(200,200));
-    
-    myMesh.draw();
-
-Transformations
-
-Imagine when you are drawing, you're drawing on a graph paper. In this case out graph paper is the pixel grid. What if we want to transform our drawing somehow? 
-
-
-Linear Algebra: A box numbers of for transformation, rotation, translation, etc..
-This box of numbers takes anything you pass into it and it outcomes a point.
-Matrix = a box of numbers
-push() = takes the beginning state. Taking a snapshot of the matrix that exists now
-pop = gives the end result
-[illustration: show the original coordinate system + a translated one]
-[illustration: show a nested push/pop matrix, ontop of the original matrix] //maybe a gif animation here
-
-ofRotate(); ofScale();
-are all made in corellation to the 0,0, the origin point.
-Push /pop matrix, and set a new origin point with the ofTranslate(x,y). Everything shape drawn between the push/pop and beneath the ofTranslate will be drawn in corellation to the ofTranslate given x and y.  
-
-if we want to have a shape rotate around itsel, we should ofTranslate() first, and then start ofRotate(). Here, we're effectively translating the whole coordinate system including the (0,0) point to a new location and use that as the basis for our ofRotate() function.
-note that this all happens inside the push and pop matrix.
-
-ofSetRectMode(OF_RECTMODE_CENTER); //use this to change the origin to the center of the rectangle instead of the left-top edge
-
-------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------
-
-
-Chap_4: DRAWING (written by Michael Gonzalez + Mani Nilchiani)
-
-INTRO:
-open GL - library for interfacing with graphics card in your computer
-
-To draw to the screen, OpenFrameworks uses a cross-language API that allows it to interact and draw to the GPU (Graphicd Processing Unit). OpenGL has been around since 1992 and has been widely used in computer graphics.
-OpenFrameworks makes it easier for us to draw to the GPU using OpenGL, by providing us with more abstract, high level functions.
-_____________________________________________________________________________
-
-1 - Setting up the environment:
 In order for us to start drawing in openFrameworks, we need to setup our drawing environment first.
-The most basic drawing settings are ofBackground(r,g,b); and ofSetColor(r,g,b); which respectively set up the background color and the color in which we our drawing will be rendered.
+The most basic drawing settings are **ofBackground(r,g,b);** and **ofSetColor(r,g,b);** which respectively set up the background color and the color in which we our drawing will be rendered.
 
 Typically, setting up the drawing environment is done in the scope of our setup(); function.  
 
