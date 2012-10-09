@@ -26,43 +26,26 @@ When we say that these libraries "know how to work with each other" we mean not 
 > 
 > [screen shot to show folder heights]
 
-At the same time ```ofMain.h``` load all the other headers files that define all the OF existing objects and methods. We could say they know where they live.
+At the same time ```ofMain.h``` loads all the other headers files that define all the oF existing objects and methods. We could say they know where they live.
 
-***IMPORTANT***: That's the reason why you probably don't want to be mixing different OF versions, renaming folder or moving things arround.
+***IMPORTANT***: That's the reason why we probably don't want to be mixing different oF versions, renaming folder or moving things around.
  
-See the OF main folder as a little village of peaces of code that its related and know very well each other. What you certainly CAN do it's to rename this hole folder or place to some place it's easy to access. You are going to be coming back to this folders many many times.
-A good place to place it it's on your desktop for example.
+Think the oF main folder as a little village of pieces of code that are related and know each other very well. What we certainly can do is rename this whole folder or place to some place it's easy to access. We are going to be coming back to this folder many times. A good location to place it is on our desktop for example.
 
 
 # FOLDER ORGANIZATION
-Let's take a closer look to this folder organization in order to have a clear and transparent view of how openFrameworks works.
+Let's take a closer look at the folder organization in order to have a clear and transparent view of how openFrameworks works.
 
 ###Addons:  
-This contains all the added-on features for openFrameworks that have been contributed
-by users over the past year or so. These libraries change often, and new
-ones are added frequently, so it’s important to remember that these are dynamic
-if you’re planning on using these libraries in a program because you need to explicitly
-include them in your program.
+This contains all the added-on features for openFrameworks that have been contributed by users in the past. These libraries often change, and new ones are added frequently, so it’s important to remember that these are dynamic if we’re planning on using these libraries in a project, because we need to explicitly include them in your program.
 
 ###Apps:  
-This is where your programs should be stored. If you have a strong preference, you
-can organize them in other ways, but that would go against the flow and would
-break some of your code. The example programs that use the core oF libraries are
-stored here, as are the example programs that show you how to use each of the
-add-on libraries. These are some of your best learning resources because they give
-you wonderful starting points for exploring oF and C++, and because they’re usually
-well commented and documented.
+This is where our projects should be stored. If we have a a real need to, we can organize them in other ways, but that would go against the flow and would break some of our code. The example programs that use the core oF libraries are stored here, as are the example programs that show us how to use each of the add-on libraries. These are some of our best learning resources because they give us wonderful starting points for exploring oF and C++, and because they’re usually well commented and documented.
 
 ###Examples: 
-These are example applications that ship with each release of Openframeworks. 
+These are example applications that ship with each release of openFrameworks. 
 
-Libs: This is where the libraries that oF relies on are stored. These range from external
-libraries like fmodex, which is used for two- and three-dimensional sound manipulation,
-to the GLee library, which is used for OpenGL graphics. Most important,
-you’ll see the core openFrameworks  folder, which stores the header files that define
-all the core oF functionality in six folders. As you find your ideas and techniques
-becoming more and more sophisticated, you’ll probably need more libraries than
-those provided here. 
+Libs: This is where the libraries that oF relies on are stored. They range from external libraries like FMod, which is used for two- and three-dimensional sound manipulation, to the GLee library, which is used for OpenGL graphics. Most important, we'll see the core openFrameworks  folder, which stores the header files that define all the core oF functionality in six folders. As we find our ideas and techniques becoming more and more sophisticated, we'll probably need more libraries than those provided here. 
 
 ###Other: 
 This folder includes an arduino sketch in it. (It allows OF to interface with Arduino?)
