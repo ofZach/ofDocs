@@ -73,3 +73,21 @@ This folder includes an arduino sketch in it. (It allows OF to interface with Ar
 Only the 0071 version of OF has this folder. The project generator relies on the script folder to generate new empty blank projects.
 
 
+###Making new projects (? PG)
+project generator
+copy / pasting older projects
+ 
+###OF event system (setup, update , draw, key & mouse events) 
+all the main events
+OF interfaces with testApp, (main).
+(callout : testApp extends baseApp ) <--- processing 
+setup / update / draw Ref = http://www.openframeworks.cc/tutorials/developers/001_how_openFrameworks_works.html
+setup as the starting point
+most OF objects have a setup function (or loadFunction)
+avoid constructors
+get's called once
+why update / draw 
+separate some the logic of code
+code runs faster
+loops repeatedly
+game loop + hardware events
