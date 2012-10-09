@@ -12,7 +12,7 @@ Txt [ human ] :
 
 	'HELLO WORLD' 
 
-![image](/Users/noadol/_MFADT/of_0071_osx_release/ofDocs_s/img/arrow.jpg)	
+![image](img/arrow.jpg)	
 Binary [ machine ] :
 	
 	01001000 01000101 01001100 
@@ -76,7 +76,6 @@ says, if you see PI in the text, change it to 3.14.  Note, this is changing the 
 One of the more common uses of the preprocessor comand, which you'll see everywhere in the code is the ```#include``` statement, that actually takes the content of one file (what's being inlcuded) and places it into another file.  Most cpp files will have a corresponding h file, and their .cpp files include that h file:
 
 ![image](img/include.jpg)	
-
 
 The inclusion of files is recursive, so if file (A) includes file (B) which include (C) and (D), A, after going through the preprocessor, will have B, C, and D inside of it.   Often times, libraries will have one master header file, that includes all the other files. In the case of openframeworks, that file is called ofMain.h, and if you look, it actually includes all the other header files in openframeworks. 
  
