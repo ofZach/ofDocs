@@ -1,32 +1,30 @@
 
 
-# OF structure
+# oF structure
 
 #### download
 
-One of the important things to have in mind when you download your openFrameworks release zip file from [http://www.openframeworks.cc/download/](http://www.openframeworks.cc/download/) is that inside it you are going to find a bunch of files. Yes!!, lot of files and folders with out any executable file (or un less anyone that gives you the idea that IT IS openFrameworks). It's not like Processing that you download an actual application that you can run it and say to your self "Hey! this is great I'm working on Processing". 
-Here is a different picture. This maybe be scary you at the beginning. Why it's this?
-Have in mind that openFrameworks it's really a bouncy of libraries that wraps other powerful libraries. So in essences openFrameworks it's 100% pure code. It's completely independed of the IDE you are using.  
+One of the important things to have in mind when we download our openFrameworks release zip file from [http://www.openframeworks.cc/download/](http://www.openframeworks.cc/download/) is that inside it we are going to find a bunch of files. Yes!! Many files and folders without an executable file (or anything that gives us the idea that this is openFrameworks). It's not like Processing, where we download an actual application that we can run and say to ourselves "Hey! this is great I'm working in Processing". 
+Here it is a different picture and that may be scary for us at the beginning. Think of it like this; openFrameworks is really a bunch of libraries that wraps, or contains, other powerful libraries. So in essence openFrameworks is 100% pure code. It's completely independent of the IDE we are using.  
 
-The core of open frameworks is a library, and the code you write is based on that library.  The OF library extends other libraries, such as FMOD, opengl, cairo, etc.  
+The core of openFrameworks is a library, and the code we write is based on that library.  The OF library extends other libraries, such as FMOD, OpenGL, Cairo, etc.  
 
-for more information about libraries, see the glossary
+For more information about libraries, see the glossary.
 
-#### what you see in OF
+#### what you see in oF
 
-So, you download the last release. You unzip it. And you are looking at all that files and folders. What are you looking it's to a package of libraries and examples that know how to work together. The OF core classes and methods are in the ```/lib``` folder together with the other openSource powerful libraries that they wrap. In this package you can also find some ```/examples``` and ```/addons``` that are specially designed for does libraries. 
+So, we downloaded the latest release, unzipped it and are looking at the files and folders. What we are looking at is a package of libraries and examples that know how to work together. The OF core classes and methods are in the ```/lib``` folder together with the other openSource powerful libraries that they wrap. In this package we can also find some ```/examples``` and ```/addons``` that are specially designed for those libraries. 
 
-When we said that this libraries "know how to work with each other" we mean not only that they call functions and objects related with a same syntax and design logic. We also mean they know where and how to find them. The way the folders are organized are part of this. For example: All OF programs search for a ```ofMain.h``` file that they are going to look at it in the ```/lib/openFrameworks``` directory. But what is important to know it's that for getting there they use relative folders. So if you look under the hood you will see that the do: ```../../../lib/openFramework/ofMain.h``` that means all examples and project descend three levels up to the OF root folder and from there search for the ```ofMain.h```.
+When we say that these libraries "know how to work with each other" we mean not only that they call functions and objects related with the same syntax and design logic, we also mean they know where and how to find them. The way the folders in the ```/lib``` folder are organized is part of this. For example: All oF programs search for the ```ofMain.h``` file, and they are going to look for it in the ```/lib/openFrameworks``` directory. But what is important to know is that for getting there they use relative folders. So if we look under the hood you will see ```../../../lib/openFramework/ofMain.h```. That means all examples and projects descend three levels up to the oF root folder and from there search for the ```ofMain.h```.
 
 
-***NOTE***(this is a shorter version more clear an simpler wrote by Zach… )
-```
-	#Relative Paths
-
-	The openframeworks package is designed to be self contained, and one of the most important ideas to know is that project files refer relatively to the libs and addons folder.  For example, if you were to open up an example project, you'd actually see include lines that look like "../../../libs/...".  This means the OF project has a certain height it wants to be away from the libs from the libs folder into order to compile.  If you move the project around, it might not work for this reason. 
-
-	[screen shot to show folder heights]
-```
+> ***NOTE***(this is a shorter version more clear an simpler wrote by Zach… )
+> 
+> Relative Paths
+> 
+> The openframeworks package is designed to be self contained, and one of the most important ideas to know is that project files refer relatively to the /libs and /addons folder.  For example, if you were to open up an example project, you'd actually see include lines that look like "../../../libs/...".  This means the OF project has a certain height it wants to be away from the libs from the /libs folder into order to compile.  If you move the project around, it might not work for this reason. 
+> 
+> [screen shot to show folder heights]
 
 At the same time ```ofMain.h``` load all the other headers files that define all the OF existing objects and methods. We could say they know where they live.
 
