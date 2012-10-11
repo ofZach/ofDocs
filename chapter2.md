@@ -74,32 +74,33 @@ says, if you see PI in the text, change it to 3.14.  Note, this is changing the 
 
 ### include 
 
-One of the more common uses of the preprocessor comand, which you'll see everywhere in the code is the ```#include``` statement, that actually takes the content of one file (what's being inlcuded) and places it into another file.  Most cpp files will have a corresponding h file, and their .cpp files include that h file:
+Most .cpp files will be paired with a corresponding .h file. One of the more common uses of the preprocessor commands is the ```#include``` statement, that takes the content (the definitions) of the .h file and includes it the .cpp file, like this:
 
-![image](img/include.jpg)	
+![image](https://raw.github.com/ofZach/ofDocs/master/img/include.jpg)	
 
-The inclusion of files is recursive, so if file (A) includes file (B) which include (C) and (D), A, after going through the preprocessor, will have B, C, and D inside of it.   Often times, libraries will have one master header file, that includes all the other files. In the case of openframeworks, that file is called ofMain.h, and if you look, it actually includes all the other header files in openframeworks. 
- 
-This is really useful. If you have an object, say a particle object, and you want it to be able to draw using openframeworks:
+
+The inclusion of files is recursive, meaning, if the .h file of the testApp includes .h file (2) which include the .h files (3), (4) and (5), the the testApp.h, after going through the preprocessor, will have (2), (3), (4) and (5) inside of it.  
+
+![image](https://raw.github.com/noadol/ofDocs/master/img/includeGuards.jpg)
+
+
+Often times, libraries will have one master header file, that includes all the other files. In the case of openframeworks, that file is called ofMain.h, and if you look, it actually includes all the other header files in openframeworks. This is really useful. If you have an object, say a particle object, and you want it to be able to draw using openframeworks:
 
 		show particle -> inlcudes ofMain includes ofGraphics 
 
-### recursive includes
+### Recursive includes
 
-The problem with including files is that it sometimes can lead to issues where a file is included twice: 
-
-		graphic + example showing including twice
-
-The trick here is not to add a file multiple times. If you include a file twice, it's a bit like definining a variable twice, the compiler gets confused: 
+The problem with including files is that it sometimes can lead to issues where a file is included twice. If you include a file twice, it's a bit like definining a variable twice, the compiler gets confused: 
 
 		int pos;
 		int pos;
 		
-Here, the compiler when it seems float pos the first time, will make a variable called pos which is a floating point number. but the second time, it will say, "wait, I've seen this name before, and you can't have multiple definitions with the same name!"  This is a multiple definition error.
 
-The same kind of error can happen with recursive includes, so we need a system to prevent a file from being included multiple times.  This is called an include guard. There's an old school and new school way of doing it. 
+The trick here is not to add a file multiple times. Here, the compiler when it seems float pos the first time, will make a variable called pos which is a floating point number. but the second time, it will say, "wait, I've seen this name before, and you can't have multiple definitions with the same name!"  This is a multiple definition error. The same kind of error can happen with recursive includes, so we need a system to prevent a file from being included multiple times.  This is called an include guard. There's an old school and new school way of doing it. 
 
-###include guards
+
+
+### Include guards
 
 This means the compiler will compile the text in A or B, depending on if SOMETHING is defined or not.  This is used heavily in openframeworks for multiplatform compilation (for the adventurous, take a look at ofConstants.h, in the utils folder). There you'll see parts of code for windows, mac and linux all using #ifdefs.
 
@@ -117,7 +118,7 @@ The new school style, which you'll see in alot of the core of OF uses #pragma, w
 
 		#pragma once
 
-### include & search paths
+### Include & search paths
 
 Another important point about includes is that search paths are really important. And there is a big difference between using:
 
@@ -130,7 +131,7 @@ Another important point about includes is that search paths are really important
         
 VS.
     
-	#include <system_file.h
+	#include <system_file.h>
 	// means it's a system file
     // so it's part of the system SDK more often seen
     // on linux because it looks to the /usr/include 
