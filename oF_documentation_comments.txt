@@ -1,0 +1,6 @@
+oF documentation comments:
+
+ofEnableBlendMode(...)
+void ofEnableBlendMode(ofBlendMode blendMode)
+-- Blending Modes are not listed, or not listed in corellation to the function that contains them
+
