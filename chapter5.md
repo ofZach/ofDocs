@@ -117,8 +117,8 @@ That means that this is going to work:
     		cout << var << endl;	// OK
 		}
 	}
-	
-˜˜˜
+~~~~	
+
 
 
 ... but this not:
