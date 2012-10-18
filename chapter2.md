@@ -1,4 +1,3 @@
-#### Chapter_02:
 #Intro to C++ / compilers
 
 When we are writing code, the main objective is to get from text that we are typing into some machine instructions the computer can operate on.  This process is called compiling and it looks like
@@ -25,9 +24,12 @@ Most programming languages use text files, plain text that you can open in any t
 
 In the case of C++, the the compiler takes code written by humans and transforms it to machine level instructions ( assembly language ) for a specific processor (i.e. Intel). 
 
-MORE ABOUT MACHINE LEVEL INSTRUCTIONS
 
-#### There are 4 steps in compiling OF: 
+***MORE ABOUT MACHINE LEVEL INSTRUCTIONS***
+
+
+There are 4 steps in compiling OF: 
+
 1. Txt
 2. Pre processor
 3. Compile
@@ -38,8 +40,7 @@ MORE ABOUT MACHINE LEVEL INSTRUCTIONS
 ---
 <br />
 
-# 1. Txt 
-#### The Text Files
+## 1. The Text Files
 <br />
 
 We start off writing text, and in c++ there are two kinds of files you will see: .h and .cpp files.  
@@ -50,7 +51,7 @@ The .h files are header files; they contain definitions. The .cpp files are impl
 
 The compiler's sole job is to compile .cpp files, it uses the .h files to get information that helps it compile.  The .h files provide a bridge from one .cpp file to another.
 
-[MORE: how this relates to OF -- > reading h files, looking at the core of OF, etc]
+***MORE: how this relates to OF -- > reading h files, looking at the core of OF, etc***
 
 <br />
 
@@ -58,7 +59,7 @@ The compiler's sole job is to compile .cpp files, it uses the .h files to get in
 <br />
 
 
-# 2. Pre processor
+## 2. Pre processor
 
 The preprocessor is the next step in our progression from text to something you can run. All code that start with # are preprocessor comands. They will look like:
 
@@ -106,6 +107,7 @@ This means the compiler will compile the text in A or B, depending on if SOMETHI
 
 The old schoool way uses some #define logic, and you'll see it at the start of and end of the "h" file, like this: 
     
+    
         #ifndef THIS_FILE // that means "if THIS_FILE it's not defined"
         #define THIS_FILE // we defined so next time it will run over it will not pass across the previus comand
 
@@ -122,7 +124,7 @@ The new school style, which you'll see in alot of the core of OF uses #pragma, w
 
 Another important point about includes is that search paths are really important. And there is a big difference between using:
 
-[MORE!]
+***MORE!***
 
     #include "local_file.h" 
     // means that is a local header file 
@@ -141,11 +143,9 @@ The errors you can get here are things like…
 
 	Cant find "ofMain.h"
 
-( ADD ERROR EXAMPLES )
+
+***ADD ERROR EXAMPLE***
 ( what do you do if you get this error? )
-
-### example include errors
-
 
 <br />
 
@@ -153,7 +153,7 @@ The errors you can get here are things like…
 <br />
 
 
-# 3. Compiler
+## 3. Compiler
  
 The compiler's job in life is simple: to take the code that you've written and turn it into machine language instructions for the compiler that you are using. In other words, to take your .cpp files and turn them into .o files. It gets the text, after it's been preprocessed, and will go .cpp file by .cpp to make .o files. 
 
@@ -183,7 +183,7 @@ With either compile setting, this process ends with lot's of .o files. Those are
 ---
 <br />
 
-# 4. Linker
+## 4. Linker
 
 In our code, we are many times calling functions that are in other files (otherwise we would have to code everything from scratch!). Our program must make jumps to get stuff from those files we are referencing. The linker takes .o files and figures out how to combine them together, and what the jumps from file to file are.
 
@@ -193,7 +193,7 @@ The linker start to put all the .o files together according to the headers. If i
     Means it can get the libraries (.a .lib .dll). 
     Or also because you have multiple function names and the compiler has a hard time linking one function on the .o file with the right header (.h). 
 
-    ( ADD ERROR EXAMPLES )
+***ADD ERROR EXAMPLES***
 
 You can compile libs or apps. 
 So sometimes ( and in fact openFrameworks it self ) you go a cross all this process and get a lib at the end ( .a .lib .dll )
