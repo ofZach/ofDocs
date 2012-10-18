@@ -525,4 +525,4 @@ Then using this variable is easy as:
 
 As you can see we replace everything with variables. This is going to give us a lot of freedom to play with the relationship between these variables.
 
-When you discover in the next chapters that ```ofColor``` and ```ofPoint`` have other building methods like ```.set()``` that let you do some AMAZING things really simply. Things like transforming from RGB to HSB, to rotate positions, get angles, add, substract, divides and multiple colors, etc.
+When you discover in the next chapters that ```ofColor``` and ```ofPoint``` have other building methods like ```.set()``` that let you do some AMAZING things really simply. Things like transforming from RGB to HSB, to rotate positions, get angles, add, substract, divides and multiple colors, etc.
