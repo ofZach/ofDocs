@@ -43,14 +43,15 @@ These are example applications that ship with each release of openFrameworks.
 
 Libs: This is where the libraries that oF relies on are stored. They range from external libraries like [FMOD](http://www.fmod.org/), which is used for two- and three-dimensional sound manipulation, to the GLee library, which is used for [OpenGL](http://www.opengl.org/) graphics. Most important, we'll see the core openFrameworks  folder, which stores the header files that define all the core oF functionality in six folders. As we find our ideas and techniques becoming more and more sophisticated, we'll probably need more libraries than those provided here. 
 
-###Other
+### Other
 This folder includes an [Arduino](http://www.arduino.cc/) sketch in it. (It allows OF to interface with Arduino?)
 
-###Making new projects (? PG)
+### Project Generator
 project generator
 copy / pasting older projects
  
-###OF event system (setup, update , draw, key & mouse events) 
+ 
+## OF event system (setup, update , draw, key & mouse events) 
 all the main events
 OF interfaces with testApp, (main).
 (callout : testApp extends baseApp ) <--- processing 
