@@ -450,16 +450,19 @@ The last type of conditions are switch statements. They are used when you want t
 
 So instead of saying:
 
+~~~~{.cpp}
 
 	if ( THIS_IS_EQUAL_TO_THIS ){
-		...
+		DO A PLAN
 	} else if ( OR _THIS ){
-		...
+		DO B PLAN
 	} else if ( OR_THIS_OTHER ){
-		...
+		DO C PLAN
 	} else {	// or if it's not equal to neither this option
-		...
+		DO D PLAN
 	}
+	
+~~~~
 
 Using SWITCH we say
 
@@ -467,12 +470,13 @@ Using SWITCH we say
 
 	switch ( VARIABLE ){
 		case EQUAL_TO_THIS_VARIABLE:
-			…
+			DO A PLAN
 		break;
 		case EQUAL_TO_THIS_OTHER_VARIABLE:
-			…
+			DO B PLAN
 		break;
 		default:
+			DO C PLAN
 		break;
 	}
 	
