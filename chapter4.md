@@ -38,6 +38,9 @@ Whenever you want to print something to the screen, static or dynamic, the funct
 Much like the update(); function in OpenFrameworks which is repititevly being update, the draw function also loops. Both update() and draw() functions will loop at same rate of frames per second, as specified in the setup() `ofSetFrameRate(60)`;  What separates the two is that whatever is placed within the draw function should be dealing with shapes, images, text, or anything else you would like to be shown to the viewer. The update() is where the math and calculations are made. 
 
 Everytime the draw function in openFrameworks is called, whatever was on the screen from the previous frame is wiped clear and replaced by what should be in the new frame.  If you decide you don't want to update/refresh your background you can then use `ofSetBackgroundAuto(boolean bManual)` and set the boolean value to `(false)`.
+######Simple Graphics
+To change the origin to the center of the rectangle instead of the left-top edge --
+`ofSetRectMode(OF_RECTMODE_CENTER);`
 
 ###### Color and Transparency
 Before drawing our custom shapes we should set a color and a drawing mode. The drawing mode in our program determines whether or not our line or shape will have a fill. To draw with fill, call the function `ofFill()` after you declare your drawing color and before drawing anything to the screen. 
@@ -185,7 +188,7 @@ Using ofSetColor(); we can directly pass either color values or ofColor objects 
 ######Smoothing
 
 
-We can smooth out our lines in OpenFrameworks by simply calling:
+We can smooth out our **lines** in OpenFrameworks by simply calling:
     `ofEnableSmoothing();`
 and turning it off using:
     `ofDisableSmoothing();`
@@ -244,9 +247,10 @@ Openframeworks has within it classes for drawing a circle, rectangle/square, tri
 Here is the syntax for each:
 
 
-`ofCircle(x, y, radius);`
-`ofRect(x, y, width, height);`
-`ofTriangle(x1,y1,x2,y2,x3,y3);`
+`ofCircle(x, y, radius);` <br>
+`ofRect(x, y, width, height);`<br>
+`ofTriangle(x1,y1,x2,y2,x3,y3);`<br>
+
 
 
 ######Transformations Matrix Push Pop
@@ -268,4 +272,3 @@ Push /pop matrix, and set a new origin point with the ofTranslate(x,y). Everythi
 if we want to have a shape rotate around itsel, we should ofTranslate() first, and then start ofRotate(). Here, we're effectively translating the whole coordinate system including the (0,0) point to a new location and use that as the basis for our ofRotate() function.
 note that this all happens inside the push and pop matrix.
 
-ofSetRectMode(OF_RECTMODE_CENTER); //use this to change the origin to the center of the rectangle instead of the left-top edge
