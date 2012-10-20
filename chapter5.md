@@ -25,24 +25,25 @@ we can use variable to say:
 	ofCircle(width/2, height/2, radius/3);
 	ofCircle(width/2, height/2, radius/4);
 
-In this way if we want to change the look of our drawing we just need to change the width and the height and all it's going to change automaticaly.
+In this way if we want to change the look of our drawing we just need to change the width and the height and all it's going to change automatically.
 That's the magic of using variables in code.
 
 ## Variables / data Type
-There is an important thing about variables in openFrameworks. C++ is a strong type language. So anytime you define a variable as a number, it can't be transformed to a character without making a new variable. Another important thing here is that there are two types of numbers integers, or whole numbers (1,2,3,4,5,15,98) and floating point numbers, or decimal numbers (0.1, 3.6, 32.7, etc). Also both types could be signed and unsigned, meaning they can be positive and negative, repsectively. Each number type uses a defined amount of memory space. With a signed number, one bit of memory space is used to set the sign of the number. So pre-defining a variable as a unsigned leaves that extra bit free for use.
+
+There is an important thing about variables in openFrameworks. C++ is a strong type language. So anytime you define a variable as a number, it can't be transformed to a character without making a new variable. Another important thing here is that there are two types of numbers integers, or whole numbers (1,2,3,4,5,15,98) and floating point numbers, or decimal numbers (0.1, 3.6, 32.7, etc). Also both types could be signed and unsigned, meaning they can be positive and negative, respectively. Each number type uses a defined amount of memory space. With a signed number, one bit of memory space is used to set the sign of the number. So pre-defining a variable as a unsigned leaves that extra bit free for use.
 
 This are all the data types, with each respective size and range of values
 
-//  Import the C++ DATA TYPES
-//
-// http://www.cplusplus.com/doc/tutorial/variables/
+
+**NOTE**: take a look to [C++ DATA TYPES](http://www.cplusplus.com/doc/tutorial/variables/)
+
 
 At the end the most often used data types in oF are:
 
-bool  	(1 byte)   could be TRUE or FALSE    
-chars	(1 byte)   signed: -128 to 127 / unsigned: 0 to 255
-int    	(4 bytes)  signed: -2147483648 to 2147483647 / unsigned: 0 to 4294967295
-float 	(4 bytes)  +/- 3.4e +/- 38 (~7 digits)
+* ```bool```  	(1 byte)   could be TRUE or FALSE    
+* ```chars```	(1 byte)   signed: -128 to 127 / unsigned: 0 to 255
+* ```int```    	(4 bytes)  signed: -2147483648 to 2147483647 / unsigned: 0 to 4294967295
+* ```float``` 	(4 bytes)  +/- 3.4e +/- 38 (~7 digits)
 
 To addition to it there is a special variable added before to C++ for storing groups of characters call a "string". Strings are use to store words or sentences.
 
@@ -50,186 +51,239 @@ To addition to it there is a special variable added before to C++ for storing gr
 So, how can I make a variable?
 There is a simple structure for it. This procedure is call ***declaration***
 
-[type] [variable_name];
+	[type] [variable_name];
 
 For example:
 
-int myInteger;
-float myFloat;
+	int myInteger;
+	float myFloat;
 
 Also it's possible to declare several variables of the same type in one line
 
-int firstInteger, secondInteger;
+	int firstInteger, secondInteger;
 
-With this we just make room on the memory for storing something. The content it's going to be assigned using '=' like this
+With this we just make room on the memory for storing something. The content it's going to be assigned using ```=``` like this
 
-int myInteger;
-myInteger = 10;
+	int myInteger;
+	myInteger = 10;
 
 We can do everything in one move writing:
 
-int myInteger = 10;
+	int myInteger = 10;
 
-After doing this we can use 'myInteger' instead of 10. The variable myInteger is now something we can use in many parts of our code, relaying that value whereever it is inserted to in order to make the content relative. That is going to be our way of creating smarter programs and great interaction.
+After doing this we can use ```myInteger``` instead of 10. The variable myInteger is now something we can use in many parts of our code, relaying that value where ever it is inserted to in order to make the content relative. That is going to be our way of creating smarter programs and great interaction.
+
 
 ## Scope
-Now that we have created a variable, understanding where we can use it in our program is called its scope. Scope is important because it determines whether the variable is visible or usable for the compiler. In short, the scope of the variable is usually defined whereever the curly braces begin { and end }.
+Now that we have created a variable, understanding where we can use it in our program is called its scope. Scope is important because it determines whether the variable is visible or usable for the compiler. In short, the scope of the variable is usually defined where ever the curly braces begin ```{``` and end ```}```.
 
-//
-// GRAPHICS NEED HERE FOR EXPLAINING SCOPE
-//
+
+*** GRAPHICS NEED HERE FOR EXPLAINING SCOPE ***
+
 
 Let say that we declare a variable in the update() method. 
 
-void testApp:update(){
-	int var = 50;
-}
+~~~~{.cpp}
 
-This variable is going to be accessed just inside the update funtion. If you do this in the draw() function:
+	void testApp:update(){
+		int var = 50;
+	}
 
-void testApp:draw(){
-	ofCircle(100,100,var); 	// ERROR
-}
+~~~~
 
-It's not going to work. Why? Because the scope of a variable var is limited to only the update() function, we see that with the { }.
+
+This variable is going to be accessed just inside the update function. If you do this in the draw() function:
+
+~~~~{.cpp}
+
+	void testApp:draw(){
+		ofCircle(100,100,var); 	// ERROR
+	}
+	
+~~~~
+
+
+It's not going to work. Why? Because the scope of a variable var is limited to only the update() function, we see that with the ```{ }```.
 
 That means that this is going to work:
 
-void testApp:update(){
-	int var = 50;
+
+~~~~{.cpp}
+
+	void testApp:update(){
+		int var = 50;
     
-	if (var > 40){
-    	cout << var << endl;	// OK
+		if (var > 40){
+    		cout << var << endl;	// OK
+		}
 	}
-}
+~~~~	
+
+
 
 ... but this not:
 
-void testApp:update(){
-	int var = 50;
+
+~~~~{.cpp}
+
+	void testApp:update(){
+		int var = 50;
     
-	if (var > 40){
-    	int secondVar = 100; 
-        
-    	cout << var << endl; // OK
+		if (var > 40){
+    		int secondVar = 100; 
+        	
+    		cout << var << endl; // OK
+		}
+    
+		cout << secondVar << endl; // ERROR: variable out of scope
 	}
-    
-	cout << secondVar << endl; // ERROR: variable out of scope
-}
+	
+~~~~
 
-What I can do If I want to create a variable that can be accessed from setup(), update() and draw()?
 
-Because each varible "lives" only inside the scope of the { } that was declare it's impossible to make a variable inside the setup(), update() and draw() that can be seen from all of them at the same time. We can create three variables, one in each function with the same name, but once that frame ends it's going to be destroyed to be created once again in the next iteration. But in that iteration it's going to lose its value. That's not handy. So what we can do in those cases is to declare that variable on the testApp.h.
+What I can do If I want to create a variable that can be accessed from ```setup()```, ```update()``` and ```draw()```?
+
+Because each variable "lives" only inside the scope of the ```{ }``` that was declare it's impossible to make a variable inside the ```setup()```, ```update()``` and ```draw()``` that can be seen from all of them at the same time. We can create three variables, one in each function with the same name, but once that frame ends it's going to be destroyed to be created once again in the next iteration. But in that iteration it's going to lose its value. That's not handy. So what we can do in those cases is to declare that variable on the ```testApp.h```.
 
 Remember, in a previous chapter we define the variables in the .h file as list of ingredients that we are going to use. Well that's the moment to tell the compiler that we want to create a memory container that will store something of some value that is going to be accessed by all the other functions in our testApp. 
 
-For example let's say we want to store the position of the mouse in order to draw a circle. We capture the mouse position in the update() function and then we draw the circle in the draw(). For that we need to store the x and y position in two integers variables. 
+For example let's say we want to store the position of the mouse in order to draw a circle. We capture the mouse position in the ```update()``` function and then we draw the circle in the ```draw()```. For that we need to store the x and y position in two integers variables. 
 
-#pragma once
+~~~~{.cpp}
 
-#include "ofMain.h"
+	#pragma once
+	#include "ofMain.h"
 
-class testApp : public ofBaseApp{
-public:
+	class testApp : public ofBaseApp{
+	public:
     
-	void setup();
-	void update();
-	void draw();
+		void setup();
+		void update();
+		void draw();
 
-	void keyPressed  (int key);
-	void keyReleased(int key);
-	void mouseMoved(int x, int y );
-	void mouseDragged(int x, int y, int button);
-	void mousePressed(int x, int y, int button);
-	void mouseReleased(int x, int y, int button);
-	void windowResized(int w, int h);
-	void dragEvent(ofDragInfo dragInfo);
-	void gotMessage(ofMessage msg);
+		void keyPressed  (int key);
+		void keyReleased(int key);
+		void mouseMoved(int x, int y );
+		void mouseDragged(int x, int y, int button);
+		void mousePressed(int x, int y, int button);
+		void mouseReleased(int x, int y, int button);
+		void windowResized(int w, int h);
+		void dragEvent(ofDragInfo dragInfo);
+		void gotMessage(ofMessage msg);
     
-	int x;
-	int y;
-};
+		int x;
+		int y;
+	};
+	
+~~~~
 
-And then we are going to use to openFrameworks methods to get and assign the values of x and y to the position of the mouse on the x-axis and y-axis. These variables, ofGetMouseX() and ofGetMouseY() are native to oF, and allow us to track the position of the mouse on the screen.
+And then we are going to use to openFrameworks methods to get and assign the values of x and y to the position of the mouse on the x-axis and y-axis. These variables, ```ofGetMouseX()``` and ```ofGetMouseY()``` are native to oF, and allow us to track the position of the mouse on the screen.
 
-void testApp::update(){
+
+~~~~{.cpp}
+
+	void testApp::update(){
     
     	x = ofGetMouseX();
-	y = ofGetMouseY();
-}
+		y = ofGetMouseY();
+	}
+	
+~~~~
 
-Because we can ONLY draw in the draw() function now we write:
 
-void testApp::draw(){
-	ofBackground(70,70,70);
+Because we can ONLY draw in the ```draw()``` function now we write:
+
+
+~~~~{.cpp}
+
+	void testApp::draw(){
+		ofBackground(70,70,70);
     
-	ofSetColor(255,255,255);
-	ofCircle(x,y,50);
-}
+		ofSetColor(255,255,255);
+		ofCircle(x,y,50);
+	}
+~~~~
+
 
 ## Combining Variables and Math operators
 
 Now that we have an understanding of variables and where we can use them, how we use them becomes way more interesting when we start to place them in unexpected places and then include math into our code. Let us begin first by using our new mouse variables and assigning them to some new variables.
 
-int x = ofGetMouseX();
-int y = ofGetMouseY();
+	int x = ofGetMouseX();
+	int y = ofGetMouseY();
 
-You can make a relationship bewteen the position of the mouse with the color of the circle like this:
+You can make a relationship between the position of the mouse with the color of the circle like this:
 
-void testApp::draw(){
-	ofBackground(70);
+
+~~~~{.cpp}
+
+	void testApp::draw(){
+		ofBackground(70);
     
-	ofSetColor(x,y,255);
-	ofCircle(x,y,50);
-}
+		ofSetColor(x,y,255);
+		ofCircle(x,y,50);
+	}
+~~~~
+
 
 Since color in this case is set to RGB values, this only works when the position is less than 255 on x and y axis. The key point here is to use some math in order to make sure that the number stay within the range that we want, in this case, 0 - 255.
 
-void testApp::draw(){
+~~~~{.cpp}
 
-	ofBackground(70);
+	void testApp::draw(){
+
+		ofBackground(70);
     
-	// Here we are setting the size of the window
-	ofSetWindowsShape(510,510);
+		// Here we are setting the size of the window
+		ofSetWindowsShape(510,510);
 	
-	// We divide by 2 in order to get a range of 0 - 255
-	ofSetColor(x/2,y/2,255);
-	ofCircle(x,y,50);
-}
+		// We divide by 2 in order to get a range of 0 - 255
+		ofSetColor(x/2,y/2,255);
+		ofCircle(x,y,50);
+	}
+~~~~
+
 
 So Far, so good. 
-Going back to the update() function and how we use variables we can explore the use of math in order to get nice effects. For example instead of making an assignment of x and y to the mouse position we can add some math to make the circle move more smoothly in relation to the mouse. 
+Going back to the ```update()``` function and how we use variables we can explore the use of math in order to get nice effects. For example instead of making an assignment of ```x``` and ```y```to the mouse position we can add some math to make the circle move more smoothly in relation to the mouse. 
 
-void testApp::update(){
-	x = ofGetMouseX();
-	y = ofGetMouseY();
-}
+
+~~~~{.cpp}
+
+	void testApp::update(){
+		x = ofGetMouseX();
+		y = ofGetMouseY();
+	}
+~~~~
 
 Using math in our code includes using compound assignment operators, allowing us to shorten our code and focusing on what we are doing to the variable. Some of the operators include:
 
-addition +=
-subtraction -=
-multiplication *=
-division /=
+* ```+=```	addition
+* ```-=```	subtraction
+* ```*=```	multiplication
+* ```/=```	division
  
 
 First we subtract the current x value and use one of our compound assignment operators, turning:
 
-x = x + ofGetMouseX() - x;
-y = y + ofGetMouseY() - y;
+	x = x + ofGetMouseX() - x;
+	y = y + ofGetMouseY() - y;
 
 which is the same as:
 
-x += ofGetMouseX() -x
-y += ofGetMouseY() - y;
+	x += ofGetMouseX() -x
+	y += ofGetMouseY() - y;
 
 and then complete it by multiplying by 0.1, giving us:
 
-void testApp::update(){
-    
-	x += (ofGetMouseX() - x ) * 0.1;
-	y += (ofGetMouseY() - y ) * 0.1;
-}
+~~~~{.cpp}
+
+	void testApp::update(){
+		x += (ofGetMouseX() - x ) * 0.1;
+		y += (ofGetMouseY() - y ) * 0.1;
+	}
+	
+~~~~
 
 So in each frame it just going to add a portion of the difference between the circle x&y position to the mouse x&y position 
 
@@ -238,66 +292,80 @@ This is a nice example of how variables and math will help us to make cool effec
 ## Variable and conditions Operators 
 
 There are times when you want to check the information of a variable. You could do that using: equal operator ==
-non-equal !=
-greater than >
-greater than or equal to >=
-lesser than <
-lesser or equal to <=
 
-The result of that it's a boolean variable. In other words these "questions" get true or false values. 
+* ```==```	… equal to … 
+* ```!=```	… non-equal to … 
+* ```>```	… greater than … 
+* ```>=```	… greater than or equal to … 
+* ```<```	… lesser than … 
+* ```<=```	… lesser or equal to … 
+
+The result of that it's a boolean variable. In other words these *"questions"* get true or false values. 
 
 Booleans are the key for logic statements. Programming is pretty much the right use of the logic operator together with math. Sounds like fun, right?
 
+
 ### IF statements
-Let's transform our circle into a rectangle each time the x position is greater than 300
+
+Let's transform our circle into a rectangle each time the ```x``` position is greater than ```300```
 For that we are going to use a conditional method call IF. Basically works like this
 
-if ( THIS_IS_TRUE ){
-	DO_THIS
-} else {
-	DO_SOMETHING_ELSE
-}
-
-void testApp::draw(){
-	ofBackground(70);
-    
-	ofSetColor(x/5,y/5,255);
-    
-	if ( x > 300){
-    	ofSetRectMode(OF_RECTMODE_CENTER);
-    	ofRect(x, y, 50, 50);
+	if ( THIS_IS_TRUE ){
+		DO_THIS
 	} else {
-    	ofCircle(x,y,50);
+		DO_SOMETHING_ELSE
 	}
-}
 
-Well little by little this is beginning to take shape. In order to make this more complex you can add logic statements. For example, if the x position is greater that 300 AND ( represented by && ) the y position is also greater than 200, 
+So ..
 
-void testApp::draw(){
-	ofBackground(70);
+~~~~{.cpp}
+
+	void testApp::draw(){
+		ofBackground(70);
     
-	ofSetColor(x/5,y/5,255);
+		ofSetColor(x/5,y/5,255);
     
-	if ( (x > 300) && (y > 200)){
-    	ofSetRectMode(OF_RECTMODE_CENTER);
-    	ofRect(x, y, 50, 50);
-	} else {
-    	ofCircle(x,y,50);
+		if ( x > 300){
+    		ofSetRectMode(OF_RECTMODE_CENTER);
+    		ofRect(x, y, 50, 50);
+		} else {
+    		ofCircle(x,y,50);
+		}
 	}
-}
+	
+~~~~
 
-Exercise: Try now something using OR ( represented by || ). 
+Well little by little this is beginning to take shape. In order to make this more complex you can add logic statements. For example, if the ```x``` position is greater that ```300``` **AND** ( represented by ```&&``` ) the y position is also greater than ```200```, 
 
-Beside IF ( ) statements you can found WHILE loops, FOR loops and switches.
+~~~~{.cpp}
+	void testApp::draw(){
+		ofBackground(70);
+    
+		ofSetColor(x/5,y/5,255);
+    
+		if ( (x > 300) && (y > 200)){
+    		ofSetRectMode(OF_RECTMODE_CENTER);
+    		ofRect(x, y, 50, 50);
+		} else {
+    		ofCircle(x,y,50);
+		}
+	}
+~~~~
+
+Exercise: Try now something using **OR** ( represented by ```||``` ). 
+
+Beside ***IF*** ( ) statements you can found ***WHILE*** loops, ***FOR*** loops and ***SWITCH***.
+
 
 ## WHILE loops
-Programming has to do a lot with choices but also is about repetition. Beautiful things come out of complexity and that can be achieved through repetition. Good thing about is, computers are made to do repeat tasks very fast and the don't need to rest, so we can take advantage of that. Everytime you see that you are repeating something on your code, you can tell the computer to do it for you. Once again you only need to worry about the relationship with the numbers. 
+
+Programming has to do a lot with choices but also is about repetition. Beautiful things come out of complexity and that can be achieved through repetition. Good thing about is, computers are made to do repeat tasks very fast and the don't need to rest, so we can take advantage of that. Every time you see that you are repeating something on your code, you can tell the computer to do it for you. Once again you only need to worry about the relationship with the numbers. 
 
 We start by telling to the computer: while this variable is like this, do this. The code version of that is:
 
-while( THIS_IS_TRUE ) {
- 	DO THIS   
-}
+	while( THIS_IS_TRUE ) {
+ 		DO THIS   
+	}
 
 Going back to the previous example we can say:
 
@@ -314,83 +382,114 @@ Going back to the previous example we can say:
 
 As you can see we are repeating here. The only thing that is changing is the number by which we are dividing the radius ( 1, 2, 3, 4). So we can use a variable for that. This variable have to start on 1, and increment by one in each iteration of the loop.
 
+
+~~~~{.cpp}
+
 	int divisor = 1;	// declaring and assigning the initial value of the index
     
 	while (divisor <= 4 ){				// condition 
     	    ofCircle(width/2,height/2, radius/divisor);	// thing to repeat
     	    divisor++;					// increment 
 	}
+	
+~~~~
+
 
 Initally, this seems more complicated but it is powerful and elegant tool to use.
 
 In this case divisor is the number that counts the loops, the index. The increment of the index is what is called step. It is Also used to exit the loop. The risk here is to write a bad condition and the loop goes on forever. It’s called an infinite loop and can be a huge problem.
 
-int divisor = 1					// Initial value
-while (divisor <= 4 ){ 				// Condition
-    ofCircle(width/2,hegith/2, radius/divisor);
-    divisor++;					// Step
-}
+
+~~~~{.cpp}
+
+	int divisor = 1					// Initial value
+	while (divisor <= 4 ){ 				// Condition
+    	ofCircle(width/2,hegith/2, radius/divisor);
+    	divisor++;					// Step
+	}
+	
+~~~~
+
 
 ### FOR loops
-This structure we just learned is so powerful and you are going to use it so much that there is a specific function for it. Its call FOR loop. and work like this:
 
-for ( INDEX_INITIAL_VALUE ; INDEX_CONDITION ; INDEX_STEP){
-	REPEAT THIS while INDEX_CONDITION is TRUE
-}
+This structure we just learned is so powerful and you are going to use it so much that there is a specific function for it. Its call **FOR** loop. and work like this:
+
+	for ( INDEX_INITIAL_VALUE ; INDEX_CONDITION ; INDEX_STEP){
+		REPEAT THIS while INDEX_CONDITION is TRUE
+	}
 
 Applying this to the previous code we write:
 
-for (int division = 1; division <= 4; division++){
-	ofCircle(width/2,hegith/2, radius/divisor);
-}
+~~~~{.cpp}
 
-As you can see, our code its getting shorter and more complex. One important thing to be aware here is the scope of the division variable. If you look in the while loop example the variable was declared outside of the IF statement. Which means that the scope of that variable is contained within the if statement and outside of it. But, in the FOR loop this same variable is declared inside the for loop so you can only access it from inside the loop but not from outside of it.
+	for (int division = 1; division <= 4; division++){
+		ofCircle(width/2,hegith/2, radius/divisor);
+	}
 
-Well this is a powerful tool, and as uncle Ben said, “With great power comes great responsibility”. Creating infinite for loops is easy and as you can imagine it will probably crash your program.
+~~~~
 
-for (int divisor = 1; divisor = 4; divisor++){
-	ofCircle(width/2,height/2, radius/divisor);
-}
+As you can see, our code its getting shorter and more complex. One important thing to be aware here is the scope of the division variable. If you look in the while loop example the variable was declared outside of the IF statement. Which means that the scope of that variable is contained within the if statement and outside of it. But, in the **FOR** loop this same variable is declared inside the for loop so you can only access it from inside the loop but not from outside of it.
+
+Well this is a powerful tool, and as uncle Ben said, *“With great power comes great responsibility”*. Creating infinite for loops is easy and as you can imagine it will probably crash your program.
+
+~~~~{.cpp}
+
+	for (int divisor = 1; divisor = 4; divisor++){
+		ofCircle(width/2,height/2, radius/divisor);
+	}
+	
+~~~~
 
 Like this example we forgot to write the < operator so the condition is more like an assignment which true all the time. Tada! You have an infinite loop.
 
+
 ### Switch Statements
 
-The last type of conditions are switch statements. They are used when you want to check the same variable through different options. Actually just like for loops are the easy way of having while loops (because it utilizes a commonly used structure ), switch is the easy way of making comparisons without using many IF statements.
+The last type of conditions are switch statements. They are used when you want to check the same variable through different options. Actually just like for loops are the easy way of having while loops (because it utilizes a commonly used structure ), switch is the easy way of making comparisons without using many **IF** statements.
 
-So instead of saying
+So instead of saying:
 
-if ( THIS_IS_EQUAL_TO_THIS ){
-	...
-} else if ( OR _THIS ){
-	...
-} else if ( OR_THIS_OTHER ){
-	...
-} else {	// or if it's not equal to neither this option
-	...
-}
+~~~~{.cpp}
+
+	if ( THIS_IS_EQUAL_TO_THIS ){
+		DO A PLAN
+	} else if ( OR _THIS ){
+		DO B PLAN
+	} else if ( OR_THIS_OTHER ){
+		DO C PLAN
+	} else {	// or if it's not equal to neither this option
+		DO D PLAN
+	}
+	
+~~~~
 
 Using SWITCH we say
 
-switch ( VARIABLE ){
-	case EQUAL_TO_THIS_VARIABLE:
-		…
-	break;
-	case EQUAL_TO_THIS_OTHER_VARIABLE:
-		…
-	break;
-	default:
-	break;
-}
+~~~~{.cpp}
+
+	switch ( VARIABLE ){
+		case EQUAL_TO_THIS_VARIABLE:
+			DO A PLAN
+		break;
+		case EQUAL_TO_THIS_OTHER_VARIABLE:
+			DO B PLAN
+		break;
+		default:
+			DO C PLAN
+		break;
+	}
+	
+~~~~
 
 
 # OpenFrameworks block elements
 openFrameworks some some block elements that can be used as variables for colors and positions. These are called ofColor and ofPoint.
 
-These two elements can be passed to other openFrameworks functions like ofCircle(), ofRect() or ofSetColor() and work in the right way.  The way we declare them is pretty much the same as any other variable type.
+These two elements can be passed to other openFrameworks functions like ```ofCircle()```, ```ofRect()``` or ```ofSetColor()``` and work in the right way.  The way we declare them is pretty much the same as any other variable type.
 
-ofPoint position;
-ofColor color;
+	ofPoint position;
+	ofColor color;
 
 But what changes a little bit is how you assign information to it. Because these elements are more like structures of data that contain variables. There are three ways of passing information. One is to "enter" spaces in the memory of the information:
 
@@ -407,157 +506,23 @@ But what changes a little bit is how you assign information to it. Because these
 
 The other one it's to pack that information by saying:
 
-ofPoint position = ofPoint(100,100);
-ofColor color = ofColor(255,0,0);
+	ofPoint position = ofPoint(100,100);
+	ofColor color = ofColor(255,0,0);
 
-Or the third way is by using what is called a method call .set():
+Or the third way is by using what is called a method call ```.set()```:
 
-ofPoint position;
-position.set(100,100);
+	ofPoint position;
+	position.set(100,100);
 
-ofColor color;
-color.set(255,0,0);
+	ofColor color;
+	color.set(255,0,0);
 
 Then using this variable is easy as:
 
-float radius = 50;
-ofSetColor(color);
-ofCircle(position, radius);
+	float radius = 50;
+	ofSetColor(color);
+	ofCircle(position, radius);
 
 As you can see we replace everything with variables. This is going to give us a lot of freedom to play with the relationship between these variables.
 
-When you discover in the next chapters that ofColor and ofPoint have other building methods like .set() that let you do some AMAZING things really simply. Things like transforming from RGB to HSB, to rotate positions, get angles, add, substract, divides and multiple colors, etc.
-
-
-//////////////////////////////////////////////////////////// TUESDAYS NOTES
-Lets talk about numbers. 
-
-All numbers can be replaced by variables. 
-
-On C++ it's important to understand it's that is a strong type. You can cast... but it's stricltly that type and never be converted on other thing. Int, char, float, double, bool / this could be signed or unsigned 
-
-when you define it, you tell it what type it is, and it does not change. 
-
-
-//	C++ DATA TYPES (reference)
-//
-http://www.cplusplus.com/doc/tutorial/variables/
-
-C++ primitive datatypes:
-int,
-float,
-bool,
-long,
-double,
-short,
-char, 
-string,
-
-signed and unsigned variables:
-when you have an int that's 32 bits, the first bit is just a + or - signs and we have 31 bits to represent the number. so each int can be positive and negative
-
-the range for signed char is -127 to 127
-the range for unsigned char is 0 - 255
-we use unsigned char to work with pixels in openframeworks because we always know that the pixel values are positive
-
-http://www.cplusplus.com/doc/tutorial/variables/
-We should add the table of data types Name + Description + Size +Range*
-
-for counting you can use unsigned variables, because you know you'll never need a negative number
-
-
-SCOPE
-Brackets that are arround a variable. The variables lives inside the scoope. 
-What's inside the brackets, stays there..
-void setup(){
-   	int number = 4; // this variable exists only within the scope of draw(); 
-}
-
-simple animation example, using variables, and the different scopes. 
-C++ no global variables really
-
-each variable has its life length. they can be change, adjusted, be asigned again and again.
-
-Examples of declaring a variable inside draw() and the other that declares it on testApp.h. In order to explaing the scoope and the difference. In order to explaing how the other one remeber the information throught frames
-
-//	Example #1 (using bouncing ball)
-//
-void testApp::draw(){
-	float x = bla ;
-	float y = bla  ;
-	Blabla(x,y,50);  
-}
-
-I wrote something related on: http://www.openframeworks.cc/tutorials/firstSteps/001_My_first_particle_system.html
-
-REVIEW of IF STATEMENTS / FOR / WHILES / SWITCH  etc
-
-start with a foor loop and draw a grid / use the for loop and calculate the value of sin and draw something with that.
-
-Top to bottom! code logic, like reading a book.
-The control structure uses this logic like in loops. (example: for loop inside a for loop + illustration: (i * numberItems + j), maybe work with a sin. 
-
-control the up-to-bottom rythm, with loops, breaks, if-else, bool, counters..and functions in general. 
-
-switch statement: 
-
-void testApp::keyPressed(int key){
-    
-	switch (key) {
-        
-    	case 'a':
-            	printf("a was pressed! \n");
-            	break; //most important part is the break!
-    	case 'b':
-            	printf("hello b \n");
-            	break;
-    	case '1':
-    	case '2':
-    	case '3':
-            	printf("easy as 1 2 3 \n");
-            	break; 
-    	default:
-         	printf("not in here \n");
-         	break;    
-    	}
-    
-    
-	}
-    
-    
-	Let's make a video, showing a simple animation, like a bouncing ball, and showing where you are in the code, or maybe an abstraction of that idea..
-
-// 	There are other tipes defenied for oF that contain complex data. Designed to make things easy for drawing.
-
-// They can also be explained as variables that can contain inside of them other variables.
-
-ofPoint	pos
-
-// pos.x 
-// pos.y
-
-ofColor	col
-
-// col.r
-// col.g
-// col.b
-
-Actualy this data types cointain floats. 
-
-ofPoint contain:
-
-float x
-float y
-float z
-
-and 
-
-ofColor color
-
-float r
-float g
-float b
-float a
-
-
-
+When you discover in the next chapters that ```ofColor``` and ```ofPoint``` have other building methods like ```.set()``` that let you do some AMAZING things really simply. Things like transforming from RGB to HSB, to rotate positions, get angles, add, substract, divides and multiple colors, etc.

@@ -5,10 +5,10 @@
 //--------------------------------------------------------------
 void testApp::setup(){
     
-    ofBackground(255, 230, 190); //r,g,b 
+    ofBackground(100, 200, 240); //r,g,b 
     ofSetCircleResolution(100); // makes the circle edge nice and smooth
     
-    bSmooth = false;
+    bSmooth = true;
 
 }
 
@@ -21,7 +21,7 @@ void testApp::update(){
 void testApp::draw(){
     
     ofFill();
-    ofSetColor(190, 90, 70);
+    ofSetColor(255, 230, 190);
     ofCircle(ofGetWidth()/2, ofGetHeight()/2, 200);
     
     //square eye
@@ -29,50 +29,45 @@ void testApp::draw(){
     ofSetRectMode(OF_RECTMODE_CENTER); //rectangle drawn from the center, instead of the default top left 
     ofRect(176, 145, 26, 26);
     
-    ofNoFill();
-    ofSetLineWidth(2);
     ofSetColor(30, 100, 220);
-    ofCircle(176, 145, 7); //x,y,radius 
+    ofCircle(176, 145, 10); //x,y,radius 
     
-    ofEnableAlphaBlending();
+    
     //round eye
     ofFill();
         ofSetColor(100,200,240, 255); // r,g,b + alpha 255 meaning - 100% opacity
         ofCircle(300, 145, 15);
-        ofSetColor(60, 127); // meaning, r+g+b == 60, giving a shade of grey + 50% alpha
+        ofSetColor(60); // meaning, r+g+b == 60, giving a shade of grey
         ofCircle(300, 145, 8); //x,y,radius 
-    ofDisableAlphaBlending();
+   
     
-    
-    // enable to smooth the lines
-    
+    // enable to smooth the lines (nose and mouth)
     if (bSmooth){
 		ofEnableSmoothing();
 	}
 
-    //nose
-    
+    ofSetColor(100); // meaning, r+g+b == 100, giving a shade of grey
     ofSetLineWidth(3);
-    ofSetColor(60); // meaning, r+g+b == 60, giving a shade of grey
+    
+    //nose
+
     ofLine(250, 180, 250, 250);
     ofLine(250, 250, 270, 240);
     
     
     // smile 
-    
-    ofSetColor(255);
-    
+
     ofNoFill();
     ofBeginShape(); 
-    ofCurveVertex(100, 300); // begin point
-        ofCurveVertex(100, 300);
-        ofCurveVertex(150, 325);
-        ofCurveVertex(200, 300);
-        ofCurveVertex(250, 325);
-        ofCurveVertex(300, 300);
-        ofCurveVertex(350, 325);
-        ofCurveVertex(400, 300);
-    ofCurveVertex(400, 275); // end point
+        ofCurveVertex(100, 280); // begin point
+        ofCurveVertex(100, 280);
+        ofCurveVertex(150, 340);
+        ofCurveVertex(200, 325);
+        ofCurveVertex(250, 340);
+        ofCurveVertex(300, 325);
+        ofCurveVertex(350, 340);
+        ofCurveVertex(400, 280);
+        ofCurveVertex(400, 280); // end point
     ofEndShape(); // (true) will close the shape for you 
 
 
@@ -80,6 +75,19 @@ void testApp::draw(){
 	if (bSmooth){
 		ofDisableSmoothing();
 	}
+    
+    
+    // cheeks
+    
+    ofEnableAlphaBlending();
+//    ofEnableBlendMode(OF_BLENDMODE_MULTIPLY); 
+        ofFill();
+        ofSetColor(235, 95, 95, 127); // 4th value is the alpha - 50% opacity 
+        ofCircle(100, ofGetHeight()/2, 40);
+        ofCircle(400, ofGetHeight()/2, 40);
+//    ofDisableAlphaBlending();
+    ofDisableBlendMode();
+
     
     ofSetColor(0); // Black
     ofDrawBitmapString("Press 's'", 20,480);
