@@ -77,20 +77,17 @@ void testApp::draw(){
 	}
     
     
-    // cheeks
-    
-    ofEnableAlphaBlending();
-//    ofEnableBlendMode(OF_BLENDMODE_MULTIPLY); 
+    // cheeks 
+    ofEnableBlendMode(OF_BLENDMODE_MULTIPLY); 
         ofFill();
         ofSetColor(235, 95, 95, 127); // 4th value is the alpha - 50% opacity 
         ofCircle(100, ofGetHeight()/2, 40);
         ofCircle(400, ofGetHeight()/2, 40);
-//    ofDisableAlphaBlending();
-    ofDisableBlendMode();
+    ofEnableAlphaBlending();
 
     
     ofSetColor(0); // Black
-    ofDrawBitmapString("Press 's'", 20,480);
+    ofDrawBitmapString("Press 's' to smooth the lines", 20,480);
 
 }
 
