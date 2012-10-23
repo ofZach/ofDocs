@@ -1,4 +1,3 @@
-#### Chapter_02:
 #Intro to C++ / compilers
 
 When we are writing code, the main objective is to get from text that we are typing into some machine instructions the computer can operate on.  This process is called compiling and it looks like
@@ -25,9 +24,12 @@ Most programming languages use text files, plain text that you can open in any t
 
 In the case of C++, the the compiler takes code written by humans and transforms it to machine level instructions ( assembly language ) for a specific processor (i.e. Intel). 
 
-MORE ABOUT MACHINE LEVEL INSTRUCTIONS
 
-#### There are 4 steps in compiling OF: 
+***MORE ABOUT MACHINE LEVEL INSTRUCTIONS***
+
+
+There are 4 steps in compiling OF: 
+
 1. Txt
 2. Pre processor
 3. Compile
@@ -38,8 +40,7 @@ MORE ABOUT MACHINE LEVEL INSTRUCTIONS
 ---
 <br />
 
-# 1. Txt 
-#### The Text Files
+## 1. The Text Files
 <br />
 
 We start off writing text, and in c++ there are two kinds of files you will see: .h and .cpp files.  
@@ -50,7 +51,7 @@ The .h files are header files; they contain definitions. The .cpp files are impl
 
 The compiler's sole job is to compile .cpp files, it uses the .h files to get information that helps it compile.  The .h files provide a bridge from one .cpp file to another.
 
-[MORE: how this relates to OF -- > reading h files, looking at the core of OF, etc]
+***MORE: how this relates to OF -- > reading h files, looking at the core of OF, etc***
 
 <br />
 
@@ -58,7 +59,7 @@ The compiler's sole job is to compile .cpp files, it uses the .h files to get in
 <br />
 
 
-# 2. Pre processor
+## 2. Pre processor
 
 The preprocessor is the next step in our progression from text to something you can run. All code that start with # are preprocessor comands. They will look like:
 
@@ -74,36 +75,38 @@ says, if you see PI in the text, change it to 3.14.  Note, this is changing the 
 
 ### include 
 
-One of the more common uses of the preprocessor comand, which you'll see everywhere in the code is the ```#include``` statement, that actually takes the content of one file (what's being inlcuded) and places it into another file.  Most cpp files will have a corresponding h file, and their .cpp files include that h file:
+Most .cpp files will be paired with a corresponding .h file. One of the more common uses of the preprocessor commands is the ```#include``` statement, that takes the content (the definitions) of the .h file and includes it the .cpp file, like this:
 
-![image](img/include.jpg)	
+![image](https://raw.github.com/ofZach/ofDocs/master/img/include.jpg)	
 
-The inclusion of files is recursive, so if file (A) includes file (B) which include (C) and (D), A, after going through the preprocessor, will have B, C, and D inside of it.   Often times, libraries will have one master header file, that includes all the other files. In the case of openframeworks, that file is called ofMain.h, and if you look, it actually includes all the other header files in openframeworks. 
- 
-This is really useful. If you have an object, say a particle object, and you want it to be able to draw using openframeworks:
+
+The inclusion of files is recursive, meaning, if the .h file of the testApp includes .h file (2) which include the .h files (3), (4) and (5), the the testApp.h, after going through the preprocessor, will have (2), (3), (4) and (5) inside of it.  
+
+![image](https://raw.github.com/noadol/ofDocs/master/img/includeGuards.jpg)
+
+
+Often times, libraries will have one master header file, that includes all the other files. In the case of openframeworks, that file is called ofMain.h, and if you look, it actually includes all the other header files in openframeworks. This is really useful. If you have an object, say a particle object, and you want it to be able to draw using openframeworks:
 
 		show particle -> inlcudes ofMain includes ofGraphics 
 
-### recursive includes
+### Recursive includes
 
-The problem with including files is that it sometimes can lead to issues where a file is included twice: 
-
-		graphic + example showing including twice
-
-The trick here is not to add a file multiple times. If you include a file twice, it's a bit like definining a variable twice, the compiler gets confused: 
+The problem with including files is that it sometimes can lead to issues where a file is included twice. If you include a file twice, it's a bit like definining a variable twice, the compiler gets confused: 
 
 		int pos;
 		int pos;
 		
-Here, the compiler when it seems float pos the first time, will make a variable called pos which is a floating point number. but the second time, it will say, "wait, I've seen this name before, and you can't have multiple definitions with the same name!"  This is a multiple definition error.
 
-The same kind of error can happen with recursive includes, so we need a system to prevent a file from being included multiple times.  This is called an include guard. There's an old school and new school way of doing it. 
+The trick here is not to add a file multiple times. Here, the compiler when it seems float pos the first time, will make a variable called pos which is a floating point number. but the second time, it will say, "wait, I've seen this name before, and you can't have multiple definitions with the same name!"  This is a multiple definition error. The same kind of error can happen with recursive includes, so we need a system to prevent a file from being included multiple times.  This is called an include guard. There's an old school and new school way of doing it. 
 
-###include guards
+
+
+### Include guards
 
 This means the compiler will compile the text in A or B, depending on if SOMETHING is defined or not.  This is used heavily in openframeworks for multiplatform compilation (for the adventurous, take a look at ofConstants.h, in the utils folder). There you'll see parts of code for windows, mac and linux all using #ifdefs.
 
 The old schoool way uses some #define logic, and you'll see it at the start of and end of the "h" file, like this: 
+    
     
         #ifndef THIS_FILE // that means "if THIS_FILE it's not defined"
         #define THIS_FILE // we defined so next time it will run over it will not pass across the previus comand
@@ -117,11 +120,11 @@ The new school style, which you'll see in alot of the core of OF uses #pragma, w
 
 		#pragma once
 
-### include & search paths
+### Include & search paths
 
 Another important point about includes is that search paths are really important. And there is a big difference between using:
 
-[MORE!]
+***MORE!***
 
     #include "local_file.h" 
     // means that is a local header file 
@@ -130,7 +133,7 @@ Another important point about includes is that search paths are really important
         
 VS.
     
-	#include <system_file.h
+	#include <system_file.h>
 	// means it's a system file
     // so it's part of the system SDK more often seen
     // on linux because it looks to the /usr/include 
@@ -140,11 +143,9 @@ The errors you can get here are things like…
 
 	Cant find "ofMain.h"
 
-( ADD ERROR EXAMPLES )
+
+***ADD ERROR EXAMPLE***
 ( what do you do if you get this error? )
-
-### example include errors
-
 
 <br />
 
@@ -152,7 +153,7 @@ The errors you can get here are things like…
 <br />
 
 
-# 3. Compiler
+## 3. Compiler
  
 The compiler's job in life is simple: to take the code that you've written and turn it into machine language instructions for the compiler that you are using. In other words, to take your .cpp files and turn them into .o files. It gets the text, after it's been preprocessed, and will go .cpp file by .cpp to make .o files. 
 
@@ -182,7 +183,7 @@ With either compile setting, this process ends with lot's of .o files. Those are
 ---
 <br />
 
-# 4. Linker
+## 4. Linker
 
 In our code, we are many times calling functions that are in other files (otherwise we would have to code everything from scratch!). Our program must make jumps to get stuff from those files we are referencing. The linker takes .o files and figures out how to combine them together, and what the jumps from file to file are.
 
@@ -192,7 +193,7 @@ The linker start to put all the .o files together according to the headers. If i
     Means it can get the libraries (.a .lib .dll). 
     Or also because you have multiple function names and the compiler has a hard time linking one function on the .o file with the right header (.h). 
 
-    ( ADD ERROR EXAMPLES )
+***ADD ERROR EXAMPLES***
 
 You can compile libs or apps. 
 So sometimes ( and in fact openFrameworks it self ) you go a cross all this process and get a lib at the end ( .a .lib .dll )
