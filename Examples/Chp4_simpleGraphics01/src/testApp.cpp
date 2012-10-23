@@ -8,7 +8,8 @@ void testApp::setup(){
     ofBackground(100, 200, 240); //r,g,b 
     ofSetCircleResolution(100); // makes the circle edge nice and smooth
     
-    bSmooth = true;
+    // enable to smooth the lines (nose and mouth)
+    ofEnableSmoothing();
 
 }
 
@@ -40,12 +41,6 @@ void testApp::draw(){
         ofSetColor(60); // meaning, r+g+b == 60, giving a shade of grey
         ofCircle(300, 145, 8); //x,y,radius 
    
-    
-    // enable to smooth the lines (nose and mouth)
-    if (bSmooth){
-		ofEnableSmoothing();
-	}
-
     ofSetColor(100); // meaning, r+g+b == 100, giving a shade of grey
     
     ofLine(150, 120, 200, 120);
@@ -74,14 +69,7 @@ void testApp::draw(){
         ofCurveVertex(350, 340);
         ofCurveVertex(400, 280);
         ofCurveVertex(400, 280); // end point
-    ofEndShape(); // (true) will close the shape for you 
-
-
-
-	if (bSmooth){
-		ofDisableSmoothing();
-	}
-    
+    ofEndShape(); // (true) will close the shape for you     
     
     // cheeks 
     ofEnableBlendMode(OF_BLENDMODE_MULTIPLY); 
@@ -93,17 +81,13 @@ void testApp::draw(){
 
     
     ofSetColor(0); // Black
-    ofDrawBitmapString("Press 's' to smooth the lines", 20,480);
+    ofDrawBitmapString("Drawing with oF", 20,480);
 
 }
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
     
-    // low case or capital case 's' key will toggle between enable and diable the smoothing function. 
-    if (key == 's' || key == 'S') {
-        bSmooth = !bSmooth; 
-    }
 }
 
 //--------------------------------------------------------------
