@@ -47,17 +47,23 @@ void testApp::draw(){
 	}
 
     ofSetColor(100); // meaning, r+g+b == 100, giving a shade of grey
+    
+    ofLine(150, 120, 200, 120);
+    ofLine(300, 120, 350, 100);
+
+    
+    ofNoFill();
     ofSetLineWidth(3);
     
     //nose
+    ofBeginShape(); 
+        ofVertex(250, 180);
+        ofVertex(250, 250);
+        ofVertex(270, 240);
+    ofEndShape(); 
 
-    ofLine(250, 180, 250, 250);
-    ofLine(250, 250, 270, 240);
-    
     
     // smile 
-
-    ofNoFill();
     ofBeginShape(); 
         ofCurveVertex(100, 280); // begin point
         ofCurveVertex(100, 280);
