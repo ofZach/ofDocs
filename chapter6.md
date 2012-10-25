@@ -1,38 +1,34 @@
 #Working with media
 
 ## Introduction, How oF deals with files. 
-A lot of your daily life experience pass thorugh your sences. 
-The last 30 years we have seen how computer more and more smart about how to deal with the information to record, process and reproduces it. We have seen the transition from orange monitors to black and white, 255 colors to VGA, HDMI and so on. The same on sound, we have witness the hole process from bit sound to soundBlaster 16bits, MIDI control upto to mp3 revolution.
+A lot of your daily life experience pass through your senses. 
+The last 30 years we have seen how computer more and more smart about how to deal with the information to record, process and reproduces it. We have seen the transition from orange monitors to black and white, 255 colors to VGA, HDMI and so on. The same on sound, we have witness the hole process from bit sound to soundBlaster 16bits, MIDI control up to to mp3 revolution.
 
-OpenFrameworks as creative coding toolbox gives you easy access to use them and play with them. The use of edia files like jpeg, png, videos and sound files it's so commond that that they have a special folder. That much we care : )
+OpenFrameworks as creative coding toolbox gives you easy access to use them and play with them. The use of media files like jpeg, png, videos and sound files it's so command that that they have a special folder. That much we care : )
 
-For it openFrameworks use the same standar name than Processing uses. it's call the "data" folder and it's store on the same folder that your executable file it's. 
+For it openFrameworks use the same standard name than Processing uses. it's call the "data" folder and it's store on the same folder that your executable file it's. 
 
 But why it have his own folder? Isn't better to put the media all together with the executable file? Well, it's set that way to make your life easy. 
-When you compile on MacOS you finally get a exacutable file that it have all the libraries that it use inside. It's a self-contain package that you can explore by right-clicking on it and choosing "show package". But the rest of the OS like windows and linux don't do this. So at the end of the compiling process you get and excutable file (*.exe in windows cases) and some other extrange files call libraries ( we speak about them on chap 2).
-Because you probably are going to compile, re-compile and share your work it's more clear to separate data files from the excecutable ones. That's the final goal of it.
+When you compile on MacOS you finally get a executable file that it have all the libraries that it use inside. It's a self-contain package that you can explore by right-clicking on it and choosing "show package". But the rest of the OS like windows and linux don't do this. So at the end of the compiling process you get and executable file (*.exe in windows cases) and some other estrange files call libraries ( we speak about them on chap 2).
+Because you probably are going to compile, re-compile and share your work it's more clear to separate data files from the executable ones. That's the final goal of it.
 
-Because openFrameworks its cross platform, it's enought inteligent to understand that for each diferent OS the distance and relationship between this data folder and the excecutable file will change. Once again, on Mac, the excutable file it's inside this little self-contain package so in order to see the data files it have to go down in the tres stucture of the file system a couple of leveles to see and access the data file ("../../data/") but in linux and windows the data folder it's right next to the executable ( "data/").
+Because openFrameworks its cross platform, it's enough intelligent to understand that for each different OS the distance and relationship between this data folder and the executable file will change. Once again, on Mac, the executable file it's inside this little self-contain package so in order to see the data files it have to go down in the tree structure of the file system a couple of levels to see and access the data file ("../../data/") but in linux and windows the data folder it's right next to the executable ( "data/").
 
-You can always ask openFrameworks about where is the data folder or change this default path by using
+By default you are going to use some oF tools to open and handle your media files. In case you want to do an old school loading of a file you want to know how to get to the "data" folder. To do that you you can get the string of the full path to the data folder by using;
 
-ofToDataPath( file ); // return the complete data path to that specific file.
-ofSetDataPath(string _path): // ?? double check this!!!
 
-/*
-in Mac, applications are a packages that self content all the binaries and libraries. Those have  an .app extension. And you  can enter the app with 'show package' and see the Images, movies, files the app includes. 
+	ofToDataPath( "myFile.txt" ); // return the complete data path to that specific file.
 
-But on windows there is a lot of libraries that are compile and not hiden to the user... so it could be messy to put the media content there. So separating that for the binaries or excutable files have sense. 
+In case you want to use another data file instead of the ```data/``` you can change it by doing 
 
-        - The path to get from the data folder in the windows machine is: ./Data
-        - The path to get from the data fo....bla bla...state same thing but for Mac
+	ofSetDataPathRoot( "myNewAndDifferentDataFolder/" );
 
-Explaing 
- function 
-Gives the direction to the data folder depending on the OS you are using.
-*/
 
 ## Introduction about Objects and oF style
+
+
+
+
 A little and light introduction about objects ( OOP ). And how oF make you things easy by giving this packets that load media and let you play it... draw it... etc. 
 So this object are variables with content and also with methots! This specially handy when dealing with media! 
 
