@@ -24,68 +24,121 @@ In case you want to use another data file instead of the ```data/``` you can cha
 	ofSetDataPathRoot( "myNewAndDifferentDataFolder/" );
 
 
-## Introduction about Objects and oF style
+## Introduction about Objects and "oF style"
+On last chapter we end up seen two oF special variable types: ```ofColor()``` and ```ofPoint()```. We present them as variables but they do so much more than contain information. The also have some handy functions embedded in it. Functions call methods that let you do mathematical operations, rotations, translations and so much more. This conjunction of variables ( ```float x```, ```float y``` and ```float z```; or ```char r```, ```char g``` and ```char b```) are call objects. 
 
+Object Oriented Programing it's the core concept of C++. It's basically about this possibility of having data contained together with handy methods that know how to deal with this information in what we are going to call **classes**. 
 
+**NOTE**:I would highly recommend to enter to your ```libs/openFrameworks/``` folder and take a look to ```libs/openFrameworks/types/ofColor.h``` or ```libs/openFrameworks/types/ofVec3f.h``` (what's really ```ofPoint``` ) and see how this classes work. You don't need to understand everything you see, just take a look to all the wonderful functions that openFrameworks community have made for your. There are a lot of potential for you down there.
 
+The same way the oF community prepare this objects they code some wonderful objects to handle media files. If you explore a little more the ```libs/openFrameworks/``` you will notice that there are classes for images ( ```ofImage``` ), sounds ( ```ofSoundPlayer```), videos ( ```ofVideoPlayer```)and typographies (```ofTrueType```). Also there are some objects that help you deal with media buffers related to devices like your camera ( ```ofVideoGrabber```) and microphone (```ofSoundStream```).
 
-A little and light introduction about objects ( OOP ). And how oF make you things easy by giving this packets that load media and let you play it... draw it... etc. 
-So this object are variables with content and also with methots! This specially handy when dealing with media! 
+This objects tend to repeat a pattern in the way of using them. That's what gives consistency to a framework. In the same way we have a ```setup()```, ```update()``` and ```draw()``` functions on the testApp, we have methods one media related objects to set, update and draw. When dealing with files related objects you will find "loading" functions. For example:
 
-This objects are like variables so they have a scoope. This object repeat the idea of seting, updating and drawing. 
-The user probably want to  difined in the .h file in order to be acces on setup() for seting it up or loading the content, the doing an update on the update() and drawing it on the draw(). This methot have the same name.
+	ofImage myImage;
+	myImage.loadImage("myJpegImage.jpg");
+	
+or
 
-### Images
-On testApp.h
-    ofImage myImage;
-    ofImage is a data type, and you create an object of this datatype in the .h = myImage.
+	ofVideoPlayer myVideo;
+	myVideo.loadMovie("myVideo.mov");
+	
+or 
+
+	ofSoundPlayer mySound;
+    mySound.loadSound("mySound.mp3");
     
+or
 
-On testApp.cpp
-
-    void testApp::setup(){
-        ofEnableAlphaBlending(); // Don't forget this if you are using a .png width alpha!!
-        
-        image.loadImage( image.png );
-        image.setAnchorPoint(x,y); //similar to setRectMode();*
-        image.setAnchorPercent(x/100,y/100); //similar to setRectMode(); 
-        
-    }
+	ofTrueTypeFont myFont;
+    myFont.loadFont("arial.ttf", 14);
     
-   
-set anchor point - allows you to set a point to rotate around. 
-* For anything that has pixels, like ofImage, ofVideo --  you can set any anchor point with ofSetAnchorPoint();
+As you probably notice this "objects" are defined in the same way as you define native C variables. So it's not strange to your eye. Then, once you make that object you will se you are accessing the methods that "lives" in it using a dot ```.```. So every time you want to access to object variables like:
 
+	ofPoint pos;
+	pos.x = 100;
+	
+or you access to one of his methods:
 
-void testApp::update(){
-        image.update();
-    }
+	float length = pos.lenght()
+
+You are using ```.``` to access to inside of the object and deal with the information that content.
+
+Going back to the media object we just present and the respective loading functions you will probably want to place this "setting" methods inside the ```setup()``` function. Why? Because takes time and you probably want to do it only once. But, if you define the object on the setup you will not be able to call this object from some other place like the ```update()``` or the ```draw()``` functions. Yes, because if you define them inside a function only lives inside it. It's the all problem related to scope that we see in the last chapter. 
+
+So probably you want to define them on the ```testApp.h```file:
+
+~~~~{.cpp}
+
+	#include "ofMain.h"
+
+	class testApp : public ofBaseApp{
+	public:
     
-    void testApp::draw(){
-        ofBackground(0);
-        
-        ofSetColor(255,255,255); // we have to set color on white other wise it s going to be tinted
-        image.draw(0,0);
-    }
+    	void setup();
+    	void update();
+    	void draw();
+    	void exit();
+
+    	void keyPressed  (int key);
+    	void keyReleased(int key);
+    	void mouseMoved(int x, int y );
+    	void mouseDragged(int x, int y, int button);
+    	void mousePressed(int x, int y, int button);
+    	void mouseReleased(int x, int y, int button);
+    	void windowResized(int w, int h);
+    	void dragEvent(ofDragInfo dragInfo);
+    	void gotMessage(ofMessage msg);
     
-In order to load an impage in setup, draw it draw, we have to initial the object in te .h file.
+    	ofVideoPlayer  myVideo;
+	};
+	
+~~~~
+
+and then load the movie on the ```setup()```, update on the ```update()``` and, of course , draw it on ```draw()```.
+
+~~~~{.cpp}
+
+	#include "testApp.h"
+
+	void testApp::setup(){
+    	ofSetVerticalSync(true);
+    	
+    	myVideo.loadMovie("myVideo.mov");
+    	myVideo.play();
+	}
+	
+	void testApp::update(){
+    	myVideo.update();
+	}
+	
+	void testApp::draw(){
+    	ofBackground(0);
+    
+    	myVideo.draw(0, 0);
+	}
+
+~~~~
+
+You can see how in the case of ```ofVideoPlayer``` we have to give it play by using a method. But what do you need an ```update()```?  Well, that method it's in charge of updating the image to the one of the next frame of your video. 
+
+Also we are going to see more further in this chapter how in the ```.update()``` method of image related object it's where keep the relation between pixels and texture. But this is one step further.
+
+First we have to get used to using this objects. The last step we have in the previous code it's the drawing. As you can see using the autocompletion of your IDE, you can chose the place where you can ```.draw(int x, int y)``` and also the width and height of the canvas ```.draw(int x, int y, int width, int height)```
+
+//// EXAMPLE HERE
+
+As you probably notice, by default it draws the images by the top right corner. You can change that default parameter in the same way we do that using ```ofSetRectMode(OF_RECTMODE_CENTER);``` for ofRect's using one of this two commands
+
+        image.setAnchorPoint(x,y); 
+        image.setAnchorPercent(x/100,y/100); 
 
 
-oF objects with media has a "load" function. load allocate memory space. 
-you want to load assets only once in setup.  The take time of the processor and memory... so you don t want to put them on the update.
-
-the load function should be run in the setup. loading images inside the recursive loops (update() or draw() ) will slam your hard drive.
+ 
+//// GRAPHICS HERE
 
 
-loadimage();
-loadmovie();
-ofSoundPlayer.loadsound();  - stream from your hardrive. 
-load font -- assign anti-alising, ect. special case. 
-some have morre parameters that adjust how you load things.
-
-There are some loadings functions more complex than others. EXAMPLES 
-
----- IMAGE MEDIA
+## Going more into image related objects and what the have inside (incomplete)
 
 What is very important to know about dealing with images objects like ofImage and ofVideoGrabber and ofVideoPlayer its that have to type of data.
 One its the pictures... each one of the pictures colors... this is load in the RAM memory on the CPU. And the texture ( ofTexture ) that its store on the Graphic Card.
@@ -120,15 +173,16 @@ A good example of usage of this would be modifying pixels of a a video. If we ue
 duuhhhhuuuudeee we have to remember our target audience.....i think the people who will be using this book are artists wanting to learn to do stuff with openFrameworks, not necessarily learn about computer science low levels. THOUGHTS?
 
 
-#### Pixels
+### Playing with the pixels (incomplete)
 
-##### Old school
+#### Old school way
 EXAMPLE of goign throught an image pixels OLD SCHOOL "unsigned char *" way + EXPLANATION of the math involve int pos = y * width + x
 
-##### New way
+#### New way 
 EXAMPLE of getPixelsRef() 
 
-#### ofTexture 
+
+### What's a ofTexture and why it's so powerful (incomplete, I'll work on it - @patriciogv - )
 
 == Image data stored on the graphic card. 
 two different types: back in the days - has to be powers of 2. (regular texture)
