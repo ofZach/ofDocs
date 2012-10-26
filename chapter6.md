@@ -1,4 +1,4 @@
-#Working with media
+# Working with media
 
 ## Introduction, How oF deals with files. 
 A lot of your daily life experience pass through your senses. 
@@ -140,6 +140,11 @@ As you probably notice, by default it draws the images by the top right corner. 
 
 ## Going more into image related objects and what the have inside (incomplete)
 
+// how images are handle on OF ( texture / pixels relation ) 
+// GPU vs CPU
+// 
+// and how in CPU style there are two ways of getting and playing width pixels. Old and new way
+
 What is very important to know about dealing with images objects like ofImage and ofVideoGrabber and ofVideoPlayer its that have to type of data.
 One its the pictures... each one of the pictures colors... this is load in the RAM memory on the CPU. And the texture ( ofTexture ) that its store on the Graphic Card.
 
@@ -171,15 +176,6 @@ a lot of times we see the word Ref in OF functions, and that would be passing by
 A good example of usage of this would be modifying pixels of a a video. If we ue pass by value, we will be copying a fram of (for example) 640*480, 60 times a second, which is not efficient at all. Instead, using pass by reference reducest he processing overhead by a lot lot lot. 
 
 duuhhhhuuuudeee we have to remember our target audience.....i think the people who will be using this book are artists wanting to learn to do stuff with openFrameworks, not necessarily learn about computer science low levels. THOUGHTS?
-
-
-### Playing with the pixels (incomplete)
-
-#### Old school way
-EXAMPLE of goign throught an image pixels OLD SCHOOL "unsigned char *" way + EXPLANATION of the math involve int pos = y * width + x
-
-#### New way 
-EXAMPLE of getPixelsRef() 
 
 
 ### What's a ofTexture and why it's so powerful (incomplete, I'll work on it - @patriciogv - )
