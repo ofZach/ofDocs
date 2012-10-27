@@ -182,22 +182,192 @@ duuhhhhuuuudeee we have to remember our target audience.....i think the people w
 
 ### What's a ofTexture and why it's so powerful (incomplete, I'll work on it - @patriciogv - )
 
-== Image data stored on the graphic card. 
-two different types: back in the days - has to be powers of 2. (regular texture)
-Rectangular teture - can have any width and height.  
-By default - ARB - an extention for open gl
+What is a texture and why it's so different from the idea of a Image. Well when we thing about images we tend to think on pictures. That usually means a image inside a rectangle frame, that have pixels inside. That pixels as we know now are essentially an array list that the computer know how to arrange in a specific way. Al that it's usually related to the way CPU process and work with images.
+But when GPU start to appear engineers realize that it could be more and different ways to use images in order to give much more flexibility and decide to empower new ways of drawing with specify hardware tweaks.
+That's when Textures born. They where conceive as 1D, 2D or 3D arrays of fragments of images that are mount on top of wireframes made by vertex. This lead to new and powerful ways of contracting 3D elements. 
 
-##### How to use textures
-How you are going to make planes from the vertex
-ofMesh mesh;
+// IMAGE HERE
 
-mesh.set
+It's pretty much like the making of a armchair. First you assemble the wood peaces that will be the rigid structure where the fabric will be mounted. To keep things easy we are going to speak only about 2D Textures and we are going to image them as the fabric. 
+In fact at the beginning this 2D Textures had to be squared and power of 2. And they were used as wallpapers so they repeat them self once and once over again. 
 
-coorners of the frame
-mesh.addVertex( ofVec3f ) 
+// IMAGE HERE
 
-texture coordinate (where the texture it's glue to the canvas)
-mesh.addTexCoords( ofVec2f )
+This makes things really complicated to use regular images like the once we are going to use. So after a while a new type of texture was develop call ARB 2D Textures. This last type of texture it's the default one on openFrameworks. Ofcourse you can switch this ON of OFF by using:
+
+	ofEnableArbTex();
+    ofDisableArbTex();
+
+Going back to the armchair metaphor, the first step it's by positioning the vertex and how they are going to be linked together. We already have done something similar to this on the Chapter 4 when we make 2D shapes using ```ofVertex(x,y);```. It's the same concept of connection dots. But now that you already know that we can go further and learn that you can choose how this point are going to be linked together. There are difference ways. 
+
+// IMAGE HERE
+
+When we want to mount textures over this shapes at the same time we are setting vertexes position we have to specify witch part of this "fabric" that we call Texture it's going to be mount where. 
+Here we are making are making the role of a carpenter and a upholsterer at the same time. 
+
+Let's jump to the code. For that we are going make what it's call a **mesh** (ofMesh).
+Meshes are this pact of information of vertexes, how to arrange them and it relation to where to mount the texture on top of them.
+
+I know, it sound complex. But the good news it's that all this is empower by the GPU card and will be manufacture by it. This engineers that work on Graphics Cards provide them with his own memory. This memory it's dirtily attached to a lot of mini-micro-processors that run in parallel on super fast speed. Each one of this micro-processors only take care on the positioning of one vertex and one fragment of image. It's like having a big army of little ants that are really dum. The power of this army it's related to his number and the fact that each one do only one thing in parallel to the other one. But all respect the same time table. First all are going to process the vertex, then how they are going to linked this vertex and finally how the are going to mount and process the fragments of images store in the GPU memory. 
+
+// IMAGE HERE
+
+This is what is call GPU Pipeline. You know what's the best of it? It could be re-programmed! Just like a lot of Arduinos you could reprogram the firmware of this ants to treat vertex, geometris or fragments on a different way. That's what it's call replace the defaults shaders. But we are not going to go so far on this chapter. 
+
+Let's start making a simple mesh. And play with it.
+
+	ofMesh myMesh;
+	
+We are going to start by deciding with type of Primitive mode you want. This means how you want to group your vertex. The most frequent and common is triangles. Because they are flexible and could be arrange in any type and shape. Just like we learn in chapter 4 when we see how circles are made.
+So let's start by making a 640x480 rectangle using 6 vertexes grouped inside 2 triangles.
+	
+~~~~{.cpp}
+
+	void testApp::draw(){
+    	ofBackground(0);
+    
+    	ofSetColor(255);
+    
+    	ofMesh myMesh;
+    
+    	myMesh.setMode(OF_PRIMITIVE_TRIANGLES);
+    
+    	myMesh.addVertex(ofPoint(0,0));
+    	myMesh.addVertex(ofPoint(640,0));
+    	myMesh.addVertex(ofPoint(640,480));
+    
+    	myMesh.addVertex(ofPoint(640,480));
+    	myMesh.addVertex(ofPoint(0,480));
+    	myMesh.addVertex(ofPoint(0,0));
+    
+    	myMesh.draw();
+	}
+
+~~~~
+
+//	IMAGE HERE
+	
+Play a little with this code by changing the parameters and commenting some lines. Try to push the limits of this example to have a concrete idea of how openGL works. Oh ups… I almost forgot, congratulations you are almost one step away to direct openGL programming. Feel great about your self because you are using one of the most powerful and heavy graphics motor ever made. OpenFrameworks here it's just helping you with the cross platform compatibility but you are learning the roots of openGL and how it works. Congratulations.
+
+But this white rectangle doesn't seem so exiting. Isn't?
+We are going to add some excitement to it by adding the coordinates where to mount this textures. 
+
+	myMesh.addTexCoord(ofPoint(0,0));
+    myMesh.addVertex(ofPoint(0,0));
+    myMesh.addTexCoord(ofPoint(640,0));
+    myMesh.addVertex(ofPoint(640,0));
+    myMesh.addTexCoord(ofPoint(640,480));
+    myMesh.addVertex(ofPoint(640,480));
+    
+    myMesh.addTexCoord(ofPoint(640,480));
+    myMesh.addVertex(ofPoint(640,480));
+    myMesh.addTexCoord(ofPoint(0,480));
+    myMesh.addVertex(ofPoint(0,480));
+    myMesh.addTexCoord(ofPoint(0,0));
+    myMesh.addVertex(ofPoint(0,0));
+
+The last step here it's to "bind" a interesting texture on top of this mesh. For that we are going to use the ```ofVideoGrabber``` and request for the ```ofTexture```of it. As we saw previously all image based objects like: ```ofImage```, ```ofVideoGrabber``` and ```ofVideoPlayer```have both type information attach to them. One for CPU Ram and the other on GPU Ram. ```ofTextures```can't be load directly from a file. Basically they are links to the place they are on your Graphic Card Memory. You can get this "link" and passed to your ```ofTexture```by doing ```.getTextureReference()```on any of this image based objects. In the case of your video grabber you can do that by typing:
+
+	ofTexture myTexture = myVideo.getTextureReference();
+	
+It's always a good idea to explore openFrameworks objects. You can learn so much by simply reading the ```.h``` where this classes are defined. You can right click over ```ofTexture```and clicking over "Jump To Definition".
+
+Any way, once you have the ```ofTexture``` you can applied it over this mesh by using:
+
+	ofTexture myTexture = myVideo.getTextureReference();
+	
+	myTexture.bind();
+    myMesh.draw();
+    myTexture.unbind();
+
+Also as you know you know you on Object Oriented Programing you can get into objects constantly using the dot ```.``` so instead of getting the texture and then using it you can do all in one step by saying.
+
+	myVideo.getTextureReference().bind();
+    myMesh.draw();
+    myVideo.getTextureReference().unbind();
+
+Any way the complete code for this example is:
+
+testApp.h
+
+~~~~{.cpp}
+	
+	#pragma once
+	#include "ofMain.h"
+
+	class testApp : public ofBaseApp{
+	public:
+    
+    	void setup();
+    	void update();
+    	void draw();
+    	void exit();
+
+    	void keyPressed  (int key);
+    	void keyReleased(int key);
+    	void mouseMoved(int x, int y );
+    	void mouseDragged(int x, int y, int button);
+    	void mousePressed(int x, int y, int button);
+    	void mouseReleased(int x, int y, int button);
+    	void windowResized(int w, int h);
+    	void dragEvent(ofDragInfo dragInfo);
+    	void gotMessage(ofMessage msg);
+    
+    	ofVideoGrabber  myVideo;
+	};
+
+~~~~
+
+testApp.cpp
+
+~~~~{.cpp}
+	#include "testApp.h"
+
+	void testApp::setup(){
+    	ofSetVerticalSync(true);
+    	myVideo.initGrabber(640, 480);
+	}
+
+	void testApp::update(){
+    	myVideo.update();
+    
+	}
+	
+	void testApp::draw(){
+    	ofBackground(0);
+    
+    	
+    
+    	ofMesh myMesh;
+    
+    	myMesh.setMode(OF_PRIMITIVE_TRIANGLES);
+    
+    	myMesh.addTexCoord(ofPoint(0,0));
+    	myMesh.addVertex(ofPoint(0,0));
+    	myMesh.addTexCoord(ofPoint(640,0));
+    	myMesh.addVertex(ofPoint(640,0));
+    	myMesh.addTexCoord(ofPoint(640,480));
+    	myMesh.addVertex(ofPoint(640,480));
+    
+    	myMesh.addTexCoord(ofPoint(640,480));
+    	myMesh.addVertex(ofPoint(640,480));
+    	myMesh.addTexCoord(ofPoint(0,480));
+    	myMesh.addVertex(ofPoint(0,480));
+    	myMesh.addTexCoord(ofPoint(0,0));
+    	myMesh.addVertex(ofPoint(0,0));
+    
+    	ofSetColor(255);
+    
+    	myVideo.getTextureReference().bind();
+    	myMesh.draw();
+    	myVideo.getTextureReference().unbind();
+	}
+
+~~~~
+
+Take your time to play and explore this example by changing, commenting out, etc. 
+
+
 
 // KALEIDOSCOPE EXAMPLE
 
