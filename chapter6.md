@@ -232,13 +232,13 @@ So let's start by making a 640x480 rectangle using 6 vertexes grouped inside 2 t
     
     	myMesh.setMode(OF_PRIMITIVE_TRIANGLES);
     
-    	myMesh.addVertex(ofPoint(0,0));
-    	myMesh.addVertex(ofPoint(640,0));
-    	myMesh.addVertex(ofPoint(640,480));
+    	myMesh.addVertex(ofPoint(0,0));			// A
+    	myMesh.addVertex(ofPoint(640,0));		// B
+    	myMesh.addVertex(ofPoint(640,480));	// C
     
-    	myMesh.addVertex(ofPoint(640,480));
-    	myMesh.addVertex(ofPoint(0,480));
-    	myMesh.addVertex(ofPoint(0,0));
+    	myMesh.addVertex(ofPoint(640,480));	// C
+    	myMesh.addVertex(ofPoint(0,480));		// D
+    	myMesh.addVertex(ofPoint(0,0));			// A
     
     	myMesh.draw();
 	}
@@ -246,6 +246,12 @@ So let's start by making a 640x480 rectangle using 6 vertexes grouped inside 2 t
 ~~~~
 
 //	IMAGE HERE
+//
+//	A -- B 
+//	| \	 |
+//	|  \ |
+//	D -- C 
+//
 	
 Play a little with this code by changing the parameters and commenting some lines. Try to push the limits of this example to have a concrete idea of how openGL works. Oh ups… I almost forgot, congratulations you are almost one step away to direct openGL programming. Feel great about your self because you are using one of the most powerful and heavy graphics motor ever made. OpenFrameworks here it's just helping you with the cross platform compatibility but you are learning the roots of openGL and how it works. Congratulations.
 
@@ -365,11 +371,58 @@ testApp.cpp
 
 ~~~~
 
-Take your time to play and explore this example by changing, commenting out, etc. 
+Take your time to play and explore this example by changing, commenting out, etc. Specially try to play as much as you can with the Texture Coordinates by doing replacing button left coords for the mouse position:
 
+	myMesh.addTexCoord(ofPoint(0,0));
+    myMesh.addVertex(ofPoint(0,0));
+    myMesh.addTexCoord(ofPoint(640,0));
+    myMesh.addVertex(ofPoint(640,0));
+    myMesh.addTexCoord(ofPoint(mouseX,mouseY)); // here
+    myMesh.addVertex(ofPoint(640,480));
+    
+     myMesh.addTexCoord(ofPoint(mouseX,mouseY)); // here
+    myMesh.addVertex(ofPoint(640,480));
+    myMesh.addTexCoord(ofPoint(0,480));
+    myMesh.addVertex(ofPoint(0,480));
+    myMesh.addTexCoord(ofPoint(0,0));
+    myMesh.addVertex(ofPoint(0,0));
 
+You will se how openGL automatically try to fit the image to the coord that you are giving and what happened when you are go outside of the texture size.
 
-// KALEIDOSCOPE EXAMPLE
+Also you can play by trying to put outside down, rotate and flip the image. This are good exercises to train your self.
+
+Powerfull and flexible. Isn't? well there are more options. If you see the vertex we are repeating lot of positions and texture coordinates. That's because it's making one triangle every three vertex. We can tell the openGL to make triangles re-using the last to vertexes. This mode it's call **TRIANGLE STRIP** and it will need that we change the order we deliver the vertex in order to re-use the information of the first triangle.
+
+	ofMesh myMesh;
+    myMesh.setMode(OF_PRIMITIVE_TRIANGLE_STRIP );
+    
+    //
+    //	B -- D
+    //	| \	 |
+    //	|  \ |
+    //	A -- C
+    //
+    
+    //  A
+    myMesh.addTexCoord(ofPoint(0,480));
+    myMesh.addVertex(ofPoint(0,480));
+    
+    //  B
+    myMesh.addTexCoord(ofPoint(0,0));
+    myMesh.addVertex(ofPoint(0,0));
+    
+    //  C
+    myMesh.addTexCoord(ofPoint(640,480));
+    myMesh.addVertex(ofPoint(640,480));
+    
+    //  D
+    myMesh.addTexCoord(ofPoint(640,0));
+    myMesh.addVertex(ofPoint(640,0));
+
+Well know you now much more about how openGL works and you can have a picture of what's behind the ```.draw(x,y,width,height)``` function on the image based objects of openFrameworks.
+
+The challenge now it's to make a kaleidoscope using this knowledge. You can found the answers on the example on this chapter documentation.
+
 
 
 Reference (GOOD IMAGES HERE SEE!!!! ):
