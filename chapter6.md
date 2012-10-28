@@ -257,6 +257,8 @@ Play a little with this code by changing the parameters and commenting some line
 But this white rectangle doesn't seem so exiting. Isn't?
 We are going to add some excitement to it by adding the coordinates where to mount this textures. 
 
+~~~~{.cpp}
+
 	//	A
 	myMesh.addTexCoord(ofPoint(0,0));
     myMesh.addVertex(ofPoint(0,0));
@@ -280,6 +282,8 @@ We are going to add some excitement to it by adding the coordinates where to mou
     //	A
     myMesh.addTexCoord(ofPoint(0,0));
     myMesh.addVertex(ofPoint(0,0));
+    
+~~~~
 
 The last step here it's to "bind" a interesting texture on top of this mesh. For that we are going to use the ```ofVideoGrabber``` and request for the ```ofTexture```of it. As we saw previously all image based objects like: ```ofImage```, ```ofVideoGrabber``` and ```ofVideoPlayer```have both type information attach to them. One for CPU Ram and the other on GPU Ram. ```ofTextures```can't be load directly from a file. Basically they are links to the place they are on your Graphic Card Memory. You can get this "link" and passed to your ```ofTexture```by doing ```.getTextureReference()```on any of this image based objects. In the case of your video grabber you can do that by typing:
 
@@ -336,6 +340,7 @@ testApp.h
 testApp.cpp
 
 ~~~~{.cpp}
+
 	#include "testApp.h"
 
 	void testApp::setup(){
@@ -389,7 +394,7 @@ Take your time to play and explore this example by changing, commenting out, etc
     myMesh.addTexCoord(ofPoint(mouseX,mouseY)); // here
     myMesh.addVertex(ofPoint(640,480));
     
-     myMesh.addTexCoord(ofPoint(mouseX,mouseY)); // here
+    myMesh.addTexCoord(ofPoint(mouseX,mouseY)); // here
     myMesh.addVertex(ofPoint(640,480));
     myMesh.addTexCoord(ofPoint(0,480));
     myMesh.addVertex(ofPoint(0,480));
@@ -402,16 +407,13 @@ Also you can play by trying to put outside down, rotate and flip the image. This
 
 Powerful and flexible. Isn't? well there are more options. If you see the vertex we are repeating lot of positions and texture coordinates. That's because it's making one triangle every three vertex. We can tell the openGL to make triangles re-using the last to vertexes. This mode it's call **TRIANGLE STRIP** and it will need that we change the order we deliver the vertex in order to re-use the information of the first triangle.
 
+![ofTexture6](https://raw.github.com/ofZach/ofDocs/master/img/chapter06/ofTexture06.jpeg)
+
+~~~~{.cpp}
+
 	ofMesh myMesh;
-    myMesh.setMode(OF_PRIMITIVE_TRIANGLE_STRIP );
-    
-    //
-    //	B -- D
-    //	| \	 |
-    //	|  \ |
-    //	A -- C
-    //
-    
+    myMesh.setMode( OF_PRIMITIVE_TRIANGLE_STRIP );
+        
     //  A
     myMesh.addTexCoord(ofPoint(0,480));
     myMesh.addVertex(ofPoint(0,480));
@@ -427,6 +429,8 @@ Powerful and flexible. Isn't? well there are more options. If you see the vertex
     //  D
     myMesh.addTexCoord(ofPoint(640,0));
     myMesh.addVertex(ofPoint(640,0));
+    
+~~~~
 
 Well know you now much more about how openGL works and you can have a picture of what's behind the ```.draw(x,y,width,height)``` function on the image based objects of openFrameworks.
 
