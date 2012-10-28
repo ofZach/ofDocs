@@ -16,12 +16,19 @@ Because openFrameworks its cross platform, it's enough intelligent to understand
 
 By default you are going to use some oF tools to open and handle your media files. In case you want to do an old school loading of a file you want to know how to get to the "data" folder. To do that you you can get the string of the full path to the data folder by using;
 
+~~~~{.cpp}
 
 	ofToDataPath( "myFile.txt" ); // return the complete data path to that specific file.
 
+~~~~
+
 In case you want to use another data file instead of the ```data/``` you can change it by doing 
 
+~~~~{.cpp}
+
 	ofSetDataPathRoot( "myNewAndDifferentDataFolder/" );
+
+~~~~
 
 
 ## Introduction about Objects and "oF style"
@@ -35,32 +42,57 @@ The same way the oF community prepare this objects they code some wonderful obje
 
 This objects tend to repeat a pattern in the way of using them. That's what gives consistency to a framework. In the same way we have a ```setup()```, ```update()``` and ```draw()``` functions on the testApp, we have methods one media related objects to set, update and draw. When dealing with files related objects you will find "loading" functions. For example:
 
+~~~~{.cpp}
+
 	ofImage myImage;
 	myImage.loadImage("myJpegImage.jpg");
-	
+
+~~~~
+
 or
+
+~~~~{.cpp}
 
 	ofVideoPlayer myVideo;
 	myVideo.loadMovie("myVideo.mov");
+
+~~~~
 	
 or 
 
+~~~~{.cpp}
+
 	ofSoundPlayer mySound;
     mySound.loadSound("mySound.mp3");
+
+~~~~
     
 or
 
+~~~~{.cpp}
+
 	ofTrueTypeFont myFont;
     myFont.loadFont("arial.ttf", 14);
+
+~~~~
     
 As you probably notice this "objects" are defined in the same way as you define native C variables. So it's not strange to your eye. Then, once you make that object you will se you are accessing the methods that "lives" in it using a dot ```.```. So every time you want to access to object variables like:
 
+~~~~{.cpp}
+
 	ofPoint pos;
 	pos.x = 100;
+
+~~~~
+
 	
 or you access to one of his methods:
 
+~~~~{.cpp}
+
 	float length = pos.lenght()
+
+~~~~
 
 You are using ```.``` to access to inside of the object and deal with the information that content.
 
@@ -130,9 +162,12 @@ First we have to get used to using this objects. The last step we have in the pr
 
 As you probably notice, by default it draws the images by the top right corner. You can change that default parameter in the same way we do that using ```ofSetRectMode(OF_RECTMODE_CENTER);``` for ofRect's using one of this two commands
 
-        image.setAnchorPoint(x,y); 
-        image.setAnchorPercent(x/100,y/100); 
+~~~~{.cpp}
 
+	image.setAnchorPoint(x,y); 
+	image.setAnchorPercent(x/100,y/100); 
+
+~~~~
  
 //// GRAPHICS HERE
 
@@ -179,7 +214,7 @@ A good example of usage of this would be modifying pixels of a a video. If we ue
 duuhhhhuuuudeee we have to remember our target audience.....i think the people who will be using this book are artists wanting to learn to do stuff with openFrameworks, not necessarily learn about computer science low levels. THOUGHTS?
 
 
-### What's a ofTexture and why it's so powerful (incomplete, I'll work on it - @patriciogv - )
+### What's a ofTexture and why it's so powerful
 
 What is a texture and why it's so different from the idea of a Image. Well when we thing about images we tend to think on pictures. That usually means a image inside a rectangle frame, that have pixels inside. That pixels as we know now are essentially an array list that the computer know how to arrange in a specific way. Al that it's usually related to the way CPU process and work with images.
 But when GPU start to appear engineers realize that it could be more and different ways to use images in order to give much more flexibility and decide to empower new ways of drawing with specify hardware tweaks.
@@ -293,17 +328,25 @@ It's always a good idea to explore openFrameworks objects. You can learn so much
 
 Any way, once you have the ```ofTexture``` you can applied it over this mesh by using:
 
+~~~~{.cpp}
+
 	ofTexture myTexture = myVideo.getTextureReference();
 	
 	myTexture.bind();
     myMesh.draw();
     myTexture.unbind();
 
+~~~~
+
 Also as you know you know you on Object Oriented Programing you can get into objects constantly using the dot ```.``` so instead of getting the texture and then using it you can do all in one step by saying.
+
+~~~~{.cpp}
 
 	myVideo.getTextureReference().bind();
     myMesh.draw();
     myVideo.getTextureReference().unbind();
+
+~~~~
 
 Any way the complete code for this example is:
 
@@ -387,6 +430,8 @@ testApp.cpp
 
 Take your time to play and explore this example by changing, commenting out, etc. Specially try to play as much as you can with the Texture Coordinates by doing replacing button left coords for the mouse position:
 
+~~~~{.cpp}
+
 	myMesh.addTexCoord(ofPoint(0,0));
     myMesh.addVertex(ofPoint(0,0));
     myMesh.addTexCoord(ofPoint(640,0));
@@ -400,6 +445,8 @@ Take your time to play and explore this example by changing, commenting out, etc
     myMesh.addVertex(ofPoint(0,480));
     myMesh.addTexCoord(ofPoint(0,0));
     myMesh.addVertex(ofPoint(0,0));
+    
+~~~~
 
 You will se how openGL automatically try to fit the image to the coord that you are giving and what happened when you are go outside of the texture size.
 
