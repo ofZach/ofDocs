@@ -187,7 +187,7 @@ That's when Textures born. They where conceive as 1D, 2D or 3D arrays of fragmen
 
 It's pretty much like the making of a armchair. First you assemble the wood peaces that will be the rigid structure where the fabric will be mounted. To keep things easy we are going to speak only about 2D Textures and we are going to image them as the fabric. 
 
-![ofTexture1](https://www.dropbox.com/s/t8k49jspiprgvms/ofTexture01.jpeg)
+![ofTexture1](https://raw.github.com/ofZach/ofDocs/master/img/chapter06/ofTexture01.jpeg)
 
 In fact at the beginning this 2D Textures had to be squared and power of 2. And they were used as wallpapers so they repeat them self once and once over again. 
 
