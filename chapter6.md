@@ -200,7 +200,7 @@ This makes things really complicated to use regular images like the once we are 
 
 Going back to the armchair metaphor, the first step it's by positioning the vertex and how they are going to be linked together. We already have done something similar to this on the Chapter 4 when we make 2D shapes using ```ofVertex(x,y);```. It's the same concept of connection dots. But now that you already know that we can go further and learn that you can choose how this point are going to be linked together. There are difference ways. 
 
-// IMAGE HERE
+![ofTexture2](https://raw.github.com/ofZach/ofDocs/master/img/chapter06/ofTexture02.jpeg)
 
 When we want to mount textures over this shapes at the same time we are setting vertexes position we have to specify witch part of this "fabric" that we call Texture it's going to be mount where. 
 Here we are making are making the role of a carpenter and a upholsterer at the same time. 
@@ -210,9 +210,13 @@ Meshes are this pact of information of vertexes, how to arrange them and it rela
 
 I know, it sound complex. But the good news it's that all this is empower by the GPU card and will be manufacture by it. This engineers that work on Graphics Cards provide them with his own memory. This memory it's dirtily attached to a lot of mini-micro-processors that run in parallel on super fast speed. Each one of this micro-processors only take care on the positioning of one vertex and one fragment of image. It's like having a big army of little ants that are really dumm. The power of this army it's related to his number and the fact that each one do only one thing in parallel to the other one. But all respect the same time table. First all are going to process the vertex, then how they are going to linked this vertex and finally how the are going to mount and process the fragments of images store in the GPU memory. 
 
-// IMAGE HERE
+![ofTexture3](https://raw.github.com/ofZach/ofDocs/master/img/chapter06/ofTexture03.jpeg)
 
 This is what is call GPU Pipeline. You know what's the best of it? It could be re-programmed! Just like a lot of Arduinos you could reprogram the firmware of this ants to treat vertex, geometrics or fragments on a different way. That's what it's call replace the defaults shaders. But we are not going to go so far on this chapter. 
+
+Any way what's important here it's to remember that all this is super fast, but what takes lot of time it's uploading or getting the pixels of the images to or from GPU. We can visualize this by thinking on a beautiful ship in a bootle. It's look super nice at the end but the process of pushing and getting the pixels to and from it is really time expensive because the mouse of the bottle it's simple to stretch. 
+
+![ofTexture4](https://raw.github.com/ofZach/ofDocs/master/img/chapter06/ofTexture04.png)
 
 Let's start making a simple mesh. And play with it.
 
@@ -234,9 +238,9 @@ So let's start by making a 640x480 rectangle using 6 vertexes grouped inside 2 t
     
     	myMesh.addVertex(ofPoint(0,0));			// A
     	myMesh.addVertex(ofPoint(640,0));		// B
-    	myMesh.addVertex(ofPoint(640,480));	// C
+    	myMesh.addVertex(ofPoint(640,480));		// C
     
-    	myMesh.addVertex(ofPoint(640,480));	// C
+    	myMesh.addVertex(ofPoint(640,480));		// C
     	myMesh.addVertex(ofPoint(0,480));		// D
     	myMesh.addVertex(ofPoint(0,0));			// A
     
@@ -245,30 +249,35 @@ So let's start by making a 640x480 rectangle using 6 vertexes grouped inside 2 t
 
 ~~~~
 
-//	IMAGE HERE
-//
-//	A -- B 
-//	| \	 |
-//	|  \ |
-//	D -- C 
-//
+![ofTexture5](https://raw.github.com/ofZach/ofDocs/master/img/chapter06/ofTexture05.jpeg)
+
 	
 Play a little with this code by changing the parameters and commenting some lines. Try to push the limits of this example to have a concrete idea of how openGL works. Oh ups… I almost forgot, congratulations you are almost one step away to direct openGL programming. Feel great about your self because you are using one of the most powerful and heavy graphics motor ever made. OpenFrameworks here it's just helping you with the cross platform compatibility but you are learning the roots of openGL and how it works. Congratulations.
 
 But this white rectangle doesn't seem so exiting. Isn't?
 We are going to add some excitement to it by adding the coordinates where to mount this textures. 
 
+	//	A
 	myMesh.addTexCoord(ofPoint(0,0));
     myMesh.addVertex(ofPoint(0,0));
+    
+    //	B
     myMesh.addTexCoord(ofPoint(640,0));
     myMesh.addVertex(ofPoint(640,0));
+    
+    //	C
     myMesh.addTexCoord(ofPoint(640,480));
     myMesh.addVertex(ofPoint(640,480));
     
+    //	C
     myMesh.addTexCoord(ofPoint(640,480));
     myMesh.addVertex(ofPoint(640,480));
+    
+    //	D
     myMesh.addTexCoord(ofPoint(0,480));
     myMesh.addVertex(ofPoint(0,480));
+    
+    //	A
     myMesh.addTexCoord(ofPoint(0,0));
     myMesh.addVertex(ofPoint(0,0));
 
@@ -425,6 +434,7 @@ The challenge now it's to make a kaleidoscope using this knowledge. You can foun
 
 
 // Reference (GOOD IMAGES HERE SEE!!!! ):
-// [http://www.creativeapplications.net/tutorials/guide-to-meshes-in-cinder-cinder-tutorials/](http://www.creativeapplications.net/tutorials/guide-to-meshes-in-cinder-cinder-tutorials/)
+[http://www.creativeapplications.net/tutorials/guide-to-meshes-in-cinder-cinder-tutorials/](http://www.creativeapplications.net/tutorials/guide-to-meshes-in-cinder-cinder-tutorials/)
+[http://www.creativeapplications.net/tutorials/images-in-cinder-tutorials-cinder/](http://www.creativeapplications.net/tutorials/images-in-cinder-tutorials-cinder/)
 
 
