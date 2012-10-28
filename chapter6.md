@@ -172,14 +172,13 @@ As you probably notice, by default it draws the images by the top right corner. 
 //// GRAPHICS HERE
 
 
-## Going more into image related objects and what the have inside (incomplete)
+## Going more into image related objects and what the have inside ( **INCOMPLETE** )
 
 // how images are handle on OF ( texture / pixels relation ) 
-// GPU vs CPU
-// 
 // and how in CPU style there are two ways of getting and playing width pixels. Old and new way
-// I have a Spanish versions here [https://github.com/patriciogonzalezvivo/cursoOF/blob/master/unidad4/Cap_1_pixel_x_pixel.md](https://github.com/patriciogonzalezvivo/cursoOF/blob/master/unidad4/Cap_1_pixel_x_pixel.md) but need the new style way… maybe Isac or Juan want to used as reference or translate it.
-// 
+
+** I have a Spanish versions here [https://github.com/patriciogonzalezvivo/cursoOF/blob/master/unidad4/Cap_1_pixel_x_pixel.md](https://github.com/patriciogonzalezvivo/cursoOF/blob/master/unidad4/Cap_1_pixel_x_pixel.md) but need the new style way… maybe Isac or Juan want to used as reference or translate it. **
+ 
 
 What is very important to know about dealing with images objects like ofImage and ofVideoGrabber and ofVideoPlayer its that have to type of data.
 One its the pictures... each one of the pictures colors... this is load in the RAM memory on the CPU. And the texture ( ofTexture ) that its store on the Graphic Card.
