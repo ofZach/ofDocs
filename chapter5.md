@@ -6,6 +6,8 @@ That brings us to math and the concept of variables. Variables are spaces in the
 
 So instead of saying:
 
+~~~~{.cpp}
+
 	ofNoFill()
 	ofSetWindowsShape(400,400);
 	ofCircle(200,200,100);
@@ -13,7 +15,11 @@ So instead of saying:
 	ofCirlce(200,200,75);
 	ofCirlce(200,200,25);
 
-we can use variable to say:
+~~~~
+
+We can use variable to say:
+
+~~~~{.cpp}
 
 	width = 400;
 	height = 400;
@@ -25,10 +31,16 @@ we can use variable to say:
 	ofCircle(width/2, height/2, radius/3);
 	ofCircle(width/2, height/2, radius/4);
 
+~~~~
+
 In this way if we want to change the look of our drawing we just need to change the width and the height and all it's going to change automatically.
 That's the magic of using variables in code.
 
+
+
 ## Variables / data Type
+
+![variables01](https://raw.github.com/ofZach/ofDocs/master/img/chapter05/variables.png)
 
 There is an important thing about variables in openFrameworks. C++ is a strong type language. So anytime you define a variable as a number, it can't be transformed to a character without making a new variable. Another important thing here is that there are two types of numbers integers, or whole numbers (1,2,3,4,5,15,98) and floating point numbers, or decimal numbers (0.1, 3.6, 32.7, etc). Also both types could be signed and unsigned, meaning they can be positive and negative, respectively. Each number type uses a defined amount of memory space. With a signed number, one bit of memory space is used to set the sign of the number. So pre-defining a variable as a unsigned leaves that extra bit free for use.
 
@@ -307,6 +319,8 @@ Booleans are the key for logic statements. Programming is pretty much the right 
 
 ### IF statements
 
+![IF](https://raw.github.com/ofZach/ofDocs/master/img/chapter05/if.jpeg)
+
 Let's transform our circle into a rectangle each time the ```x``` position is greater than ```300```
 For that we are going to use a conditional method call IF. Basically works like this
 
@@ -358,6 +372,8 @@ Beside ***IF*** ( ) statements you can found ***WHILE*** loops, ***FOR*** loops 
 
 
 ## WHILE loops
+
+![WHILE](https://raw.github.com/ofZach/ofDocs/master/img/chapter05/while.jpeg)
 
 Programming has to do a lot with choices but also is about repetition. Beautiful things come out of complexity and that can be achieved through repetition. Good thing about is, computers are made to do repeat tasks very fast and the don't need to rest, so we can take advantage of that. Every time you see that you are repeating something on your code, you can tell the computer to do it for you. Once again you only need to worry about the relationship with the numbers. 
 
@@ -413,6 +429,8 @@ In this case divisor is the number that counts the loops, the index. The increme
 
 ### FOR loops
 
+![FOR](https://raw.github.com/ofZach/ofDocs/master/img/chapter05/for.jpeg)
+
 This structure we just learned is so powerful and you are going to use it so much that there is a specific function for it. Its call **FOR** loop. and work like this:
 
 	for ( INDEX_INITIAL_VALUE ; INDEX_CONDITION ; INDEX_STEP){
@@ -445,6 +463,8 @@ Like this example we forgot to write the < operator so the condition is more lik
 
 
 ### Switch Statements
+
+![Switch](https://raw.github.com/ofZach/ofDocs/master/img/chapter05/switch.jpeg)
 
 The last type of conditions are switch statements. They are used when you want to check the same variable through different options. Actually just like for loops are the easy way of having while loops (because it utilizes a commonly used structure ), switch is the easy way of making comparisons without using many **IF** statements.
 
@@ -493,6 +513,8 @@ These two elements can be passed to other openFrameworks functions like ```ofCir
 
 But what changes a little bit is how you assign information to it. Because these elements are more like structures of data that contain variables. There are three ways of passing information. One is to "enter" spaces in the memory of the information:
 
+~~~~{.cpp}
+
 	ofPoint position;
 	position.x = 100;
 	position.y = 100;
@@ -504,12 +526,20 @@ But what changes a little bit is how you assign information to it. Because these
 	color.g = 0;
 	color.b = 0;
 
+~~~~
+
 The other one it's to pack that information by saying:
+
+~~~~{.cpp}
 
 	ofPoint position = ofPoint(100,100);
 	ofColor color = ofColor(255,0,0);
+	
+~~~~
 
 Or the third way is by using what is called a method call ```.set()```:
+
+~~~~{.cpp}
 
 	ofPoint position;
 	position.set(100,100);
@@ -517,11 +547,17 @@ Or the third way is by using what is called a method call ```.set()```:
 	ofColor color;
 	color.set(255,0,0);
 
+~~~~
+
 Then using this variable is easy as:
+
+~~~~{.cpp}
 
 	float radius = 50;
 	ofSetColor(color);
 	ofCircle(position, radius);
+	
+~~~~
 
 As you can see we replace everything with variables. This is going to give us a lot of freedom to play with the relationship between these variables.
 
