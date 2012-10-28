@@ -133,7 +133,6 @@ As you probably notice, by default it draws the images by the top right corner. 
         image.setAnchorPoint(x,y); 
         image.setAnchorPercent(x/100,y/100); 
 
-
  
 //// GRAPHICS HERE
 
@@ -186,9 +185,10 @@ What is a texture and why it's so different from the idea of a Image. Well when 
 But when GPU start to appear engineers realize that it could be more and different ways to use images in order to give much more flexibility and decide to empower new ways of drawing with specify hardware tweaks.
 That's when Textures born. They where conceive as 1D, 2D or 3D arrays of fragments of images that are mount on top of wireframes made by vertex. This lead to new and powerful ways of contracting 3D elements. 
 
-// IMAGE HERE
-
 It's pretty much like the making of a armchair. First you assemble the wood peaces that will be the rigid structure where the fabric will be mounted. To keep things easy we are going to speak only about 2D Textures and we are going to image them as the fabric. 
+
+![ofTexture1](https://www.dropbox.com/s/t8k49jspiprgvms/ofTexture01.jpeg)
+
 In fact at the beginning this 2D Textures had to be squared and power of 2. And they were used as wallpapers so they repeat them self once and once over again. 
 
 // IMAGE HERE
@@ -208,11 +208,11 @@ Here we are making are making the role of a carpenter and a upholsterer at the s
 Let's jump to the code. For that we are going make what it's call a **mesh** (ofMesh).
 Meshes are this pact of information of vertexes, how to arrange them and it relation to where to mount the texture on top of them.
 
-I know, it sound complex. But the good news it's that all this is empower by the GPU card and will be manufacture by it. This engineers that work on Graphics Cards provide them with his own memory. This memory it's dirtily attached to a lot of mini-micro-processors that run in parallel on super fast speed. Each one of this micro-processors only take care on the positioning of one vertex and one fragment of image. It's like having a big army of little ants that are really dum. The power of this army it's related to his number and the fact that each one do only one thing in parallel to the other one. But all respect the same time table. First all are going to process the vertex, then how they are going to linked this vertex and finally how the are going to mount and process the fragments of images store in the GPU memory. 
+I know, it sound complex. But the good news it's that all this is empower by the GPU card and will be manufacture by it. This engineers that work on Graphics Cards provide them with his own memory. This memory it's dirtily attached to a lot of mini-micro-processors that run in parallel on super fast speed. Each one of this micro-processors only take care on the positioning of one vertex and one fragment of image. It's like having a big army of little ants that are really dumm. The power of this army it's related to his number and the fact that each one do only one thing in parallel to the other one. But all respect the same time table. First all are going to process the vertex, then how they are going to linked this vertex and finally how the are going to mount and process the fragments of images store in the GPU memory. 
 
 // IMAGE HERE
 
-This is what is call GPU Pipeline. You know what's the best of it? It could be re-programmed! Just like a lot of Arduinos you could reprogram the firmware of this ants to treat vertex, geometris or fragments on a different way. That's what it's call replace the defaults shaders. But we are not going to go so far on this chapter. 
+This is what is call GPU Pipeline. You know what's the best of it? It could be re-programmed! Just like a lot of Arduinos you could reprogram the firmware of this ants to treat vertex, geometrics or fragments on a different way. That's what it's call replace the defaults shaders. But we are not going to go so far on this chapter. 
 
 Let's start making a simple mesh. And play with it.
 
@@ -391,7 +391,7 @@ You will se how openGL automatically try to fit the image to the coord that you 
 
 Also you can play by trying to put outside down, rotate and flip the image. This are good exercises to train your self.
 
-Powerfull and flexible. Isn't? well there are more options. If you see the vertex we are repeating lot of positions and texture coordinates. That's because it's making one triangle every three vertex. We can tell the openGL to make triangles re-using the last to vertexes. This mode it's call **TRIANGLE STRIP** and it will need that we change the order we deliver the vertex in order to re-use the information of the first triangle.
+Powerful and flexible. Isn't? well there are more options. If you see the vertex we are repeating lot of positions and texture coordinates. That's because it's making one triangle every three vertex. We can tell the openGL to make triangles re-using the last to vertexes. This mode it's call **TRIANGLE STRIP** and it will need that we change the order we deliver the vertex in order to re-use the information of the first triangle.
 
 	ofMesh myMesh;
     myMesh.setMode(OF_PRIMITIVE_TRIANGLE_STRIP );
@@ -424,8 +424,7 @@ Well know you now much more about how openGL works and you can have a picture of
 The challenge now it's to make a kaleidoscope using this knowledge. You can found the answers on the example on this chapter documentation.
 
 
-
-Reference (GOOD IMAGES HERE SEE!!!! ):
-http://www.creativeapplications.net/tutorials/guide-to-meshes-in-cinder-cinder-tutorials/
+// Reference (GOOD IMAGES HERE SEE!!!! ):
+// [http://www.creativeapplications.net/tutorials/guide-to-meshes-in-cinder-cinder-tutorials/](http://www.creativeapplications.net/tutorials/guide-to-meshes-in-cinder-cinder-tutorials/)
 
 
