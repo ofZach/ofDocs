@@ -1,4 +1,4 @@
-#Variables
+# Basic Programming Principles and Elements
 
 Until now we have drawn different shapes on the screen. But the real magic around programming comes when you can abstract the positions and start playing with relative numbers. Abstraction is a concept taken from mathematics that allows us to separate ourselves from numbers and turn them into concepts, that we can define and change in our program.
 
@@ -36,11 +36,14 @@ We can use variable to say:
 In this way if we want to change the look of our drawing we just need to change the width and the height and all it's going to change automatically.
 That's the magic of using variables in code.
 
+<br />
 
-
-## Variables / data Type
+---
+<br />
 
 ![variables01](https://raw.github.com/ofZach/ofDocs/master/img/chapter05/variables.png)
+
+## Variables / data Type
 
 There is an important thing about variables in openFrameworks. C++ is a strong type language. So anytime you define a variable as a number, it can't be transformed to a character without making a new variable. Another important thing here is that there are two types of numbers integers, or whole numbers (1,2,3,4,5,15,98) and floating point numbers, or decimal numbers (0.1, 3.6, 32.7, etc). Also both types could be signed and unsigned, meaning they can be positive and negative, respectively. Each number type uses a defined amount of memory space. With a signed number, one bit of memory space is used to set the sign of the number. So pre-defining a variable as a unsigned leaves that extra bit free for use.
 
@@ -301,6 +304,11 @@ So in each frame it just going to add a portion of the difference between the ci
 
 This is a nice example of how variables and math will help us to make cool effects.
 
+<br />
+
+---
+<br />
+
 ## Variable and conditions Operators 
 
 There are times when you want to check the information of a variable. You could do that using: equal operator ==
@@ -316,10 +324,14 @@ The result of that it's a boolean variable. In other words these *"questions"* g
 
 Booleans are the key for logic statements. Programming is pretty much the right use of the logic operator together with math. Sounds like fun, right?
 
+<br />
 
-### IF statements
+---
+<br />
 
 ![IF](https://raw.github.com/ofZach/ofDocs/master/img/chapter05/if.jpeg)
+
+### IF statements
 
 Let's transform our circle into a rectangle each time the ```x``` position is greater than ```300```
 For that we are going to use a conditional method call IF. Basically works like this
@@ -370,10 +382,14 @@ Exercise: Try now something using **OR** ( represented by ```||``` ).
 
 Beside ***IF*** ( ) statements you can found ***WHILE*** loops, ***FOR*** loops and ***SWITCH***.
 
+<br />
 
-## WHILE loops
+---
+<br />
 
 ![WHILE](https://raw.github.com/ofZach/ofDocs/master/img/chapter05/while.jpeg)
+
+### WHILE loops
 
 Programming has to do a lot with choices but also is about repetition. Beautiful things come out of complexity and that can be achieved through repetition. Good thing about is, computers are made to do repeat tasks very fast and the don't need to rest, so we can take advantage of that. Every time you see that you are repeating something on your code, you can tell the computer to do it for you. Once again you only need to worry about the relationship with the numbers. 
 
@@ -411,7 +427,7 @@ As you can see we are repeating here. The only thing that is changing is the num
 ~~~~
 
 
-Initally, this seems more complicated but it is powerful and elegant tool to use.
+Initially, this seems more complicated but it is powerful and elegant tool to use.
 
 In this case divisor is the number that counts the loops, the index. The increment of the index is what is called step. It is Also used to exit the loop. The risk here is to write a bad condition and the loop goes on forever. It’s called an infinite loop and can be a huge problem.
 
@@ -426,10 +442,14 @@ In this case divisor is the number that counts the loops, the index. The increme
 	
 ~~~~
 
+<br />
 
-### FOR loops
+---
+<br />
 
 ![FOR](https://raw.github.com/ofZach/ofDocs/master/img/chapter05/for.jpeg)
+
+### FOR loops
 
 This structure we just learned is so powerful and you are going to use it so much that there is a specific function for it. Its call **FOR** loop. and work like this:
 
@@ -461,10 +481,14 @@ Well this is a powerful tool, and as uncle Ben said, *“With great power comes 
 
 Like this example we forgot to write the < operator so the condition is more like an assignment which true all the time. Tada! You have an infinite loop.
 
+<br />
 
-### Switch Statements
+---
+<br />
 
 ![Switch](https://raw.github.com/ofZach/ofDocs/master/img/chapter05/switch.jpeg)
+
+### Switch Statements
 
 The last type of conditions are switch statements. They are used when you want to check the same variable through different options. Actually just like for loops are the easy way of having while loops (because it utilizes a commonly used structure ), switch is the easy way of making comparisons without using many **IF** statements.
 
@@ -502,10 +526,14 @@ Using SWITCH we say
 	
 ~~~~
 
+<br />
 
-# OpenFrameworks block elements
+---
+<br />
 
 ![FOR](https://raw.github.com/ofZach/ofDocs/master/img/chapter05/tools.jpeg)
+
+## OpenFrameworks block elements
 
 openFrameworks some some block elements that can be used as variables for colors and positions. These are called ofColor and ofPoint.
 

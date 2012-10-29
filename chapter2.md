@@ -80,7 +80,6 @@ We are going to speak more about this in chapter 3 but it's important to know th
 <br />
 
 ## 1. SourceCode text files
-<br />
 
 First thing to know on C++ source code files is that there are two kinds.
 	
@@ -105,6 +104,7 @@ Writing applications with openFrameworks will consist essentially on writing ins
 Also you will notice that it's another third file on the ```src/```folder name ```main.cpp```. This is where the ```main()```function will be defined and then from there call the "testApp" class.
 
 This will have more sense in the next following chapters.
+
 <br />
 
 ---
