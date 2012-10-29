@@ -1,4 +1,4 @@
-#Intro to C++ and the compiling process
+# Introduction to C++ and the compiling process
 
 For does how never program before you can think it like recording interactions for computers. Essentially computers process information at super fast speed by using binary information and instructions. Witch look like this:
 
@@ -8,6 +8,8 @@ For does how never program before you can think it like recording interactions f
 	01001100 01000100 
 	
 This is the machine language that work at what it's call down level or hardware level. This zeros and once are processed by microchips and other hardware peaces at super fast speed. Every one it's a pulse of energy ( ON ) and every 0 it's an absents of it ( OFF ).
+
+![bin](https://raw.github.com/ofZach/ofDocs/master/img/chapter01/bin.jpeg)
 
 As you can imagine this is really hard for humans. On top of this level the first micro-controllers were programmed. This led engineers enough power to re-use micro-controllers instead of making new ones for new instructions. This language was call [Assembly](http://en.wikipedia.org/wiki/Assembly_language) and looks like this:
 
@@ -33,17 +35,17 @@ Ok. But how C and C++ looks like? In words of [Dennis Ritchie](http://en.wikiped
 
 	main(){
     	printf("Hello World");
-	}
+	};
 	
 ~~~~
- 
+
 So, we can say that when we are writing code, the main objective is to get from text that we can understand into some machine instructions that the computer can operate on. And as we learn this process it's call compiling.  
    
 Source Code ( kind of human language ) :
 
 	printf("Hello World");
 
-![image](https://raw.github.com/ofZach/ofDocs/master/img/arrow.jpg)	
+![image](https://raw.github.com/ofZach/ofDocs/master/img/chapter01/arrow.jpg)	
 
 Binary ( proper machine language ) :
 	
@@ -61,6 +63,8 @@ The compiling steps are four:
 2. **Pre-Processor** organize and clear the source code
 3. **Compiling** Transform C++ commands and variables of each line of the source code for lots of Assembly lines. 
 4. **Linking** Put together all the blocks of assembly code put it together with the rest of the previous compiled libraries in a single binary file that could be pass directly to the computer in order to be executed.
+
+![compiling](https://raw.github.com/ofZach/ofDocs/master/img/chapter01/compiling.png)
 
 It's not a surprise that the program in charge of this process it's call [Compiler](http://en.wikipedia.org/wiki/Compiler). The thing here it's that compilers are hard to play with. 
 
@@ -106,6 +110,7 @@ This will have more sense in the next following chapters.
 ---
 <br />
 
+![image](https://raw.github.com/ofZach/ofDocs/master/img/chapter01/compiling-01.jpeg)
 
 ## 2. Pre processor
 
@@ -137,10 +142,10 @@ Tells the computer to replace all the times it founds ```PI``` in the source cod
 
 As we saw most ```.cpp``` files will be paired with a corresponding ```.h``` file. In order to linked them and mark the relation ship that they have you will need to use the preprocessor commands ```#include``` to take the content of the ```.h``` file (the definitions) and include it on the ```.cpp```.
 
-![image](https://raw.github.com/ofZach/ofDocs/master/img/include.jpg)	
+![image](https://raw.github.com/ofZach/ofDocs/master/img/chapter01/include.jpg)	
 The inclusion of files is recursive, meaning, if the ```.h``` file of the testApp includes ```.h``` file **2** which include the ```.h``` files **3**, **4** and **5**, the the ```testApp.h```, after going through the preprocessor, will have **2**, **3**, **4** and **5** inside of it.  
 
-![image](https://raw.github.com/ofZach/ofDocs/master/img/includeGuards.jpg)
+![image](https://raw.github.com/ofZach/ofDocs/master/img/chapter01/includeGuards.jpg)
 
 Often times, libraries will have one master header file, that includes all the other files. In the case of openFrameworks, that file is called ```ofMain.h```, and if you look, it actually includes all the other header files in openFrameworks. This is really useful because every time you want to use a openFramework object or method you just need to ```#include "ofMain.h"```.
 
@@ -182,30 +187,22 @@ Much more easy, isn't?
 
 ### Include & search paths
 
-Another important issue about ```#includes``` is that search paths are really important. And there is a big difference between using:
+Another important issue about ```#includes``` is that search paths are really important. And there is a big difference between using ```"something.h"``` than ```<something.h>```. 
 
-***MORE!***
+The first way it's for header files local to your project. 
 
-    #include "local_file.h" 
-    // means that is a local header file 
-    // ( so it's in this project only )
-    // and we are adding it
-        
-VS.
-    
-	#include <system_file.h>
-	// means it's a system file
-    // so it's part of the system SDK more often seen
-    // on linux because it looks to the /usr/include 
-     
-    
-The errors you can get here are things like…
+	#include "local_file.h"
+
+So it's up to your IDE to search for them. You will notice that each different IDE have different way of adding folders and files to the scope of the project. 
+
+The second way it's for libraries installed and managed by the Operating System. On Linux OS it's search for headers located on your ```/use/include``` directory. And on MacOS could call for other frameworks and SDKs. 
+
+Any way errors on the search path are easy to detect but hard to understand. Usually appears with something like:
 
 	Cant find "ofMain.h"
 
+In case of receiving this error try to locate the files on your computer and check if it's used on the right way and/or that file is in the scope of the project. That means to check your IDE if it's added.
 
-***ADD ERROR EXAMPLE***
-( what do you do if you get this error? )
 
 <br />
 
@@ -213,13 +210,24 @@ The errors you can get here are things like…
 <br />
 
 
-## 3. Compiler
+![image](https://raw.github.com/ofZach/ofDocs/master/img/chapter01/compiling-02.jpeg)
+
+## 3. Compiling
  
-The compiler's job in life is simple: to take the code that you've written and turn it into machine language instructions for the compiler that you are using. In other words, to take your .cpp files and turn them into .o files. It gets the text, after it's been preprocessed, and will go .cpp file by .cpp to make .o files. 
+Once all the ```.h``` and ```.cpp``` files are organized it have a clear view of the job that need to do. So it start grabbing each single line of the ```.cpp``` files and start converting them into binary assembly language. 
 
-It's important to remember it doesn't do anything with the .h files, but they help the .cpp files compile and cross reference each other. 
+In this step the compiler will concentrate on how you are using the C++ language, if you are calling the right methods and functions in the right way and that the variables and objects you are using are in there right scope. Because it need to have sense and congruence for it in order to make a right translation.
 
-There are typically different settings for your compiler -- for example, you can compile in debug and release, and the settings are different.  
+Any error in this step will lead you to a specific line of the source code with a specific error message that ( in the best of the cases ) will give and idea of what kind of error are you making.
+
+Once again, it will take time to understand clearly the compilers errors. Your best friend here it's google and the openFramework forum.
+
+This process ends up with one ```.o``` file for each ```.cpp``` file. This ```.o``` files are blocks of instructions for computers wrote in binary. Our application it's been born in little separate fractions. 
+
+It's important to remember it doesn't do anything with the ```.h``` files, but they help the ```.cpp``` files compile and cross reference each other. 
+
+Related to this step you can found on your IDE different settings. You can tell the compiler to leave little "holes" in the assembly code for taking a look of what's going on inside de application. This is call setting the target for "debug mode" instead of "release". 
+
 
 ### debug mode
 
@@ -229,25 +237,24 @@ In debug, specific information about the code, such as line numbers are baked in
 
 In release mode, optimization settings are enabled, meaning the compiler strives to make your code run faster.  Often times, optimization (speed) is traded off for file size.  It's beyond the scope of this document to get into compiler settings, but in general, we encourage you to poke around and to not be overly intimidated by all the switches provided to you.  Many of them are just for edge cases, and you don't need to worry about them.  The more you know about the compiler, the more you can experiment and use it to it's full advantage. 
 
-With either compile setting, this process ends with lot's of .o files. Those are .cpp files compiled on binaries. 
 
-	screenshot of .o files
+### Compiler errors Examples (INCOMPLETE)
+wrong function names... types... bad syntax
+	
 
-### compiler errors
-
-	wrong function names... types... bad syntax
-	( ADD ERROR EXAMPLES )
 
 <br />
 
 ---
 <br />
 
-## 4. Linker
+![image](https://raw.github.com/ofZach/ofDocs/master/img/chapter01/compiling-03.png)
 
-In our code, we are many times calling functions that are in other files (otherwise we would have to code everything from scratch!). Our program must make jumps to get stuff from those files we are referencing. The linker takes .o files and figures out how to combine them together, and what the jumps from file to file are.
+## 4. Linker (INCOMPLETE)
 
-The linker start to put all the .o files together according to the headers. If it can't found it it will get a linker error
+In our code, we are many times calling functions that are in other files (otherwise we would have to code everything from scratch!). Our program must make jumps to get stuff from those files we are referencing. The linker takes ```.o``` files and figures out how to combine them together, and what the jumps from file to file are.
+
+The linker start to put all the ```.o``` files together according to the headers. If it can't found it it will get a linker error
 
     Errors here are hard. 
     Means it can get the libraries (.a .lib .dll). 

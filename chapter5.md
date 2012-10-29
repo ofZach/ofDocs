@@ -504,6 +504,9 @@ Using SWITCH we say
 
 
 # OpenFrameworks block elements
+
+![FOR](https://raw.github.com/ofZach/ofDocs/master/img/chapter05/tools.jpeg)
+
 openFrameworks some some block elements that can be used as variables for colors and positions. These are called ofColor and ofPoint.
 
 These two elements can be passed to other openFrameworks functions like ```ofCircle()```, ```ofRect()``` or ```ofSetColor()``` and work in the right way.  The way we declare them is pretty much the same as any other variable type.
