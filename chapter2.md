@@ -1,58 +1,106 @@
-#Intro to C++ / compilers
+#Intro to C++ and the compiling process
 
-When we are writing code, the main objective is to get from text that we are typing into some machine instructions the computer can operate on.  This process is called compiling and it looks like
+For does how never program before you can think it like recording interactions for computers. Essentially computers process information at super fast speed by using binary information and instructions. Witch look like this:
 
-When we are writing code, the main objective is to get from text that we are typing into some machine instructions the computer can operate on.  The process looks like
+	01001000 01000101 01001100 
+	01001100 01001111 00100000 
+	01010111 01001111 01010010 
+	01001100 01000100 
+	
+This is the machine language that work at what it's call down level or hardware level. This zeros and once are processed by microchips and other hardware peaces at super fast speed. Every one it's a pulse of energy ( ON ) and every 0 it's an absents of it ( OFF ).
 
-`Txt ( human ) -> Binary (machine instruction)`
+As you can imagine this is really hard for humans. On top of this level the first micro-controllers were programmed. This led engineers enough power to re-use micro-controllers instead of making new ones for new instructions. This language was call [Assembly](http://en.wikipedia.org/wiki/Assembly_language) and looks like this:
 
+	C000						ORG		ROM+$0000 BEGIN MONITOR
+	C000	8E	00	70	START	LDS		#STACK
+	0013				RESETA	EQU		%00010011
+	0011				CTLREG	EQU		%00010001
+	
+	C003	86	13		INITA	LDA	A	#RESETA	RESET ACIA
+	C005	B7	80	04			STA	A	ACIA
+	C008	86	11				LDA	A	#CTLREG	SET 8 BITS AND 2 STOP
+	C00A	B7	80	04			STA	A	ACIA	
+
+Each processor have specific new Assembly commands and particular memory address. So each program was wrote for a specific computer. This implies an enormous effort each time a bank or a company have to update his systems. That's way on the between 1969 and 1972 Bell Labs decide to empower the making of an [Operating System](http://en.wikipedia.org/wiki/Operating_system) that could be robust and easy to port from one hardware to another one. For that goal a [Dennis Ritchie](http://en.wikipedia.org/wiki/Dennis_Ritchie) start working on a programming language that was easy to understand and use that then were interpreted by a machine in order to generate Assembly code from it. This process was call **compiling**. And by it developer only need to worry about making good compiles that know how to read "human" style instructions and make the right assembly lines that could be read correctly by the processor in once and zeros.
+
+This language was call [C](http://en.wikipedia.org/wiki/C_(programming_language)) and make possible the develop of [Unix](http://en.wikipedia.org/wiki/Unix). With out doubts this two inventions shape for ever the computers just as we know them. Almost every actual operating system it's wrote on C or [C++](http://en.wikipedia.org/wiki/C%2B%2B) (witch is the [Object Oriented Programming](http://en.wikipedia.org/wiki/Object-oriented_programming) version of C). Also if you are using Linux or MacOS both system are designed following the Unix tradition.
+
+Ok. But how C and C++ looks like? In words of [Dennis Ritchie](http://en.wikipedia.org/wiki/Dennis_Ritchie):
+
+~~~~{.cpp}
+
+	#include<stdio.h>
+
+	main(){
+    	printf("Hello World");
+	}
+	
+~~~~
+ 
+So, we can say that when we are writing code, the main objective is to get from text that we can understand into some machine instructions that the computer can operate on. And as we learn this process it's call compiling.  
    
-Txt [ human ] :
+Source Code ( kind of human language ) :
 
-	'HELLO WORLD' 
+	printf("Hello World");
 
 ![image](https://raw.github.com/ofZach/ofDocs/master/img/arrow.jpg)	
 
-Binary [ machine ] :
+Binary ( proper machine language ) :
 	
 	01001000 01000101 01001100 
 	01001100 01001111 00100000 
 	01010111 01001111 01010010 
 	01001100 01000100 
 
-Most programming languages use text files, plain text that you can open in any text editing software, but in the most cases we use an [IDE](http://), Integrated Development Environment, which allows to work in a specific programming language.
 
-In the case of C++, the the compiler takes code written by humans and transforms it to machine level instructions ( assembly language ) for a specific processor (i.e. Intel). 
+As you can imagine this process it's a little complex. But knowing each one of the steps will help you understand what's going on, and more important than that, do a good diagnostic of where is the process when you get an error message. To be honest, the most hard thing at the begging it's to learn how to understand this compiling error message. Try to imagine this like long term relationship. The more you understand from this process the better you will get on the future and the brighter together you will have.
 
+The compiling steps are four:
 
-***MORE ABOUT MACHINE LEVEL INSTRUCTIONS***
+1. **The Source Code** regular text wrote by humans. That's means that computer will check for grammar errors and regular language mistakes.
+2. **Pre-Processor** organize and clear the source code
+3. **Compiling** Transform C++ commands and variables of each line of the source code for lots of Assembly lines. 
+4. **Linking** Put together all the blocks of assembly code put it together with the rest of the previous compiled libraries in a single binary file that could be pass directly to the computer in order to be executed.
 
+It's not a surprise that the program in charge of this process it's call [Compiler](http://en.wikipedia.org/wiki/Compiler). The thing here it's that compilers are hard to play with. 
 
-There are 4 steps in compiling OF: 
+That's why there are other programs that are much more friendly in charge of administrate your source code files, libraries and media content. Also this programs usually have autocorrect, autocomplete and color styling that makes the programming experience much more easy and enjoyable. This programs are call [IDE](https://github.com/ofZach/ofDocs/blob/master/glossary.md) for Integrated Development Environment.
 
-1. Txt
-2. Pre processor
-3. Compile
-4. link
+Depending your platform we are going to use CodeBlocks (Linux and Windows), VisualStudio (just Windows) or Xcode (MacOS). Each one of this IDE use a specify file in order to organize the source Code files that are going to be compiled. This files are call "Projects" and are going to by the glue between the source code of your application, the openFrameworks libraries and the addons.
+
+We are going to speak more about this in chapter 3 but it's important to know that probably you need to do some previous steps in order to prepare your IDE to use openFrameworks. You can check this steps in this [openFrameworks download webpage](http://www.openframeworks.cc/download/)
 
 <br />
 
 ---
 <br />
 
-## 1. The Text Files
+## 1. SourceCode text files
 <br />
 
-We start off writing text, and in c++ there are two kinds of files you will see: .h and .cpp files.  
+First thing to know on C++ source code files is that there are two kinds.
+	
+* ```.h```	files 
+* ```.cpp``` files  
 
-The .h files are header files; they contain definitions. The .cpp files are implementation files; they contain the code that will describes program. Here are a few ways of thinking about the difference between the two files -- one way is cooking. When you have a recipe, you typically have two parts, the list of ingedients and the actual steps when you are cooking.  In this case, the .h file is the ingredients, just a list of you need. The .cpp file is cooking directions, the actual steps. Another anology is the index of a book -- you can think of the .h file like an index, and the .cpp file as the chapter of the book.   
+The ```.h``` files are call "header files". They contain definitions. We can think on them like the a ingredients list. All the elements that will need to mix are going to be detailed there.
+The ```.cpp``` files are implementation files. They contain the code that will describes the procedures that the machine need to do with the previous given elements.
 
-    historical background - commercial code, releasing compiled lib and header files. 
+Another analogy to picture this relationship is the book. You can think of the ```.h``` file like an index, and the ```.cpp``` file as the chapter of the book.   
 
-The compiler's sole job is to compile .cpp files, it uses the .h files to get information that helps it compile.  The .h files provide a bridge from one .cpp file to another.
+Why is like this? Well, It was designed with a practical purpose. One developer could program a set of orders and instructions that could be re-use for others. This are usually call libraries. This libraries can be shared already compiled. Because if they are already compiled are no longer understandable for humans so the could be hard to use. But, if the person that share this libraries gives the header files together with the compiled libraries in binary code, both computer and developer will know how to use them. 
+	
+That's why it's so important to have clear header files. If they are well made you can just use them in order to understand how the code works.
 
-***MORE: how this relates to OF -- > reading h files, looking at the core of OF, etc***
+In fact one of the things we will encourage to the readers a long this book it's to take a look to openFrameworks headers files. They are the real cookbooks of your future works. There you will find all the elements and spices that you need to compose amazing art works. 
 
+Also It will come the moment you will need code that there is no written yet. That's when you will write your own and contribute. So it's better to start reading ```.h``` with a critic view to think what makes clear and sharable code. 
+ 
+Writing applications with openFrameworks will consist essentially on writing inside the two "testApp" files. That's it: ```testApp.h``` and ```testApp.cpp```
+
+Also you will notice that it's another third file on the ```src/```folder name ```main.cpp```. This is where the ```main()```function will be defined and then from there call the "testApp" class.
+
+This will have more sense in the next following chapters.
 <br />
 
 ---
@@ -61,37 +109,45 @@ The compiler's sole job is to compile .cpp files, it uses the .h files to get in
 
 ## 2. Pre processor
 
-The preprocessor is the next step in our progression from text to something you can run. All code that start with # are preprocessor comands. They will look like:
+The preprocessor is the next step in our progression from text to something you can run. 
+You will find that in the source code there some line that starts with ```#```. This are commands that are read and interpreted in this pre-processor step. 
 
-```#define M_PI 3.14```
+They will look like:
 
-```#include "ofMain.h"```
+~~~~{.cpp}
 
-You can think about them as text processors, they change the actual text before you compile. For example, this: 
+	#define M_PI 3.14
+	
+	#include "ofMain.h"
+	
+~~~~
 
-```#define PI 3.14```
+This pre-processor commands are cut and paste instructions that will be executed before it can start translating from code to binary.
 
-says, if you see PI in the text, change it to 3.14.  Note, this is changing the actual text, not creating a variable called PI.  In #define, we typically use all capital letters to denote the value being a [constant](http://).  
+For example: 
 
-### include 
+	#define PI 3.14
 
-Most .cpp files will be paired with a corresponding .h file. One of the more common uses of the preprocessor commands is the ```#include``` statement, that takes the content (the definitions) of the .h file and includes it the .cpp file, like this:
+Tells the computer to replace all the times it founds ```PI``` in the source code for ```3.14```.  It's important to have in mind that this is changing the actual text, **not** creating a variable called ```PI```.  
+
+```#define``` statements are typically wrote using all capital letters to denote the value being a [constant](http://www.cplusplus.com/doc/tutorial/constants/).  
+
+
+### The ```#include``` command 
+
+As we saw most ```.cpp``` files will be paired with a corresponding ```.h``` file. In order to linked them and mark the relation ship that they have you will need to use the preprocessor commands ```#include``` to take the content of the ```.h``` file (the definitions) and include it on the ```.cpp```.
 
 ![image](https://raw.github.com/ofZach/ofDocs/master/img/include.jpg)	
+The inclusion of files is recursive, meaning, if the ```.h``` file of the testApp includes ```.h``` file **2** which include the ```.h``` files **3**, **4** and **5**, the the ```testApp.h```, after going through the preprocessor, will have **2**, **3**, **4** and **5** inside of it.  
+
+![image](https://raw.github.com/ofZach/ofDocs/master/img/includeGuards.jpg)
+
+Often times, libraries will have one master header file, that includes all the other files. In the case of openFrameworks, that file is called ```ofMain.h```, and if you look, it actually includes all the other header files in openFrameworks. This is really useful because every time you want to use a openFramework object or method you just need to ```#include "ofMain.h"```.
 
 
-The inclusion of files is recursive, meaning, if the .h file of the testApp includes .h file (2) which include the .h files (3), (4) and (5), the the testApp.h, after going through the preprocessor, will have (2), (3), (4) and (5) inside of it.  
+### Include guards
 
-![image](https://raw.github.com/noadol/ofDocs/master/img/includeGuards.jpg)
-
-
-Often times, libraries will have one master header file, that includes all the other files. In the case of openframeworks, that file is called ofMain.h, and if you look, it actually includes all the other header files in openframeworks. This is really useful. If you have an object, say a particle object, and you want it to be able to draw using openframeworks:
-
-		show particle -> inlcudes ofMain includes ofGraphics 
-
-### Recursive includes
-
-The problem with including files is that it sometimes can lead to issues where a file is included twice. If you include a file twice, it's a bit like definining a variable twice, the compiler gets confused: 
+The problem with including files is that it sometimes can lead to issues where a file is included twice. If you include a file twice, it's a bit like defining a variable twice, the compiler gets confused: 
 
 		int pos;
 		int pos;
@@ -99,11 +155,7 @@ The problem with including files is that it sometimes can lead to issues where a
 
 The trick here is not to add a file multiple times. Here, the compiler when it seems float pos the first time, will make a variable called pos which is a floating point number. but the second time, it will say, "wait, I've seen this name before, and you can't have multiple definitions with the same name!"  This is a multiple definition error. The same kind of error can happen with recursive includes, so we need a system to prevent a file from being included multiple times.  This is called an include guard. There's an old school and new school way of doing it. 
 
-
-
-### Include guards
-
-This means the compiler will compile the text in A or B, depending on if SOMETHING is defined or not.  This is used heavily in openframeworks for multiplatform compilation (for the adventurous, take a look at ofConstants.h, in the utils folder). There you'll see parts of code for windows, mac and linux all using #ifdefs.
+This means the compiler will compile the text in A or B, depending on if SOMETHING is defined or not.  This is used heavily in openFrameworks for multiplatform compilation (for the adventurous, take a look at ofConstants.h, in the utils folder). There you'll see parts of code for windows, mac and linux all using #ifdefs.
 
 The old schoool way uses some #define logic, and you'll see it at the start of and end of the "h" file, like this: 
     
