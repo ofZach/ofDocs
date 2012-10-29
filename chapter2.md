@@ -150,14 +150,19 @@ Often times, libraries will have one master header file, that includes all the o
 The problem with including files is that it sometimes can lead to issues where a file is included twice. If you include a file twice, it's a bit like defining a variable twice, the compiler gets confused: 
 
 		int pos;
-		int pos;
+		int pos;	// ERROR!!!!!
 		
+The trick here is not to add a file multiple times. When the compiler see ```float pos``` the first time, will make a floating point variable called ```pos```. But the second time, it will say, "wait, I've seen this name before, and you can't have multiple definitions with the same name!". This is a multiple definition error. The same kind of error can happen with recursive includes, so we need a system to prevent a file from being included multiple times.  This is called an [include guard](http://en.wikipedia.org/wiki/Include_guard). 
 
-The trick here is not to add a file multiple times. Here, the compiler when it seems float pos the first time, will make a variable called pos which is a floating point number. but the second time, it will say, "wait, I've seen this name before, and you can't have multiple definitions with the same name!"  This is a multiple definition error. The same kind of error can happen with recursive includes, so we need a system to prevent a file from being included multiple times.  This is called an include guard. There's an old school and new school way of doing it. 
+There are two ways of doing this: the old school one and new school way. 
 
-This means the compiler will compile the text in A or B, depending on if SOMETHING is defined or not.  This is used heavily in openFrameworks for multiplatform compilation (for the adventurous, take a look at ofConstants.h, in the utils folder). There you'll see parts of code for windows, mac and linux all using #ifdefs.
+The **old school** it's by using pre-compiled IF statements: ```#ifndef``` , ```#ifdef```, ```#else``` or ```#endif```. 
 
-The old schoool way uses some #define logic, and you'll see it at the start of and end of the "h" file, like this: 
+This commands are used saying that the compiler will process the following text depending on if SOMETHING is defined or not.  This is used heavily in openFrameworks for multi-platform compilation (the adventurous readers could take a look at ```ofConstants.h```, in the ```libs/openFrameworks/utils``` folder). There you'll see parts of code for windows, mac and linux all using ```#ifdefs```.
+
+So this old schoool way uses some ```#define``` statement to mark where the processor had already been. 
+
+You'll see it at the start of and end of the "h" file, like this: 
     
     
         #ifndef THIS_FILE // that means "if THIS_FILE it's not defined"
@@ -168,13 +173,16 @@ The old schoool way uses some #define logic, and you'll see it at the start of a
         
         #endif
     
-The new school style, which you'll see in alot of the core of OF uses #pragma, which is a compiler directive, saying, "inlcude this file only once".  It looks like: 
+The **new school** style, which you'll see in a lot of the core of OF uses ```#pragma```, which is a compiler directive, saying, "include this file only once".  It looks like: 
 
 		#pragma once
 
+Much more easy, isn't?
+
+
 ### Include & search paths
 
-Another important point about includes is that search paths are really important. And there is a big difference between using:
+Another important issue about ```#includes``` is that search paths are really important. And there is a big difference between using:
 
 ***MORE!***
 
