@@ -37,14 +37,13 @@ Ok. But how C and C++ looks like? In words of [Dennis Ritchie](http://en.wikiped
     	printf("Hello World");
 	};
 	
-~~~~
 
 So, we can say that when we are writing code, the main objective is to get from text that we can understand into some machine instructions that the computer can operate on. And as we learn this process it's call compiling.  
    
 Source Code ( kind of human language ) :
 
 	printf("Hello World");
-
+	
 ![image](https://raw.github.com/ofZach/ofDocs/master/img/chapter01/arrow.jpg)	
 
 Binary ( proper machine language ) :
