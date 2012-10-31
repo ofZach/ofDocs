@@ -71,6 +71,8 @@ That's why there are other programs that are much more friendly in charge of adm
 
 Depending your platform we are going to use CodeBlocks (Linux and Windows), VisualStudio (just Windows) or Xcode (MacOS). Each one of this IDE use a specify file in order to organize the source Code files that are going to be compiled. This files are call "Projects" and are going to by the glue between the source code of your application, the openFrameworks libraries and the addons.
 
+![IDE](https://raw.github.com/ofZach/ofDocs/5f4cb9c7be0c1787009783d867ebd534b4a8ac28/img/Chapter02/IDE.jpg "The openframeworks IDE")
+
 We are going to speak more about this in chapter 3 but it's important to know that probably you need to do some previous steps in order to prepare your IDE to use openFrameworks. You can check this steps in this [openFrameworks download webpage](http://www.openframeworks.cc/download/)
 
 <br />
@@ -87,6 +89,21 @@ First thing to know on C++ source code files is that there are two kinds.
 
 The ```.h``` files are call "header files". They contain definitions. We can think on them like the a ingredients list. All the elements that will need to mix are going to be detailed there.
 The ```.cpp``` files are implementation files. They contain the code that will describes the procedures that the machine need to do with the previous given elements.
+
+![.h](https://raw.github.com/ofZach/ofDocs/5f4cb9c7be0c1787009783d867ebd534b4a8ac28/img/Chapter02/h-definition.jpg ".h for definition")
+
+.h = definition
+
+-
+<br />
+
+
+![.cpp](https://raw.github.com/ofZach/ofDocs/5f4cb9c7be0c1787009783d867ebd534b4a8ac28/img/Chapter02/cpp_implementation.jpg ".cpp for implementation")
+
+.cpp = implementation
+
+<br />
+
 
 Another analogy to picture this relationship is the book. You can think of the ```.h``` file like an index, and the ```.cpp``` file as the chapter of the book.   
 

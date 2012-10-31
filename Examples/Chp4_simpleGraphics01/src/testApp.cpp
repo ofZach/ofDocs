@@ -7,7 +7,8 @@ void testApp::setup(){
     
     ofBackground(100, 200, 240); //r,g,b 
     ofSetCircleResolution(100); // makes the circle edge nice and smooth
-    
+    ofSetWindowTitle("simple drawing");
+    ofSetWindowPosition(400, 0);
     // enable to smooth the lines (nose and mouth)
     ofEnableSmoothing();
 

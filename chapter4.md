@@ -7,30 +7,9 @@ To draw to the screen, OpenFrameworks uses a cross-language API that allows us t
 OpenFrameworks makes it easier for us to draw to the GPU using OpenGL, providing us with more abstract, high level functions.
 
 
-## Scopes/functions
+## draw( );
+###OpenFrameworks draw function
 
-###1. setup( ) -- Setting up the environment
-
-In order for us to start drawing in openFrameworks, we need to setup our drawing environment first, typically done in the scope of our setup(); function. setup(); is a function that runs only once at the beginning, and is used to set up things that will apply on the whole app/class. 
-
-The most basic drawing settings are ```ofBackground(r,g,b);``` and ```ofSetColor(r,g,b);``` which respectively set up the background color and the color in which we our drawing will be rendered. ```ofSetFrameRate(60);``` will determine the number of frames per second and will affect the smoothness and speed of the moving objects we'll soon create.
-
-~~~~{.cpp}
-
-    void testApp::setup(){
-   		ofSetFrameRate(60);
-        ofBackground(255,255,255);
-        ofSetCircleResolution(100);
-    }
-    
-~~~~
-    
-You probably noticed a new function here which is ```ofSetCircleResolution()``` in OpenFrameworks, circles are rendered by drawing repeating triangles that rotate around a common vertex. This function accepts one integer as input. The integer passed to this function is the number of triangles used to draw circles in our openFramworks application. Increasing the number of triangles will result in a smoother circle. 
-
-_____________________________________________________________________________
-
-
-### 2. draw( ) -- OpenFrameworks draw function
 Whenever you want to print something to the screen, static or dynamic, the function that draws that object (rectangle, circle, ellipse, etc....) should be placed within the draw function of our OpenFrameworks application:
 
 ~~~~{.cpp}
