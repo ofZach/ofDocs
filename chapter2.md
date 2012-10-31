@@ -1,13 +1,13 @@
 # Introduction to C++ and the compiling process
 
-For does how never program before you can think it like recording interactions for computers. Essentially computers process information at super fast speed by using binary information and instructions. Witch look like this:
+Computers are machines that move around electricty to do things.  The move electricity at a constant rate, and based on small logical gates, they can "calculate".  Even if you don't know what it means, you are probably used to seeing this kind of language to describe comptures: 
 
 	01001000 01000101 01001100 
 	01001100 01001111 00100000 
 	01010111 01001111 01010010 
 	01001100 01000100 
 	
-This is the machine language that work at what it's call down level or hardware level. This zeros and once are processed by microchips and other hardware peaces at super fast speed. Every one it's a pulse of energy ( ON ) and every 0 it's an absents of it ( OFF ).
+This is binary information, where everything is made out of zeros and ones.  you can also think about each piece of infromation as being on / off, like a lightswitch.   The coputer is a machine for dealing with zeros and ones --  zeros and once are processed by microchips and other hardware peaces at super fast speed. Every one it's a pulse of energy ( ON ) and every 0 it's an absents of it ( OFF ).
 
 ![bin](https://raw.github.com/ofZach/ofDocs/master/img/chapter01/bin.jpeg)
 
