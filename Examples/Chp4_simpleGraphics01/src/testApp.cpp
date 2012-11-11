@@ -9,7 +9,7 @@ void testApp::setup(){
     ofSetCircleResolution(100); // makes the circle edge nice and smooth
     ofSetWindowTitle("simple drawing");
     ofSetWindowPosition(400, 0);
-    // enable to smooth the lines (nose and mouth)
+    // smooth the lines (nose mouth and smile)
     ofEnableSmoothing();
 
 }
@@ -28,28 +28,27 @@ void testApp::draw(){
     
     //square eye
     ofSetColor(255, 255, 255); //white
-    ofSetRectMode(OF_RECTMODE_CENTER); //rectangle drawn from the center, instead of the default top left 
+    //rectangle drawn from the center, instead of the default top left
+    ofSetRectMode(OF_RECTMODE_CENTER);  
     ofRect(176, 145, 26, 26);
-    
     ofSetColor(30, 100, 220);
     ofCircle(176, 145, 10); //x,y,radius 
     
-    
     //round eye
     ofFill();
-        ofSetColor(100,200,240, 255); // r,g,b + alpha 255 meaning - 100% opacity
-        ofCircle(300, 145, 15);
-        ofSetColor(60); // meaning, r+g+b == 60, giving a shade of grey
-        ofCircle(300, 145, 8); //x,y,radius 
+    ofSetColor(100,200,240, 255); // r,g,b + alpha 255 meaning - 100% opacity
+    ofCircle(300, 145, 15);
+    ofSetColor(60); // meaning, r+g+b == 60, giving a shade of grey
+    ofCircle(300, 145, 8); //x,y,radius 
    
+    //setting the lines
     ofSetColor(100); // meaning, r+g+b == 100, giving a shade of grey
-    
-    ofLine(150, 120, 200, 120);
-    ofLine(300, 120, 350, 100);
-
-    
     ofNoFill();
     ofSetLineWidth(3);
+    
+    //eyebrows
+    ofLine(150, 120, 200, 120);
+    ofLine(300, 120, 350, 100);
     
     //nose
     ofBeginShape(); 
@@ -57,7 +56,6 @@ void testApp::draw(){
         ofVertex(250, 250);
         ofVertex(270, 240);
     ofEndShape(); 
-
     
     // smile 
     ofBeginShape(); 
@@ -79,7 +77,6 @@ void testApp::draw(){
         ofCircle(100, ofGetHeight()/2, 40);
         ofCircle(400, ofGetHeight()/2, 40);
     ofEnableAlphaBlending();
-
     
     ofSetColor(0); // Black
     ofDrawBitmapString("Drawing with oF", 20,480);
