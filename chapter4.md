@@ -207,7 +207,7 @@ and turning it off using:
     
 #### Drawing custom shapes in OpenFrameworks
 
-So far we have seen how we can draw primitive shapes in OpenFrameworks. But what if we want to draw a custom shape to the screen? One way of easily achieving this goal is by calling the ofBeginShape() function. Once this function is called, we can go ahead and add as many points as we want. One way of declaring points in OpenFrameworks is by using the function ofVertex(); and pass the x, y and z values to it. This will draw our point on the screen in desired coordinates on our page. Once we are done declaring points, it is time for us to declare our shape finished with the `ofEndShape()`.
+So far we have seen how we can draw primitive shapes in OpenFrameworks. But what if we want to draw a custom shape to the screen? One way of easily achieving this goal is by calling the ofBeginShape() function. Once this function is called, we can go ahead and add as many points as we want. One way of declaring points in OpenFrameworks is by using the function ofVertex(); and pass the x, y and z values or just the x and y values to it. This will draw our point on the screen in desired coordinates on our page. Once we are done declaring points, it is time for us to declare our shape finished with the `ofEndShape()`.
 So, simply put, to draw a custom shape in OpenFrameworks:
 
      ofBeginShape();
@@ -222,6 +222,18 @@ So, simply put, to draw a custom shape in OpenFrameworks:
 * Note: the function `ofEndShape(bool bClose)` accepts one boolean parameter that determines whether or not we want to close he shape tha we are drawing. The default for this is true. Meaning that OpenFrameworks will close our polyline object for us. 
 If you want to leave the shape open, try this: `ofEndShape(false);`
 
+To draw custom shapes with curved lines use the ofCurveVertex. The use is similar to the ofVertex except for two points of difference -  two extra points that need to be added, one the beginning of the curve and one at the end. Both are unseen control points that shape the beginning and the end of the curve. 
+
+    	ofBeginShape();
+          ofCurveVertex(x1,y1,z1); // begin point
+          ofCurveVertex(x2,y2,z2);
+          .
+          .
+          .
+          ofCurveVertex(xn,yn,zn); // end point
+        ofEndShape();
+        
+ * Note: within ofBeginShape() and ofEndShape() you can use a mix of ofVertex and ofCurveVertex points. Just make sure that if you begin or end the shape with an ofCurveVertex, add the extra point respectively.   
 
 
 #### openFrameworks coordinate system
@@ -262,6 +274,25 @@ Here is the syntax for each:
 `ofRect(x, y, width, height);`<br>
 `ofTriangle(x1,y1,x2,y2,x3,y3);`<br>
 
+##### Drawing Simple Graphics example
+Download the example.
+
+First the setup(), where we set some functions that will stay the same throughout the whole sketch, like the color of the background, the title on the window’s top bar, the resolution of the circle, etc.
+
+Then comes the draw(), where we write the code of the things we will actually draw to the screen. 
+![setup](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing1.jpg)
+![eyes](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing2.jpg)
+![nose](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing3.jpg)
+Drawing the smile with the ofCurveVertex. See how there are additional begin and end point. 
+![smile!](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing4_b.jpg)
+![cheeks](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing5_b.jpg)
+
+Drawing text with the ofDrawingBitmapString("write text here", x, y) position.
+
+* Note: Don't forget to close the function with the curly brackets, as highlighted.
+
+![final](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing6.jpg)
+
 
 
 ##### Transformations Matrix Push Pop
@@ -283,3 +314,8 @@ Push /pop matrix, and set a new origin point with the ofTranslate(x,y). Everythi
 if we want to have a shape rotate around itsel, we should ofTranslate() first, and then start ofRotate(). Here, we're effectively translating the whole coordinate system including the (0,0) point to a new location and use that as the basis for our ofRotate() function.
 note that this all happens inside the push and pop matrix.
 
+
+Write a solar system!
+Downoad the example 
+
+![galaxy](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/example_pushpop.jpg)
