@@ -18,13 +18,16 @@ By default you are going to use some oF tools to open and handle our media files
 ~~~~{.cpp}
 
 	ofToDataPath( "myFile.txt" ); // return the complete data path to that specific file.
-
+	
+~~~~
+	
 In case you want to use another data file instead of the ```data/``` you can change it by doing 
 
 ~~~~{.cpp}
 
 	ofSetDataPathRoot( "myNewAndDifferentDataFolder/" );
 
+~~~~
 
 
 ## Introduction about Objects and "oF style"
@@ -43,12 +46,16 @@ These objects tend to repeat a pattern in the way of using them. That's what giv
 	ofImage myImage;
 	myImage.loadImage("myJpegImage.jpg");
 
+~~~~
+
 or
 
 ~~~~{.cpp}
 
 	ofVideoPlayer myVideo;
 	myVideo.loadMovie("myVideo.mov");
+
+~~~~
 	
 or 
 
@@ -56,6 +63,8 @@ or
 
 	ofSoundPlayer mySound;
     mySound.loadSound("mySound.mp3");
+
+~~~~
     
 or
 
@@ -64,6 +73,8 @@ or
 	ofTrueTypeFont myFont;
     myFont.loadFont("arial.ttf", 14);
     
+~~~~
+
 As you probably notice these "objects" are defined in the same way you define native C variables. So it's not strange to the eye. Then, once we make that object we can access the methods that "live" in it using a dot ```.```. So every time you want to access the object variables like:
 
 ~~~~{.cpp}
@@ -71,11 +82,15 @@ As you probably notice these "objects" are defined in the same way you define na
 	ofPoint pos;
 	pos.x = 100;
 	
+~~~~
+	
 or you access to one of his methods:
 
 ~~~~{.cpp}
 
 	float length = pos.length()
+	
+~~~~
 
 We are using ```.``` to access to inside of the object and deal with the information of that content.
 
@@ -107,6 +122,8 @@ So we define them in the ```testApp.h```file:
     
     	ofVideoPlayer  myVideo;
 	};
+	
+~~~~
 
 and then load the movie in ```setup()```, update in ```update()``` and of course , draw in ```draw()```.
 
@@ -131,6 +148,8 @@ and then load the movie in ```setup()```, update in ```update()``` and of course
     	myVideo.draw(0, 0);
 	}
 
+~~~~
+
 You can see how in the case of ```ofVideoPlayer``` we play the file by using a method. But why do you need an ```update()```?  Well, that method is in charge of updating the image to the  next frame of our video. 
 
 Also we are going to see more further in this chapter how in the ```.update()``` method we keep the information about pixels and texture. This is one step further.
@@ -145,6 +164,8 @@ As you probably notice, by default it draws the images by the top right corner. 
 
 	image.setAnchorPoint(x,y); 
 	image.setAnchorPercent(x/100,y/100); 
+
+~~~~
  
 //// GRAPHICS HERE
 
@@ -308,6 +329,8 @@ So let's start by making a 640x480 rectangle using 6 vertexes grouped inside 2 t
     
     	myMesh.draw();
 	}
+	
+~~~~
 
 ![ofTexture5](https://raw.github.com/ofZach/ofDocs/master/img/chapter06/ofTexture05.jpeg)
 
@@ -342,6 +365,8 @@ We are going to add some excitement to it by adding the coordinates where to mou
     //	A
     myMesh.addTexCoord(ofPoint(0,0));
     myMesh.addVertex(ofPoint(0,0));
+    
+~~~~
 
 The last step here is to "bind" a interesting texture on top of this mesh. For that we are going to use the ```ofVideoGrabber``` and request for the ```ofTexture```of it. As we saw previously all image based objects like: ```ofImage```, ```ofVideoGrabber``` and ```ofVideoPlayer```have both types information attached to them. One for CPU RAM and the other on GPU RAM. ```ofTextures```can't be loaded directly from a file. Basically they are links to the place they are on our Graphics Card Memory. We can get this "link" and pass it to our ```ofTexture```by doing ```.getTextureReference()```on any of this image based objects. In the case of our video grabber we can do that by typing:
 
@@ -358,6 +383,8 @@ Any way, once you have the ```ofTexture``` you can apply it over this mesh by us
 	myTexture.bind();
     myMesh.draw();
     myTexture.unbind();
+    
+~~~~
 
 Also as you know in Object Oriented Programing you can get into objects by using the dot ```.``` so instead of getting the texture and then using it you can do it all in one step by saying.
 
@@ -366,6 +393,8 @@ Also as you know in Object Oriented Programing you can get into objects by using
 	myVideo.getTextureReference().bind();
     myMesh.draw();
     myVideo.getTextureReference().unbind();
+    
+~~~~
 
 Any way the complete code for this example is:
 
@@ -396,6 +425,8 @@ testApp.h
     
     	ofVideoGrabber  myVideo;
 	};
+
+~~~~
 
 ~~~~{.cpp}
 
@@ -441,7 +472,7 @@ testApp.h
     	myVideo.getTextureReference().unbind();
 	}
 
-Take our time to play and explore this example by changing, commenting out, etc. Try to play as much as you can with the Texture Coordinates by replacing some coordinates for the mouse position:
+Take time to play and explore this example by changing, commenting out, etc. Try to play as much as you can with the Texture Coordinates by replacing some coordinates for the mouse position:
 
 ~~~~{.cpp}
 
@@ -459,8 +490,8 @@ Take our time to play and explore this example by changing, commenting out, etc.
     myMesh.addTexCoord(ofPoint(0,0));
     myMesh.addVertex(ofPoint(0,0));
 
-You will see how openGL automatically tries to fit the image to the coord that you are giving and what happened when you go outside of the texture size.
 
+You will see how openGL automatically tries to fit the image to the coord that you are giving and what happened when you go outside of the texture size.
 Also you can play with it by trying to rotate and flip the image. These are good exercises to train yourself.
 
 Powerful and flexible, right? Well there are more options. If you see the vertex, we are repeating lot of positions and texture coordinates. That's because it's making one triangle every three vertices. We can tell openGL to make triangles by re-using the last two vertexes. This mode is called **TRIANGLE STRIP** and we need to change the order we deliver the vertex to re-use the information of the first triangle.
@@ -487,6 +518,8 @@ Powerful and flexible, right? Well there are more options. If you see the vertex
     //  D
     myMesh.addTexCoord(ofPoint(640,0));
     myMesh.addVertex(ofPoint(640,0));
+    
+~~~~
 
 Well know you now much more about how openGL works and you can have a picture of what's behind the ```.draw(x,y,width,height)``` function on the image based objects of openFrameworks.
 
