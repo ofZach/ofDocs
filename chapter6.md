@@ -1,26 +1,23 @@
 # Working with media
 
 ## Introduction, How oF deals with files. 
-A lot of your daily life experience pass through your senses. 
-The last 30 years we have seen how computer more and more smart about how to deal with the information to record, process and reproduces it. We have seen the transition from orange monitors to black and white, 255 colors to VGA, HDMI and so on. The same on sound, we have witness the hole process from bit sound to soundBlaster 16bits, MIDI control up to to mp3 revolution.
+A lot of our daily life experience passes through our senses. 
+The last 30 years we have seen how the computer gets smarter about how to deal with the information to record, process and how it reproduces it. We have seen the transition from orange monitors to black and white, 255 colors to VGA, HDMI and so on. The same has happened with how we represent sound. We have witnessed the whole process from bit sound to soundBlaster 16bits, MIDI control up to to the mp3 revolution.
 
-OpenFrameworks as creative coding toolbox gives you easy access to use them and play with them. The use of media files like jpeg, png, videos and sound files it's so command that that they have a special folder. That much we care : )
+OpenFrameworks as a creative coding toolbox gives you easy access to use video and sound and play with them. The use of media files like jpeg, png, videos and sound files is so powerful that they have a special folder. We care that much :)
 
-For it openFrameworks use the same standard name than Processing uses. it's call the "data" folder and it's store on the same folder that your executable file it's. 
+OpenFrameworks uses the same standard name than Processing uses. It's called the "data" folder and it stores files in the same folder that our executable file is located. 
 
-But why it have his own folder? Isn't better to put the media all together with the executable file? Well, it's set that way to make your life easy. 
-When you compile on MacOS you finally get a executable file that it have all the libraries that it use inside. It's a self-contain package that you can explore by right-clicking on it and choosing "show package". But the rest of the OS like windows and linux don't do this. So at the end of the compiling process you get and executable file (*.exe in windows cases) and some other estrange files call libraries ( we speak about them on chap 2).
-Because you probably are going to compile, re-compile and share your work it's more clear to separate data files from the executable ones. That's the final goal of it.
+But why does it have its own folder? Isn't it better to put the media all together with the executable file? Well, it's set that way to make our life easy. When we compile on MacOS you finally get a executable file that has all the libraries that it uses inside. It's a self-contained package that you can explore by right-clicking on it and choosing "show package contents". But other operating systems like Windows and Linux don't do this. So at the end of the compiling process you get and executable file (*.exe in windows cases) and some other strange files called libraries (we talk about them in chap 2).
+Because we probably are going to compile, re-compile and share our work it's clearer to separate data files from the executable ones. That's the goal of it.
 
-Because openFrameworks its cross platform, it's enough intelligent to understand that for each different OS the distance and relationship between this data folder and the executable file will change. Once again, on Mac, the executable file it's inside this little self-contain package so in order to see the data files it have to go down in the tree structure of the file system a couple of levels to see and access the data file ("../../data/") but in linux and windows the data folder it's right next to the executable ( "data/").
+Because openFrameworks is cross platform, it's enough intelligent to understand that for each different OS the distance and relationship between this data folder and the executable file will change. Once again, on Mac, the executable file is inside this little self-contained package so in order to see the data files it has to go down in the tree structure of the file system a couple of levels to see and access the data file ("../../data/") but in Linux and Windows the data folder is right next to the executable ( "data/").
 
-By default you are going to use some oF tools to open and handle your media files. In case you want to do an old school loading of a file you want to know how to get to the "data" folder. To do that you you can get the string of the full path to the data folder by using;
+By default you are going to use some oF tools to open and handle our media files. In case you want to do the old school way of loading a file you need to know how to get to the "data" folder. To do that you you can get the string of the full path to the data folder by using;
 
 ~~~~{.cpp}
 
 	ofToDataPath( "myFile.txt" ); // return the complete data path to that specific file.
-
-~~~~
 
 In case you want to use another data file instead of the ```data/``` you can change it by doing 
 
@@ -28,26 +25,23 @@ In case you want to use another data file instead of the ```data/``` you can cha
 
 	ofSetDataPathRoot( "myNewAndDifferentDataFolder/" );
 
-~~~~
 
 
 ## Introduction about Objects and "oF style"
-On last chapter we end up seen two oF special variable types: ```ofColor()``` and ```ofPoint()```. We present them as variables but they do so much more than contain information. The also have some handy functions embedded in it. Functions call methods that let you do mathematical operations, rotations, translations and so much more. This conjunction of variables ( ```float x```, ```float y``` and ```float z```; or ```char r```, ```char g``` and ```char b```) are call objects. 
+In last chapter we ended with two oF special variable types: ```ofColor()``` and ```ofPoint()```. We present them as variables but they do so much more than contain information. The also have some handy functions embedded in it. Functions call methods that lets us do mathematical operations, rotations, translations and so much more. This conjunction of variables ( ```float x```, ```float y``` and ```float z```; or ```char r```, ```char g``` and ```char b```) are called objects. 
 
-Object Oriented Programing it's the core concept of C++. It's basically about this possibility of having data contained together with handy methods that know how to deal with this information in what we are going to call **classes**. 
+Object Oriented Programing is the core concept of C++. It's basically about the possibility of having data contained together with handy methods that know how to deal with the information in what we are going to call **classes**. 
 
-**NOTE**:I would highly recommend to enter to your ```libs/openFrameworks/``` folder and take a look to ```libs/openFrameworks/types/ofColor.h``` or ```libs/openFrameworks/types/ofVec3f.h``` (what's really ```ofPoint``` ) and see how this classes work. You don't need to understand everything you see, just take a look to all the wonderful functions that openFrameworks community have made for your. There are a lot of potential for you down there.
+**NOTE**: I would highly recommend opening the ```libs/openFrameworks/``` folder and taking a look at ```libs/openFrameworks/types/ofColor.h``` or ```libs/openFrameworks/types/ofVec3f.h``` (what's really ```ofPoint``` ) and see how these classes work. You don't need to understand everything you see, just take a look to all the wonderful functions that openFrameworks community have made for us to use. There is a lot of potential down there.
 
-The same way the oF community prepare this objects they code some wonderful objects to handle media files. If you explore a little more the ```libs/openFrameworks/``` you will notice that there are classes for images ( ```ofImage``` ), sounds ( ```ofSoundPlayer```), videos ( ```ofVideoPlayer```)and typographies (```ofTrueType```). Also there are some objects that help you deal with media buffers related to devices like your camera ( ```ofVideoGrabber```) and microphone (```ofSoundStream```).
+The same way the oF community prepares these objects they also put together some wonderful objects to handle media files. If we explore the ```libs/openFrameworks/``` a little more you will notice that there are classes for images ( ```ofImage``` ), sound ( ```ofSoundPlayer```), video ( ```ofVideoPlayer```) and typography (```ofTrueType```). Also there are some objects that help you deal with media buffers related to devices like our camera ( ```ofVideoGrabber```) and microphone (```ofSoundStream```).
 
-This objects tend to repeat a pattern in the way of using them. That's what gives consistency to a framework. In the same way we have a ```setup()```, ```update()``` and ```draw()``` functions on the testApp, we have methods one media related objects to set, update and draw. When dealing with files related objects you will find "loading" functions. For example:
+These objects tend to repeat a pattern in the way of using them. That's what gives consistency to a framework. In the same way we have a ```setup()```, ```update()``` and ```draw()``` functions on the testApp, we have methods for media related objects to setup, update and draw. When dealing with files related objects you will find "loading" functions. For example:
 
 ~~~~{.cpp}
 
 	ofImage myImage;
 	myImage.loadImage("myJpegImage.jpg");
-
-~~~~
 
 or
 
@@ -55,8 +49,6 @@ or
 
 	ofVideoPlayer myVideo;
 	myVideo.loadMovie("myVideo.mov");
-
-~~~~
 	
 or 
 
@@ -64,8 +56,6 @@ or
 
 	ofSoundPlayer mySound;
     mySound.loadSound("mySound.mp3");
-
-~~~~
     
 or
 
@@ -73,32 +63,25 @@ or
 
 	ofTrueTypeFont myFont;
     myFont.loadFont("arial.ttf", 14);
-
-~~~~
     
-As you probably notice this "objects" are defined in the same way as you define native C variables. So it's not strange to your eye. Then, once you make that object you will se you are accessing the methods that "lives" in it using a dot ```.```. So every time you want to access to object variables like:
+As you probably notice these "objects" are defined in the same way you define native C variables. So it's not strange to the eye. Then, once we make that object we can access the methods that "live" in it using a dot ```.```. So every time you want to access the object variables like:
 
 ~~~~{.cpp}
 
 	ofPoint pos;
 	pos.x = 100;
-
-~~~~
-
 	
 or you access to one of his methods:
 
 ~~~~{.cpp}
 
-	float length = pos.lenght()
+	float length = pos.length()
 
-~~~~
+We are using ```.``` to access to inside of the object and deal with the information of that content.
 
-You are using ```.``` to access to inside of the object and deal with the information that content.
+Going back to the media object we just saw and the respective loading functions we then place the "settings" methods inside the ```setup()``` function. Why? Because it is in initial condition so we want to do it only once and at the beginning of the program. But, if you define the object in the setup you will not be able to call this object from another place like the ```update()``` or the ```draw()``` functions. Yes, because if you define them inside a function only lives inside it. It's the all problem related to scope that we saw in the last chapter. 
 
-Going back to the media object we just present and the respective loading functions you will probably want to place this "setting" methods inside the ```setup()``` function. Why? Because takes time and you probably want to do it only once. But, if you define the object on the setup you will not be able to call this object from some other place like the ```update()``` or the ```draw()``` functions. Yes, because if you define them inside a function only lives inside it. It's the all problem related to scope that we see in the last chapter. 
-
-So probably you want to define them on the ```testApp.h```file:
+So we define them in the ```testApp.h```file:
 
 ~~~~{.cpp}
 
@@ -124,10 +107,8 @@ So probably you want to define them on the ```testApp.h```file:
     
     	ofVideoPlayer  myVideo;
 	};
-	
-~~~~
 
-and then load the movie on the ```setup()```, update on the ```update()``` and, of course , draw it on ```draw()```.
+and then load the movie in ```setup()```, update in ```update()``` and of course , draw in ```draw()```.
 
 ~~~~{.cpp}
 
@@ -150,55 +131,97 @@ and then load the movie on the ```setup()```, update on the ```update()``` and, 
     	myVideo.draw(0, 0);
 	}
 
-~~~~
+You can see how in the case of ```ofVideoPlayer``` we play the file by using a method. But why do you need an ```update()```?  Well, that method is in charge of updating the image to the  next frame of our video. 
 
-You can see how in the case of ```ofVideoPlayer``` we have to give it play by using a method. But what do you need an ```update()```?  Well, that method it's in charge of updating the image to the one of the next frame of your video. 
+Also we are going to see more further in this chapter how in the ```.update()``` method we keep the information about pixels and texture. This is one step further.
 
-Also we are going to see more further in this chapter how in the ```.update()``` method of image related object it's where keep the relation between pixels and texture. But this is one step further.
-
-First we have to get used to using this objects. The last step we have in the previous code it's the drawing. As you can see using the autocompletion of your IDE, you can chose the place where you can ```.draw(int x, int y)``` and also the width and height of the canvas ```.draw(int x, int y, int width, int height)```
+First we have to get used to using these objects. The last step we have in the previous code is the drawing. As you can see using the autocompletion of our IDE, you can choose the place where you can ```.draw(int x, int y)``` and also the width and height of the area of the canvas.  ```.draw(int x, int y, int width, int height)```
 
 //// EXAMPLE HERE
 
-As you probably notice, by default it draws the images by the top right corner. You can change that default parameter in the same way we do that using ```ofSetRectMode(OF_RECTMODE_CENTER);``` for ofRect's using one of this two commands
+As you probably notice, by default it draws the images by the top right corner. You can change that default parameter in the same way we do that using ```ofSetRectMode(OF_RECTMODE_CENTER);``` for ofRects using one of these two commands
 
 ~~~~{.cpp}
 
 	image.setAnchorPoint(x,y); 
 	image.setAnchorPercent(x/100,y/100); 
-
-~~~~
  
 //// GRAPHICS HERE
 
 
-## Going more into image related objects and what the have inside ( **INCOMPLETE** )
+##image related objects and what they have inside 
+##INCOMPLETE
 
 // how images are handle on OF ( texture / pixels relation ) 
 // and how in CPU style there are two ways of getting and playing width pixels. Old and new way
 
 ** I have a Spanish versions here [https://github.com/patriciogonzalezvivo/cursoOF/blob/master/unidad4/Cap_1_pixel_x_pixel.md](https://github.com/patriciogonzalezvivo/cursoOF/blob/master/unidad4/Cap_1_pixel_x_pixel.md) but need the new style way… maybe Isac or Juan want to used as reference or translate it. **
+
+**Took a look at the spanish version and it's kinda like what I saw Jeff Crouse, [[http://wiki.openframeworks.cc/index.php?title=Image_processing]](http://wiki.openframeworks.cc/index.php?title=Image_processing) edited now **
  
 
-What is very important to know about dealing with images objects like ofImage and ofVideoGrabber and ofVideoPlayer its that have to type of data.
-One its the pictures... each one of the pictures colors... this is load in the RAM memory on the CPU. And the texture ( ofTexture ) that its store on the Graphic Card.
+A Very important to thing to know about dealing with image type objects like ofImage, ofVideoGrabber and ofVideoPlayer its that have they have to new types of data associated with them.
+We have ofPixel which contains the pixel data assoicated with position and color loaded in the RAM memory of the CPU. We also have ofTexture, which is pixel data that is stored on the Graphics Card. There are two different ways of getting this pixel data.
 
-For the pixels are handy to get them and set them when you want to do image processing.
-
-There are two different ways of getting the pixels.
-
-//    OLD SCHOOL
-unsigned char * pixels = image.getPixels(); // Its all up to you
+#####OLD SCHOOL
+	unsigned char * pixels = image.getPixels(); // Its all up to you
 
 pointer - a specific point in memory where the pixels.
 ///MORE EXPLANATION OF THIS NEED ( NOT TO DEEP ON PIXELS AND ARRAY because thats goint to be exapling in the future on ARRAYS )
 
-and the
+We use a pointer ```*``` because we want the data and pointers are a way to do that without having to use more memory. Remember all variables are memory cells, and the points just points to the information By pointing to the pixel we want to see, we can change it when we do our image processing. Understanding pointers and how to use them in not only openFrameworks but in C++ in general is a realy powerful thing to know and will allow us to do really cool thing. To learn more on pointers and how they actually work, go to the C++ reference page to read more on pointers [here](http://www.cplusplus.com/doc/tutorial/pointers/).
 
-//    NEW STYLE 
+Once we call ```image.getPixels()``` we have the pixel information, which is the width and height of the image we a referencing. If we wanted to get the pixel information of a specific pixel, we would think of it as looking into a grid, width by height, and each pixel is a cell in this grid.
+
+// IMAGE HERE LIKE A GRID FROM THE REFERENCE LINK IN PATRICIO'S NOTE
+
+If we have an image that is five by four pixels large, we could find out the color of the pixel located at x=2 and y=3, like this:
+
+	00000
+	00000
+	000X0
+	00000	
+	
+	location 	= y * size of the row * bytes per pixel
+			 	= 3 * 5 * 4
+				= 60
+		
+	location 	= x * bytes per pixel
+				= 2 * 4
+	  			= 8
+	  
+	location 	= y + x
+				= 68
+				
+	red pixel 	= 68
+	
+	green pixel	= 68+1
+	 
+	blue pixel	= 68+2
+	
+	alpha pixel	= 68+3 
+	
+Once we understand how to get the location of a single pixel, then we can use that same logic to call on all the pixels in the image
+    
+    for (int i = 0; i < image.getWidth(); i += 4){
+        for (int j = 0; j < image.getHeight(); j += 4){
+            unsigned char r = pixels[(j * int(vidPlayer.getWidth()) + i) * 3];
+            unsigned char g = pixels[(j * int(vidPlayer.getWidth()) + i) * 3 + 1];
+            unsigned char b = pixels[(j * int(vidPlayer.getWidth()) + i) * 3 + 2];
+            
+            ofColor cur;
+            cur.r = r;
+            cur.g = g;
+            cur.b = b;
+
+#Continue here
+
+#####NEW STYLE 
 ofPixels pixels = image.getPixelsRef();
 getPixelsRef(); returns to ofPixels
-getPixelsRef()l has functions wehre you can have access to color, as well as changing colors in specific pixels of our image. // j talking about images being a long array of pixels here  [j*w+i], by asigning an x and y
+
+getPixelsRef()l has functions wehre you can have access to color, as well as changing colors in specific pixels of our image. 
+// j talking about images being a long array of pixels here  [j*w+i], by asigning an x and y
 
 openframeworks works by passing by reference.
 If you change the pixels you will need to call the update()
@@ -256,7 +279,7 @@ Let's start making a simple mesh. And play with it.
 
 	ofMesh myMesh;
 	
-We are going to start by deciding with type of Primitive mode you want. This means how you want to group your vertex. The most frequent and common is triangles. Because they are flexible and could be arrange in any type and shape. Just like we learn in chapter 4 when we see how circles are made.
+We are going to start by deciding with type of Primitive mode you want. This means how you want to group our vertex. The most frequent and common is triangles. Because they are flexible and could be arrange in any type and shape. Just like we learn in chapter 4 when we see how circles are made.
 So let's start by making a 640x480 rectangle using 6 vertexes grouped inside 2 triangles.
 	
 ~~~~{.cpp}
@@ -281,12 +304,10 @@ So let's start by making a 640x480 rectangle using 6 vertexes grouped inside 2 t
     	myMesh.draw();
 	}
 
-~~~~
-
 ![ofTexture5](https://raw.github.com/ofZach/ofDocs/master/img/chapter06/ofTexture05.jpeg)
 
 	
-Play a little with this code by changing the parameters and commenting some lines. Try to push the limits of this example to have a concrete idea of how openGL works. Oh ups… I almost forgot, congratulations you are almost one step away to direct openGL programming. Feel great about your self because you are using one of the most powerful and heavy graphics motor ever made. OpenFrameworks here it's just helping you with the cross platform compatibility but you are learning the roots of openGL and how it works. Congratulations.
+Play a little with this code by changing the parameters and commenting some lines. Try to push the limits of this example to have a concrete idea of how openGL works. Oh ups… I almost forgot, congratulations you are almost one step away to direct openGL programming. Feel great about our self because you are using one of the most powerful and heavy graphics motor ever made. OpenFrameworks here it's just helping you with the cross platform compatibility but you are learning the roots of openGL and how it works. Congratulations.
 
 But this white rectangle doesn't seem so exiting. Isn't?
 We are going to add some excitement to it by adding the coordinates where to mount this textures. 
@@ -316,10 +337,8 @@ We are going to add some excitement to it by adding the coordinates where to mou
     //	A
     myMesh.addTexCoord(ofPoint(0,0));
     myMesh.addVertex(ofPoint(0,0));
-    
-~~~~
 
-The last step here it's to "bind" a interesting texture on top of this mesh. For that we are going to use the ```ofVideoGrabber``` and request for the ```ofTexture```of it. As we saw previously all image based objects like: ```ofImage```, ```ofVideoGrabber``` and ```ofVideoPlayer```have both type information attach to them. One for CPU Ram and the other on GPU Ram. ```ofTextures```can't be load directly from a file. Basically they are links to the place they are on your Graphic Card Memory. You can get this "link" and passed to your ```ofTexture```by doing ```.getTextureReference()```on any of this image based objects. In the case of your video grabber you can do that by typing:
+The last step here it's to "bind" a interesting texture on top of this mesh. For that we are going to use the ```ofVideoGrabber``` and request for the ```ofTexture```of it. As we saw previously all image based objects like: ```ofImage```, ```ofVideoGrabber``` and ```ofVideoPlayer```have both type information attach to them. One for CPU Ram and the other on GPU Ram. ```ofTextures```can't be load directly from a file. Basically they are links to the place they are on our Graphic Card Memory. You can get this "link" and passed to our ```ofTexture```by doing ```.getTextureReference()```on any of this image based objects. In the case of our video grabber you can do that by typing:
 
 	ofTexture myTexture = myVideo.getTextureReference();
 	
@@ -335,8 +354,6 @@ Any way, once you have the ```ofTexture``` you can applied it over this mesh by 
     myMesh.draw();
     myTexture.unbind();
 
-~~~~
-
 Also as you know you know you on Object Oriented Programing you can get into objects constantly using the dot ```.``` so instead of getting the texture and then using it you can do all in one step by saying.
 
 ~~~~{.cpp}
@@ -344,8 +361,6 @@ Also as you know you know you on Object Oriented Programing you can get into obj
 	myVideo.getTextureReference().bind();
     myMesh.draw();
     myVideo.getTextureReference().unbind();
-
-~~~~
 
 Any way the complete code for this example is:
 
@@ -376,10 +391,6 @@ testApp.h
     
     	ofVideoGrabber  myVideo;
 	};
-
-~~~~
-
-testApp.cpp
 
 ~~~~{.cpp}
 
@@ -425,9 +436,7 @@ testApp.cpp
     	myVideo.getTextureReference().unbind();
 	}
 
-~~~~
-
-Take your time to play and explore this example by changing, commenting out, etc. Specially try to play as much as you can with the Texture Coordinates by doing replacing button left coords for the mouse position:
+Take our time to play and explore this example by changing, commenting out, etc. Specially try to play as much as you can with the Texture Coordinates by doing replacing button left coords for the mouse position:
 
 ~~~~{.cpp}
 
@@ -444,12 +453,10 @@ Take your time to play and explore this example by changing, commenting out, etc
     myMesh.addVertex(ofPoint(0,480));
     myMesh.addTexCoord(ofPoint(0,0));
     myMesh.addVertex(ofPoint(0,0));
-    
-~~~~
 
-You will se how openGL automatically try to fit the image to the coord that you are giving and what happened when you are go outside of the texture size.
+You will see how openGL automatically try to fit the image to the coord that you are giving and what happened when you are go outside of the texture size.
 
-Also you can play by trying to put outside down, rotate and flip the image. This are good exercises to train your self.
+Also you can play by trying to put outside down, rotate and flip the image. This are good exercises to train our self.
 
 Powerful and flexible. Isn't? well there are more options. If you see the vertex we are repeating lot of positions and texture coordinates. That's because it's making one triangle every three vertex. We can tell the openGL to make triangles re-using the last to vertexes. This mode it's call **TRIANGLE STRIP** and it will need that we change the order we deliver the vertex in order to re-use the information of the first triangle.
 
@@ -475,8 +482,6 @@ Powerful and flexible. Isn't? well there are more options. If you see the vertex
     //  D
     myMesh.addTexCoord(ofPoint(640,0));
     myMesh.addVertex(ofPoint(640,0));
-    
-~~~~
 
 Well know you now much more about how openGL works and you can have a picture of what's behind the ```.draw(x,y,width,height)``` function on the image based objects of openFrameworks.
 
