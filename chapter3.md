@@ -66,8 +66,6 @@ In order for us to start drawing in openFrameworks, we need to setup our drawing
 
 The most basic drawing settings are ```ofBackground(r,g,b);``` and ```ofSetColor(r,g,b);``` which respectively set up the background color and the color in which we our drawing will be rendered. ```ofSetFrameRate(60);``` will determine the number of frames per second and will affect the smoothness and speed of the moving objects we'll soon create.
 
-{.cpp}
-
     void testApp::setup(){
    		ofSetFrameRate(60);
         ofBackground(255,255,255);
