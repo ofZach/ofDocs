@@ -4,7 +4,6 @@
 void testApp::setup(){
     
     ofSetWindowPosition(650, 200);
-    ofSetCircleResolution(100);
     ofSetFrameRate(60);
     
     counter = 0;
