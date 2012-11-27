@@ -14,7 +14,8 @@ For more information about libraries, see the [Glossary](https://github.com/ofZa
 
 So, we downloaded the latest release, unzipped it and are looking at the files and folders. What we are looking at is a package of libraries and examples that know how to work together. The OF core classes and methods are in the ```/lib``` folder together with the other openSource powerful libraries that they wrap. In this package we can also find some ```/examples``` and ```/addons``` that are specially designed for those libraries. 
 
-![oF Folders](https://raw.github.com/ofZach/ofDocs/5f4cb9c7be0c1787009783d867ebd534b4a8ac28/img/Chapter02/oF_folders.jpg "oF_folders")
+![oF Folders](https://raw.github.com/ofZach/ofDocs/master/img/Chapter02/oF_folders.jpg "oF_folders")
+
 
 When we say that these libraries "know how to work with each other" we mean not only that they call functions and objects related with the same syntax and design logic, we also mean they know where and how to find them. The way the folders in the ```/lib``` folder are organized is part of this. For example: All oF programs search for the ```ofMain.h``` file, and they are going to look for it in the ```/lib/openFrameworks``` directory. But what is important to know is that for getting there they use relative folders. So if we look under the hood you will see ```../../../lib/openFramework/ofMain.h```. That means all examples and projects descend three levels up to the oF root folder and from there search for the ```ofMain.h```.
 
