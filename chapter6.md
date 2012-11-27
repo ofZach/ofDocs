@@ -15,19 +15,15 @@ Because openFrameworks is cross platform, it's enough intelligent to understand 
 
 By default you are going to use some oF tools to open and handle our media files. In case you want to do the old school way of loading a file you need to know how to get to the "data" folder. To do that you you can get the string of the full path to the data folder by using;
 
-~~~~{.cpp}
 
 	ofToDataPath( "myFile.txt" ); // return the complete data path to that specific file.
 	
-~~~~
 	
 In case you want to use another data file instead of the ```data/``` you can change it by doing 
 
-~~~~{.cpp}
 
 	ofSetDataPathRoot( "myNewAndDifferentDataFolder/" );
 
-~~~~
 
 
 ## Introduction about Objects and "oF style"
@@ -41,56 +37,44 @@ The same way the oF community prepares these objects they also put together some
 
 These objects tend to repeat a pattern in the way of using them. That's what gives consistency to a framework. In the same way we have a ```setup()```, ```update()``` and ```draw()``` functions on the testApp, we have methods for media related objects to setup, update and draw. When dealing with files related objects you will find "loading" functions. For example:
 
-~~~~{.cpp}
 
 	ofImage myImage;
 	myImage.loadImage("myJpegImage.jpg");
 
-~~~~
 
 or
 
-~~~~{.cpp}
 
 	ofVideoPlayer myVideo;
 	myVideo.loadMovie("myVideo.mov");
 
-~~~~
 	
 or 
 
-~~~~{.cpp}
 
 	ofSoundPlayer mySound;
     mySound.loadSound("mySound.mp3");
 
-~~~~
     
 or
 
-~~~~{.cpp}
 
 	ofTrueTypeFont myFont;
     myFont.loadFont("arial.ttf", 14);
     
-~~~~
 
 As you probably notice these "objects" are defined in the same way you define native C variables. So it's not strange to the eye. Then, once we make that object we can access the methods that "live" in it using a dot ```.```. So every time you want to access the object variables like:
 
-~~~~{.cpp}
 
 	ofPoint pos;
 	pos.x = 100;
 	
-~~~~
 	
 or you access to one of his methods:
 
-~~~~{.cpp}
 
 	float length = pos.length()
 	
-~~~~
 
 We are using ```.``` to access to inside of the object and deal with the information of that content.
 
@@ -98,7 +82,6 @@ Going back to the media object we just saw and the respective loading functions 
 
 So we define them in the ```testApp.h```file:
 
-~~~~{.cpp}
 
 	#include "ofMain.h"
 
@@ -123,11 +106,9 @@ So we define them in the ```testApp.h```file:
     	ofVideoPlayer  myVideo;
 	};
 	
-~~~~
 
 and then load the movie in ```setup()```, update in ```update()``` and of course , draw in ```draw()```.
 
-~~~~{.cpp}
 
 	#include "testApp.h"
 
@@ -148,7 +129,6 @@ and then load the movie in ```setup()```, update in ```update()``` and of course
     	myVideo.draw(0, 0);
 	}
 
-~~~~
 
 You can see how in the case of ```ofVideoPlayer``` we play the file by using a method. But why do you need an ```update()```?  Well, that method is in charge of updating the image to the  next frame of our video. 
 
@@ -160,12 +140,10 @@ First we have to get used to using these objects. The last step we have in the p
 
 As you probably notice, by default it draws the images by the top right corner. You can change that default parameter in the same way we do that using ```ofSetRectMode(OF_RECTMODE_CENTER);``` for ofRects using one of these two commands
 
-~~~~{.cpp}
 
 	image.setAnchorPoint(x,y); 
 	image.setAnchorPercent(x/100,y/100); 
 
-~~~~
  
 //// GRAPHICS HERE
 
