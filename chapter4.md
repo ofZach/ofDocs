@@ -12,25 +12,18 @@ OpenFrameworks makes it easier for us to draw to the GPU using OpenGL, providing
 
 Whenever you want to print something to the screen, static or dynamic, the function that draws that object (rectangle, circle, ellipse, etc....) should be placed within the draw function of our OpenFrameworks application:
 
-~~~~{.cpp}
-
 	void testapp::draw(){
     	//PLACE YOUR DRAWING FUNCTIONS WITHIN HERE
     }
       
-~~~~
     
 Much like the update(); function in OpenFrameworks which is repetitively being update, the draw function also loops. Both update() and draw() functions will loop at same rate of frames per second, as specified in the ```setup()``` ```ofSetFrameRate(60)```;  What separates the two is that whatever is placed within the draw function should be dealing with shapes, images, text, or anything else you would like to be shown to the viewer. The ```update()``` is where the math and calculations are made. 
 
-<<<<<<< HEAD
-Everytime the draw function in openFrameworks is called, whatever was on the screen from the previous frame is wiped clear and replaced by what should be in the new frame.  If you decide you don't want to update/refresh your background you can then use `ofSetBackgroundAuto(boolean bManual)` and set the boolean value to `(false)`.
+Everytime the draw function in openFrameworks is called, whatever was on the screen from the previous frame is wiped clear and replaced by what should be in the new frame.  If you decide you don't want to update/refresh your background you can then use ```ofSetBackgroundAuto(boolean bManual)``` and set the boolean value to ```(false)```.
+
 ######Simple Graphics
 To change the origin to the center of the rectangle instead of the left-top edge --
 `ofSetRectMode(OF_RECTMODE_CENTER);`
-=======
-Everytime the draw function in openFrameworks is called, whatever was on the screen from the previous frame is wiped clear and replaced by what should be in the new frame.  If you decide you don't want to update/refresh your background you can then use `
-ofSetBackgroundAuto(boolean bManual)``` and set the boolean value to ```(false)```.
->>>>>>> 096167bb8937131d11ada63fa5dd95d4f92020d7
 
 #### Color and Transparency
 Before drawing our custom shapes we should set a color and a drawing mode. The drawing mode in our program determines whether or not our line or shape will have a fill. To draw with fill, call the function `ofFill()` after you declare your drawing color and before drawing anything to the screen. 
@@ -81,14 +74,11 @@ To use different blending modes in OpenFrameworks, placed the selected mode with
 ```ofEnableBlendMode(OF_BLENDMODE_MULTIPLY)```
 
 
-~~~~{.cpp}
-
     ofEnableBlendMode(OF_BLENDMODE_SCREEN);
     ofSetColor(255,0,0,127);   // red, 50% transparent
     ofRect(450,430,100,33);
     ofDisableBlendMode();
     
-~~~~
 
     
 ##### Setting colors in openframeworks
@@ -117,7 +107,6 @@ Using ofSetColor(); we can directly pass either color values or ofColor objects 
    **a** Declared and initialized 'myColor' in the testApp.h: `ofColor myColor;`
    **b** Declared and initialized 'myColor' in the testApp.cpp setup(); : 
 
-~~~~{.cpp}
 
 	void testApp::Setup(){
 		// setting up myColor to be orange 
@@ -126,18 +115,15 @@ Using ofSetColor(); we can directly pass either color values or ofColor objects 
         myColor.b = 0;   
     }
     
-~~~~
   
   **c** Declared and initialized ```myColor``` in the ```testApp.cpp``` ```draw()``` : 
 
-~~~~{.cpp}
 
     void testApp::draw(){
         ofSetColor(myColor);
         ofCircle(200,200,20);    
     }
       
-~~~~  
    
    **6 -** Passing an object of the datatype ofColor along with an alpha value to the function:
          
@@ -148,7 +134,6 @@ On the ```testApp.h```
          
 On the ```testApp.cpp```
    
-~~~~{.cpp}
 
      void testApp::Setup(){
         // setting up myColor to be orange 
@@ -161,8 +146,7 @@ On the ```testApp.cpp```
         ofSetColor(myColor, 100); // Setting the color to a semi-transparent orange with an alpha value of 100
         ofCircle(200,200,20);    
     } 
-     
-~~~~   
+       
 
  Note that we can set the values of our ```ofColor object``` in a number of different ways:
         a. testApp.h:

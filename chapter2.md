@@ -29,7 +29,6 @@ This language was call [C](http://en.wikipedia.org/wiki/C_(programming_language)
 
 Ok. But how C and C++ looks like? In words of [Dennis Ritchie](http://en.wikipedia.org/wiki/Dennis_Ritchie):
 
-~~~~{.cpp}
 
 	#include<stdio.h>
 
@@ -37,7 +36,6 @@ Ok. But how C and C++ looks like? In words of [Dennis Ritchie](http://en.wikiped
     	printf("Hello World");
 	};
 	
-~~~~
 
 So, we can say that when we are writing code, the main objective is to get from text that we can understand into some machine instructions that the computer can operate on. And as we learn this process it's call compiling.  
    
@@ -136,14 +134,10 @@ You will find that in the source code there some line that starts with ```#```. 
 
 They will look like:
 
-~~~~{.cpp}
 
-	#define M_PI 3.14
-	
+	#define M_PI 3.14	
 	#include "ofMain.h"
 	
-~~~~
-
 This pre-processor commands are cut and paste instructions that will be executed before it can start translating from code to binary.
 
 For example: 
