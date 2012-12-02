@@ -9,7 +9,7 @@ void testApp::setup(){
     ofSetCircleResolution(100); // makes the circle edge nice and smooth
     ofSetWindowTitle("simple drawing");
     ofSetWindowPosition(400, 0);
-    // smooth the lines (nose mouth and smile)
+    // smooth the lines (nose mouth and mouth)
     ofEnableSmoothing();
 
 }
@@ -57,7 +57,7 @@ void testApp::draw(){
         ofVertex(270, 240);
     ofEndShape(); 
     
-    // smile 
+    // mouth 
     ofBeginShape(); 
         ofCurveVertex(100, 280); // begin point
         ofCurveVertex(100, 280);

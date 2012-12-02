@@ -271,23 +271,14 @@ Then comes the draw(), where we write the code of the things we will actually dr
 
 Code | image 
 :----------- | :-------------------------------: 
- #include "testApp.h" <br> //---------------------------------------------------------<br> void testApp::setup(){ <br> ofBackground(100, 200, 240); //r,g,b <br> ofSetCircleResolution(100); // makes the circle edge nice and smooth<br>ofSetWindowTitle("simple drawing");<br> ofSetWindowPosition(400, 0);<br> // smooth the lines (nose mouth and mouth)<br> ofEnableSmoothing(); <br>}    | ![setup](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing1.jpg)
- :----------- | :-------------------------------: 
- 
+ #include "testApp.h" <br><br> //---------------------------------------------------------<br> void testApp::setup(){ <br> ofBackground(100, 200, 240); //r,g,b <br> ofSetCircleResolution(100); // makes the circle edge nice and smooth<br>ofSetWindowTitle("simple drawing");<br> ofSetWindowPosition(400, 0);<br> // smooth the lines (nose mouth and mouth)<br> ofEnableSmoothing(); <br>}    | ![setup](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing1.jpg)
+ //---------------------------------------------------------<br>void testApp::draw( ){<br><br>ofFill();<br>ofSetColor(255, 230, 190);<br>ofCircle(ofGetWidth()/2, ofGetHeight()/2, 200);<br><br>//square eye<br>ofSetColor(255, 255, 255); //white<br>//rectangle drawn from the center, <br>//instead of the default top left<br>ofSetRectMode(OF_RECTMODE_CENTER);<br>ofRect(176, 145, 26, 26);<br>ofSetColor(30, 100, 220);<br>ofCircle(176, 145, 10); //x,y,radius<br><br>//round eye<br>ofFill();<br>// r,g,b + alpha 255 meaning - 100% opacity<br>ofSetColor(100,200,240, 255); <br>ofCircle(300, 145, 15);<br>//r+g+b == 60, giving a shade of grey<br>ofSetColor(60); <br>ofCircle(300, 145, 8); //x,y,radius| ![eyes](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing2.jpg) 
+     //setting the lines<br>//r+g+b == 100, giving a shade of grey<br>ofSetColor(100);<br>ofNoFill();<br>ofSetLineWidth(3);<br><br>//eyebrows<br>ofLine(150, 120, 200, 120);<br>ofLine(300, 120, 350, 100);<br><br>//nose<br>ofBeginShape();<br>ofVertex(250, 180);<br>ofVertex(250, 250);<br>ofVertex(270, 240);<br>ofEndShape();  | ![nose](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing3.jpg)  | 
+ //Drawing the smile with the ofCurveVertex. <br>//See how there are additional begin and end point.<br><br>    ofBeginShape();<br>ofCurveVertex(100, 280); // begin point<br>   ofCurveVertex(100, 280);<br>ofCurveVertex(150, 340);<br>ofCurveVertex(200, 325);<br>ofCurveVertex(250, 340);<br>ofCurveVertex(300, 325);<br>ofCurveVertex(350, 340);<br>ofCurveVertex(400, 280);<br>ofCurveVertex(400, 280); // end point<br>ofEndShape(); // (true) will close the shape for you<br> | ![mouth](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing4_b.jpg)| 
+//cheeks <br>ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);<br>ofFill();<br>// 4th value is the alpha - 50% opacity <br>ofSetColor(235, 95, 95, 127);<br> ofCircle(100, ofGetHeight()/2, 40);<br> ofCircle(400, ofGetHeight()/2, 40);<br> ofEnableAlphaBlending();<br> |![cheeks](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing5_b.jpg)|
+//Drawing text with <br> //ofDrawingBitmapString("text", x, y).<br> ofSetColor(0); // Black<br> ofDrawBitmapString("Drawing with oF", 20,480);<br><br>}|![final](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing6.jpg)
 
-
-![eyes](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing2.jpg)
-![nose](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing3.jpg)
-Drawing the smile with the ofCurveVertex. See how there are additional begin and end point. 
-![smile!](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing4_b.jpg)
-![cheeks](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing5_b.jpg)
-
-Drawing text with the ofDrawingBitmapString("write text here", x, y) position.
-
-* Note: Don't forget to close the function with the curly brackets, as highlighted.
-
-![final](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing6.jpg)
-
+ * Note: Don't forget to close the function with the curly `}` brackets!
 
 
 ##### Transformations Matrix Push Pop
