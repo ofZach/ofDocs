@@ -1,3 +1,15 @@
+
+Code | image 
+:----------- | :-------------------------------: 
+ #include "testApp.h" <br> //---------------------------------------------------------<br> void testApp::setup(){ <br> ofBackground(100, 200, 240); //r,g,b <br> ofSetCircleResolution(100); // makes the circle edge nice and smooth<br>ofSetWindowTitle("simple drawing");<br> ofSetWindowPosition(400, 0);<br> // smooth the lines (nose mouth and mouth)<br> ofEnableSmoothing(); <br>}    | Center    
+     
+
+
+
+    
+
+
+
 # Setting up the drawing environment and Drawing basic 2d Graphics
 
 
@@ -264,7 +276,12 @@ Download the example.
 First the setup(), where we set some functions that will stay the same throughout the whole sketch, like the color of the background, the title on the window’s top bar, the resolution of the circle, etc.
 
 Then comes the draw(), where we write the code of the things we will actually draw to the screen. 
+
+
+
+
 ![setup](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing1.jpg)
+
 ![eyes](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing2.jpg)
 ![nose](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing3.jpg)
 Drawing the smile with the ofCurveVertex. See how there are additional begin and end point. 
