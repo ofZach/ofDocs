@@ -1,15 +1,4 @@
 
-Code | image 
-:----------- | :-------------------------------: 
- #include "testApp.h" <br> //---------------------------------------------------------<br> void testApp::setup(){ <br> ofBackground(100, 200, 240); //r,g,b <br> ofSetCircleResolution(100); // makes the circle edge nice and smooth<br>ofSetWindowTitle("simple drawing");<br> ofSetWindowPosition(400, 0);<br> // smooth the lines (nose mouth and mouth)<br> ofEnableSmoothing(); <br>}    | Center    
-     
-
-
-
-    
-
-
-
 # Setting up the drawing environment and Drawing basic 2d Graphics
 
 
@@ -280,7 +269,12 @@ Then comes the draw(), where we write the code of the things we will actually dr
 
 
 
-![setup](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing1.jpg)
+Code | image 
+:----------- | :-------------------------------: 
+ #include "testApp.h" <br> //---------------------------------------------------------<br> void testApp::setup(){ <br> ofBackground(100, 200, 240); //r,g,b <br> ofSetCircleResolution(100); // makes the circle edge nice and smooth<br>ofSetWindowTitle("simple drawing");<br> ofSetWindowPosition(400, 0);<br> // smooth the lines (nose mouth and mouth)<br> ofEnableSmoothing(); <br>}    | ![setup](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing1.jpg)
+ :----------- | :-------------------------------: 
+ 
+
 
 ![eyes](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing2.jpg)
 ![nose](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing3.jpg)
