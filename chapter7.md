@@ -177,34 +177,6 @@ The complex stuff here is how we can process the pixels one by one like the othe
     	}
 	}
 
-
-If we have an image that is five by four pixels large, we could find out the color of the pixel located at x=2 and y=3, like this:
-
-	00000
-	00000
-	000X0 <--- the pixel we look for is here (image perhaps?)
-	00000	
-	
-	location 	= y * size of the row * bytes per pixel
-			 	= 3 * 5 * 4
-				= 60
-		
-	location 	= x * bytes per pixel
-				= 2 * 4
-	  			= 8
-	  
-	location 	= y + x
-				= 68
-				
-	red pixel 	= 68
-	
-	green pixel	= 68+1
-	 
-	blue pixel	= 68+2
-	
-	alpha pixel	= 68+3 
-
-
 ## Textures
 
 What is a texture and why is it so different from the idea of an image?
