@@ -1,3 +1,4 @@
+
 # Setting up the drawing environment and Drawing basic 2d Graphics
 
 
@@ -7,51 +8,23 @@ To draw to the screen, OpenFrameworks uses a cross-language API that allows us t
 OpenFrameworks makes it easier for us to draw to the GPU using OpenGL, providing us with more abstract, high level functions.
 
 
-## Scopes/functions
+## draw( );
+###OpenFrameworks draw function
 
-###1. setup( ) -- Setting up the environment
-
-In order for us to start drawing in openFrameworks, we need to setup our drawing environment first, typically done in the scope of our setup(); function. setup(); is a function that runs only once at the beginning, and is used to set up things that will apply on the whole app/class. 
-
-The most basic drawing settings are ```ofBackground(r,g,b);``` and ```ofSetColor(r,g,b);``` which respectively set up the background color and the color in which we our drawing will be rendered. ```ofSetFrameRate(60);``` will determine the number of frames per second and will affect the smoothness and speed of the moving objects we'll soon create.
-
-~~~~{.cpp}
-
-    void testApp::setup(){
-   		ofSetFrameRate(60);
-        ofBackground(255,255,255);
-        ofSetCircleResolution(100);
-    }
-    
-~~~~
-    
-You probably noticed a new function here which is ```ofSetCircleResolution()``` in OpenFrameworks, circles are rendered by drawing repeating triangles that rotate around a common vertex. This function accepts one integer as input. The integer passed to this function is the number of triangles used to draw circles in our openFramworks application. Increasing the number of triangles will result in a smoother circle. 
-
-_____________________________________________________________________________
-
-
-### 2. draw( ) -- OpenFrameworks draw function
 Whenever you want to print something to the screen, static or dynamic, the function that draws that object (rectangle, circle, ellipse, etc....) should be placed within the draw function of our OpenFrameworks application:
-
-~~~~{.cpp}
 
 	void testapp::draw(){
     	//PLACE YOUR DRAWING FUNCTIONS WITHIN HERE
     }
       
-~~~~
     
 Much like the update(); function in OpenFrameworks which is repetitively being update, the draw function also loops. Both update() and draw() functions will loop at same rate of frames per second, as specified in the ```setup()``` ```ofSetFrameRate(60)```;  What separates the two is that whatever is placed within the draw function should be dealing with shapes, images, text, or anything else you would like to be shown to the viewer. The ```update()``` is where the math and calculations are made. 
 
-<<<<<<< HEAD
-Everytime the draw function in openFrameworks is called, whatever was on the screen from the previous frame is wiped clear and replaced by what should be in the new frame.  If you decide you don't want to update/refresh your background you can then use `ofSetBackgroundAuto(boolean bManual)` and set the boolean value to `(false)`.
+Everytime the draw function in openFrameworks is called, whatever was on the screen from the previous frame is wiped clear and replaced by what should be in the new frame.  If you decide you don't want to update/refresh your background you can then use ```ofSetBackgroundAuto(boolean bManual)``` and set the boolean value to ```(false)```.
+
 ######Simple Graphics
 To change the origin to the center of the rectangle instead of the left-top edge --
 `ofSetRectMode(OF_RECTMODE_CENTER);`
-=======
-Everytime the draw function in openFrameworks is called, whatever was on the screen from the previous frame is wiped clear and replaced by what should be in the new frame.  If you decide you don't want to update/refresh your background you can then use `
-ofSetBackgroundAuto(boolean bManual)``` and set the boolean value to ```(false)```.
->>>>>>> 096167bb8937131d11ada63fa5dd95d4f92020d7
 
 #### Color and Transparency
 Before drawing our custom shapes we should set a color and a drawing mode. The drawing mode in our program determines whether or not our line or shape will have a fill. To draw with fill, call the function `ofFill()` after you declare your drawing color and before drawing anything to the screen. 
@@ -102,14 +75,11 @@ To use different blending modes in OpenFrameworks, placed the selected mode with
 ```ofEnableBlendMode(OF_BLENDMODE_MULTIPLY)```
 
 
-~~~~{.cpp}
-
     ofEnableBlendMode(OF_BLENDMODE_SCREEN);
     ofSetColor(255,0,0,127);   // red, 50% transparent
     ofRect(450,430,100,33);
     ofDisableBlendMode();
     
-~~~~
 
     
 ##### Setting colors in openframeworks
@@ -138,7 +108,6 @@ Using ofSetColor(); we can directly pass either color values or ofColor objects 
    **a** Declared and initialized 'myColor' in the testApp.h: `ofColor myColor;`
    **b** Declared and initialized 'myColor' in the testApp.cpp setup(); : 
 
-~~~~{.cpp}
 
 	void testApp::Setup(){
 		// setting up myColor to be orange 
@@ -147,18 +116,15 @@ Using ofSetColor(); we can directly pass either color values or ofColor objects 
         myColor.b = 0;   
     }
     
-~~~~
   
   **c** Declared and initialized ```myColor``` in the ```testApp.cpp``` ```draw()``` : 
 
-~~~~{.cpp}
 
     void testApp::draw(){
         ofSetColor(myColor);
         ofCircle(200,200,20);    
     }
       
-~~~~  
    
    **6 -** Passing an object of the datatype ofColor along with an alpha value to the function:
          
@@ -169,7 +135,6 @@ On the ```testApp.h```
          
 On the ```testApp.cpp```
    
-~~~~{.cpp}
 
      void testApp::Setup(){
         // setting up myColor to be orange 
@@ -182,8 +147,7 @@ On the ```testApp.cpp```
         ofSetColor(myColor, 100); // Setting the color to a semi-transparent orange with an alpha value of 100
         ofCircle(200,200,20);    
     } 
-     
-~~~~   
+       
 
  Note that we can set the values of our ```ofColor object``` in a number of different ways:
         a. testApp.h:
@@ -228,7 +192,7 @@ and turning it off using:
     
 #### Drawing custom shapes in OpenFrameworks
 
-So far we have seen how we can draw primitive shapes in OpenFrameworks. But what if we want to draw a custom shape to the screen? One way of easily achieving this goal is by calling the ofBeginShape() function. Once this function is called, we can go ahead and add as many points as we want. One way of declaring points in OpenFrameworks is by using the function ofVertex(); and pass the x, y and z values to it. This will draw our point on the screen in desired coordinates on our page. Once we are done declaring points, it is time for us to declare our shape finished with the `ofEndShape()`.
+So far we have seen how we can draw primitive shapes in OpenFrameworks. But what if we want to draw a custom shape to the screen? One way of easily achieving this goal is by calling the ofBeginShape() function. Once this function is called, we can go ahead and add as many points as we want. One way of declaring points in OpenFrameworks is by using the function ofVertex(); and pass the x, y and z values or just the x and y values to it. This will draw our point on the screen in desired coordinates on our page. Once we are done declaring points, it is time for us to declare our shape finished with the `ofEndShape()`.
 So, simply put, to draw a custom shape in OpenFrameworks:
 
      ofBeginShape();
@@ -243,6 +207,18 @@ So, simply put, to draw a custom shape in OpenFrameworks:
 * Note: the function `ofEndShape(bool bClose)` accepts one boolean parameter that determines whether or not we want to close he shape tha we are drawing. The default for this is true. Meaning that OpenFrameworks will close our polyline object for us. 
 If you want to leave the shape open, try this: `ofEndShape(false);`
 
+To draw custom shapes with curved lines use the ofCurveVertex. The use is similar to the ofVertex except for two points of difference -  two extra points that need to be added, one the beginning of the curve and one at the end. Both are unseen control points that shape the beginning and the end of the curve. 
+
+    	ofBeginShape();
+          ofCurveVertex(x1,y1,z1); // begin point
+          ofCurveVertex(x2,y2,z2);
+          .
+          .
+          .
+          ofCurveVertex(xn,yn,zn); // end point
+        ofEndShape();
+        
+ * Note: within ofBeginShape() and ofEndShape() you can use a mix of ofVertex and ofCurveVertex points. Just make sure that if you begin or end the shape with an ofCurveVertex, add the extra point respectively.   
 
 
 #### openFrameworks coordinate system
@@ -283,6 +259,26 @@ Here is the syntax for each:
 `ofRect(x, y, width, height);`<br>
 `ofTriangle(x1,y1,x2,y2,x3,y3);`<br>
 
+##### Drawing Simple Graphics example
+Download the example.
+
+First the setup(), where we set some functions that will stay the same throughout the whole sketch, like the color of the background, the title on the window’s top bar, the resolution of the circle, etc.
+
+Then comes the draw(), where we write the code of the things we will actually draw to the screen. 
+
+
+
+
+Code | image 
+:----------- | :-------------------------------: 
+ #include "testApp.h" <br><br> //---------------------------------------------------------<br> void testApp::setup(){ <br> ofBackground(100, 200, 240); //r,g,b <br> ofSetCircleResolution(100); // makes the circle edge nice and smooth<br>ofSetWindowTitle("simple drawing");<br> ofSetWindowPosition(400, 0);<br> // smooth the lines (nose mouth and mouth)<br> ofEnableSmoothing(); <br>}    | ![setup](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing1.jpg)
+ //---------------------------------------------------------<br>void testApp::draw( ){<br><br>ofFill();<br>ofSetColor(255, 230, 190);<br>ofCircle(ofGetWidth()/2, ofGetHeight()/2, 200);<br><br>//square eye<br>ofSetColor(255, 255, 255); //white<br>//rectangle drawn from the center, <br>//instead of the default top left<br>ofSetRectMode(OF_RECTMODE_CENTER);<br>ofRect(176, 145, 26, 26);<br>ofSetColor(30, 100, 220);<br>ofCircle(176, 145, 10); //x,y,radius<br><br>//round eye<br>ofFill();<br>// r,g,b + alpha 255 meaning - 100% opacity<br>ofSetColor(100,200,240, 255); <br>ofCircle(300, 145, 15);<br>//r+g+b == 60, giving a shade of grey<br>ofSetColor(60); <br>ofCircle(300, 145, 8); //x,y,radius| ![eyes](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing2.jpg) 
+     //setting the lines<br>//r+g+b == 100, giving a shade of grey<br>ofSetColor(100);<br>ofNoFill();<br>ofSetLineWidth(3);<br><br>//eyebrows<br>ofLine(150, 120, 200, 120);<br>ofLine(300, 120, 350, 100);<br><br>//nose<br>ofBeginShape();<br>ofVertex(250, 180);<br>ofVertex(250, 250);<br>ofVertex(270, 240);<br>ofEndShape();  | ![nose](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing3.jpg)  | 
+ //Drawing the smile with the ofCurveVertex. <br>//See how there are additional begin and end point.<br><br>    ofBeginShape();<br>ofCurveVertex(100, 280); // begin point<br>   ofCurveVertex(100, 280);<br>ofCurveVertex(150, 340);<br>ofCurveVertex(200, 325);<br>ofCurveVertex(250, 340);<br>ofCurveVertex(300, 325);<br>ofCurveVertex(350, 340);<br>ofCurveVertex(400, 280);<br>ofCurveVertex(400, 280); // end point<br>ofEndShape(); // (true) will close the shape for you<br> | ![mouth](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing4_b.jpg)| 
+//cheeks <br>ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);<br>ofFill();<br>// 4th value is the alpha - 50% opacity <br>ofSetColor(235, 95, 95, 127);<br> ofCircle(100, ofGetHeight()/2, 40);<br> ofCircle(400, ofGetHeight()/2, 40);<br> ofEnableAlphaBlending();<br> |![cheeks](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing5_b.jpg)|
+//Drawing text with <br> //ofDrawingBitmapString("text", x, y).<br> ofSetColor(0); // Black<br> ofDrawBitmapString("Drawing with oF", 20,480);<br><br>}|![final](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/simpleDrawing6.jpg)
+
+ * Note: Don't forget to close the function with the curly `}` brackets!
 
 
 ##### Transformations Matrix Push Pop
@@ -304,3 +300,8 @@ Push /pop matrix, and set a new origin point with the ofTranslate(x,y). Everythi
 if we want to have a shape rotate around itsel, we should ofTranslate() first, and then start ofRotate(). Here, we're effectively translating the whole coordinate system including the (0,0) point to a new location and use that as the basis for our ofRotate() function.
 note that this all happens inside the push and pop matrix.
 
+
+Write a solar system!
+Downoad the example 
+
+![galaxy](https://raw.github.com/ofZach/ofDocs/master/img/chapter04/example_pushpop.jpg)

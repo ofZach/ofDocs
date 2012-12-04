@@ -14,6 +14,9 @@ For more information about libraries, see the [Glossary](https://github.com/ofZa
 
 So, we downloaded the latest release, unzipped it and are looking at the files and folders. What we are looking at is a package of libraries and examples that know how to work together. The OF core classes and methods are in the ```/lib``` folder together with the other openSource powerful libraries that they wrap. In this package we can also find some ```/examples``` and ```/addons``` that are specially designed for those libraries. 
 
+![oF Folders](https://raw.github.com/ofZach/ofDocs/master/img/Chapter02/oF_folders.jpg "oF_folders")
+
+
 When we say that these libraries "know how to work with each other" we mean not only that they call functions and objects related with the same syntax and design logic, we also mean they know where and how to find them. The way the folders in the ```/lib``` folder are organized is part of this. For example: All oF programs search for the ```ofMain.h``` file, and they are going to look for it in the ```/lib/openFrameworks``` directory. But what is important to know is that for getting there they use relative folders. So if we look under the hood you will see ```../../../lib/openFramework/ofMain.h```. That means all examples and projects descend three levels up to the oF root folder and from there search for the ```ofMain.h```.
 
 > **Relative Paths**
@@ -51,17 +54,49 @@ project generator
 copy / pasting older projects
  
  
-## OF event system (setup, update , draw, key & mouse events) 
-all the main events
+## OF event system -
+### Working with scopes: setup(), update(), draw(), key & mouse events 
 OF interfaces with testApp, (main).
 (callout : testApp extends baseApp ) <--- processing 
-setup / update / draw Ref = http://www.openframeworks.cc/tutorials/developers/001_how_openFrameworks_works.html
-setup as the starting point
-most OF objects have a setup function (or loadFunction)
+
+An quick introduction tutorial to working with scopes -- [here](http://www.openframeworks.cc/tutorials/developers/001_how_openFrameworks_works.html)
+
+###1. setup( ) -- Setting up the environment
+
+In order for us to start drawing in openFrameworks, we need to setup our drawing environment first, typically done in the scope of our setup(); function. setup(); is a function that runs only once at the beginning, and is used to set up things that will apply on the whole app/class. 
+
+The most basic drawing settings are ```ofBackground(r,g,b);``` and ```ofSetColor(r,g,b);``` which respectively set up the background color and the color in which we our drawing will be rendered. ```ofSetFrameRate(60);``` will determine the number of frames per second and will affect the smoothness and speed of the moving objects we'll soon create.
+
+    void testApp::setup(){
+   		ofSetFrameRate(60);
+        ofBackground(255,255,255);
+        ofSetCircleResolution(100);
+    }
+    
+    
+You probably noticed a new function here which is ```ofSetCircleResolution()``` in OpenFrameworks, circles are rendered by drawing repeating triangles that rotate around a common vertex. This function accepts one integer as input. The integer passed to this function is the number of triangles used to draw circles in our openFramworks application. Increasing the number of triangles will result in a smoother circle. 
+
+* most OF objects have a setup function (or loadFunction)
+
+_____________________________________________________________________________
+
+###2. update( ) -- is where the math is
+
+This function gets called repeatedly. It's the ideal place for any updating of variables
+
 avoid constructors
-get's called once
 why update / draw 
 separate some the logic of code
 code runs faster
 loops repeatedly
 game loop + hardware events
+
+_____________________________________________________________________________
+
+
+###3. draw( )
+The function draw() is where we actually draw things
+This function gets called repeatedly after the update();
+
+More about draw() in chapter_04.
+
