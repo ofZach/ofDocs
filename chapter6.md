@@ -6,17 +6,20 @@ The last 30 years we have seen how the computer gets smarter about how to deal w
 
 OpenFrameworks as a creative coding toolbox gives you easy access to use video and sound and play with them. The use of media files like jpeg, png, videos and sound files is so powerful that they have a special folder. We care that much :)
 
-OpenFrameworks uses the same standard name than Processing uses. It's called the "data" folder and it stores files in the same folder that our executable file is located. 
+OpenFrameworks uses the same standard name than Processing uses. It's called the "data" folder and it stores files in the same folder that our executable(windows)/.app(mac) file is located. 
 
-But why does it have its own folder? Isn't it better to put the media all together with the executable file? Well, it's set that way to make our life easy. When we compile on MacOS you finally get a executable file that has all the libraries that it uses inside. It's a self-contained package that you can explore by right-clicking on it and choosing "show package contents". But other operating systems like Windows and Linux don't do this. So at the end of the compiling process you get and executable file (*.exe in windows cases) and some other strange files called libraries (we talk about them in chap 2).
+But why does it have its own folder? Isn't it better to put the media all together with the executable file? Well, it's set that way to make our life easy. When we compile on MacOS we finally get a executable file or an app file that has all the libraries that it uses inside. It's a self-contained package that you can explore by right-clicking on it and choosing "show package contents". But other operating systems like Windows and Linux don't do this. So at the end of the compiling process you get and executable file (*.exe in windows cases) and some other strange files called libraries (we talk about them in chap 2).
 Because we probably are going to compile, re-compile and share our work it's clearer to separate data files from the executable ones. That's the goal of it.
 
 Because openFrameworks is cross platform, it's enough intelligent to understand that for each different OS the distance and relationship between this data folder and the executable file will change. Once again, on Mac, the executable file is inside this little self-contained package so in order to see the data files it has to go down in the tree structure of the file system a couple of levels to see and access the data file ("../../data/") but in Linux and Windows the data folder is right next to the executable ( "data/").
 
-By default you are going to use some oF tools to open and handle our media files. In case you want to do the old school way of loading a file you need to know how to get to the "data" folder. To do that you you can get the string of the full path to the data folder by using;
+![data folder](https://raw.github.com/ofZach/ofDocs/c704d3c39337240e5dc19c92679b87f0a45e93ec/img/chapter06/data_folder.jpg)
 
+By default we are going to use some oF tools to open and handle our media files. In case you want to do the old school way of loading a file you need to know how to get to the "data" folder. To do that you you can get the string of the full path to the data folder by using;
 
-	ofToDataPath( "myFile.txt" ); // return the complete data path to that specific file.
+	// return the complete data path to that specific file.
+	string completePath = ofToDataPath( "myFile.txt" ); 
+	cout << completePath << endl; // will print this thread to the console
 	
 	
 In case you want to use another data file instead of the ```data/``` you can change it by doing 
@@ -27,7 +30,7 @@ In case you want to use another data file instead of the ```data/``` you can cha
 
 
 ## Introduction about Objects and "oF style"
-In last chapter we ended with two oF special variable types: ```ofColor()``` and ```ofPoint()```. We present them as variables but they do so much more than contain information. The also have some handy functions embedded in it. Functions call methods that lets us do mathematical operations, rotations, translations and so much more. This conjunction of variables ( ```float x```, ```float y``` and ```float z```; or ```char r```, ```char g``` and ```char b```) are called objects. 
+In last chapter we ended with two oF special variable types: ```ofColor()``` and ```ofPoint()```. We presented them as variables but they can do so much more than contain information. They also have some handy functions embedded in them. Functions call methods that lets us do mathematical operations, rotations, translations and so much more. This conjunction of variables ( ```float x```, ```float y``` and ```float z```; or ```char r```, ```char g``` and ```char b```) are called objects. 
 
 Object Oriented Programing is the core concept of C++. It's basically about the possibility of having data contained together with handy methods that know how to deal with the information in what we are going to call **classes**. 
 
