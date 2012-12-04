@@ -1,34 +1,182 @@
 # Pixels and Textures
 
-** I have a Spanish versions here [https://github.com/patriciogonzalezvivo/cursoOF/blob/master/unidad4/Cap_1_pixel_x_pixel.md](https://github.com/patriciogonzalezvivo/cursoOF/blob/master/unidad4/Cap_1_pixel_x_pixel.md) but need the new style way… maybe Isac or Juan want to used as reference or translate it. **
+OpenFrameworks have different ways to handle images. One in your CPU ant the other on the GPU (graphic card). The last one is significant faster but implies much more complex process to handle it and manage it.
 
-**Took a look at the spanish version and it's kinda like what I saw here, [[http://wiki.openframeworks.cc/index.php?title=Image_processing]](http://wiki.openframeworks.cc/index.php?title=Image_processing) edited now **
- 
+When you work on the CPU each image is composed by pixels. Those little tiny color boxes are align as a to dimensional table. OpenFrameworks have a class for that call ofPixels.
+GPU use another approach that doesn't "divide" the image in this way, it consider it as a texture. Once again in openFrameworks the class in charge of that is call ofTexture.
 
-A Very important thing to know about dealing with images type objects like ofImage, ofVideoGrabber and ofVideoPlayer its that have they have to types of data associated with them: Pixels and Textures. 
+In this chapter we are going to walk through both ways of working with it. Is important to know that everything we see here is going to be consistent on all the image classes. That is: ```ofImage```, ```ofVideoGrabber``` and ```ofVideoPlayer```.
 
-We have ofPixel which contains the pixel data assoicated with position and color loaded in the RAM memory of the CPU. We also have ofTexture, which is pixel data that is stored on the Graphics Card. There are two different ways of getting this pixel data.
+### Preparing the stuff 
 
-Pixels are … 
+One thing is common to all of the image object like: ofPixels, ofTextures, ofImage, ofVideoGrabber, ofVideoPlayer and ofFbo, is that they have data. That data is going to be store on the GPU or the CPU RAM. But in any case you have to prevously define how amount of memory you need to separate to work with data. For all cases you do that using:
 
-Textures are …
+	imageObject.allocate(width,height);
+	
+As you can imagine the total amount of memory reserve for this image object is going to depend on the size of the width and the height. We normally think of it as the width x height, but it's another factor here, the amount of channels. 
 
+One image can have only one channel. That image is call grayscale and it only can store one channel of information what make it black and white. Or can have three channels, one for the red, other for the green and the last one for the blue. Having this three channels working together the computer can digitalize almost all the viewable spectrum. But could be one more channel, it's call the alpha channel and it allow you to set the opacity or transparent of a pixels. 
+
+It's a catch here cameras doesn't record on alpha channel so everything you get from ofVideoGrabber will be in at maximum of three channels. You have to be smart enough to see how you can deal with it.
 
 ## Pixels by Pixels CPU processing 
 
-### Old School
+Well let's start to the implementation of this on code from the easiest approach, ```ofPixels```. We can request this class to the ```ofImage```, ```ofVideoGrabber``` and ```ofVideoPlayer``` objects in this way:
+ 
+	ofPixels pixels = image.getPixelsRef();
 
-	unsigned char * pixels = image.getPixels(); // Its all up to you
+The method ```.getPixelsRef()``` gives a sort of a "packet" to the pixels information of an image. Once you have the ```ofPixel``` object it have all sort of handy methods to read the data of a specify color of a pixels giving the `x` and `y` position.
 
-pointer - a specific point in memory where the pixels.
+	ofColor color = pixels.getColor(x,y);
 
-///MORE EXPLANATION OF THIS NEED ( NOT TO DEEP ON PIXELS AND ARRAY because thats goint to be exapling in the future on ARRAYS )
+Also it's possible to **set** color by using:
+
+	pixels.setColor(x, y, ofColor(255,0,0,255)); // a red dot with full opacity
+
+What is very handy about ```ofPixels``` is that you can pass it then back to an image by:
+
+	image.setFromPixels(pixels);
+
+This way you can pass pixels between images in order to process it and do interest things. 
+A less flexible approach but much more simple is directly doing:
+
+	image.setColor.setColor(x, y, ofColor(255,0,0,255));
+
+Let's say that you want to grab each frame of the camera and make a new image with it but making some changes.
+
+In your testApp.h
+
+	class testApp : public ofBaseApp{
+	public:
+		void setup();
+		void update();
+		void draw();
+
+		void keyPressed  (int key);
+		void keyReleased(int key);
+		void mouseMoved(int x, int y );
+		void mouseDragged(int x, int y, int button);
+		void mousePressed(int x, int y, int button);
+		void mouseReleased(int x, int y, int button);
+		void windowResized(int w, int h);
+		void dragEvent(ofDragInfo dragInfo);
+		void gotMessage(ofMessage msg);
+		
+    	ofVideoGrabber  videoIn;
+    	ofImage         imageOut;
+    
+	};
+
+In your testApp.cpp
+
+	void testApp::setup(){
+    	videoIn.initGrabber(640, 480);
+    	imageOut.allocate(640, 480, OF_IMAGE_COLOR); // force to use 4 channels
+	}
+
+Note that we are forcing the image to be a 3 channels one using OF_IMAGE_COLOR other wise you can use 4 channesl by saying OF_IMAGE_COLOR_ALPHA
+
+Now what we need is to "play" the camera. That is usually done in the ```update()```
+
+	void testApp::update(){
+    	videoIn.update();
+	}
+
+In order to show this on screen on the ```draw()``` we do:
+
+	void testApp::draw(){
+		videoIn.draw(0, 0);
+    	imageOut.draw(640, 0);
+	}
+
+Let's run it. 
+If everything goes well you could be able to see your self. Congratulations you make your first mirror application. A new media artist is born. 
+
+Well in order to do something more interesting we are going to focus on the ```update()```. The first thing we need to do is just to analyze and work only on the new frames of the video. Your camera probably can handle a maximum of 60 frames per second but your program can actualy go more that 300 frames per second. That's a lot of frames processes with the same information. We are going to do it asking the video witch frames are new.
+
+Width that cover we are going to get the pixels of the video and pass it to the image one.
+
+	void testApp::update(){
+    	videoIn.update();
+    
+    	if (videoIn.isFrameNew()){
+        	ofPixels pixels = videoIn.getPixelsRef();
+        	imageOut.setFromPixels(pixels);
+    	}
+	}
+	
+If we compile you can see how we duplicate the image. Good job! Next, process this image.
+for that we need to go for each one of the pixels and change the information of it. For that we need what is call a double loop. That's it two for loops one inside the other that goes all thought the ```x``` and ```y``` axes of the image.
+
+Each channel range goes from 0 to 255 doing some light maths we can invert every single pixel value by doing:
+
+
+	void testApp::update(){
+    	videoIn.update();
+    	
+   	 	if (videoIn.isFrameNew()){
+        	ofPixels pixels = videoIn.getPixelsRef();
+        
+        	for (int x = 0; x < pixels.getWidth(); x++){
+            	for(int y = 0; y < pixels.getHeight(); y++){
+                	ofColor color = pixels.getColor(x, y);
+                	color.r = 255 - color.r;
+                	color.g = 255 - color.g;
+                	color.b = 255 - color.b;
+                	pixels.setColor(x,y, color);
+            	}
+        	}
+        
+        	imageOut.setFromPixels(pixels);
+    	}
+	}
+
+Play… and there you have! Your ghost image right next to the other one.
+
+### Old School approach
+
+So far so good. Isn't? There is another approach to this that is a little more complicated and downlevel but it's much more powerful and very educative of how your computer works. So instead of getting a "packet" of the pixels we can ask to get a link to the place on RAM memory where your video stream is arriving. Yes! is that crazy downlevel we are going! Nothing more hardcore than this.
+
+So in memory things are not so fancy that with ofPixels. We are going to get the beginning of an array. Yes, one large array of pixels. 
+
+![ofTexture5](https://raw.github.com/ofZach/ofDocs/master/img/chapter07/pixels.png)
+
+As you can see  that array is going to have the the 3 or 4 channels one before the other. The type of each one of this values is going to be a ```unsigned char```. If you do some research you will find that char variables can store values between -127 and 127 if we only consider the unsigned (positive numbers) the amount of value can store duplicate to 256. Found this familiar? yes! that why colors runs between 0 - 255.
+
+So to ask for this array we are going to type: 
+ 
+	unsigned char * pixels = image.getPixels();
 
 We use a pointer ```*``` because we want the data and pointers are a way to do that without having to use more memory. Remember all variables are memory cells, and the points just points to the information By pointing to the pixel we want to see, we can change it when we do our image processing. Understanding pointers and how to use them in not only openFrameworks but in C++ in general is a realy powerful thing to know and will allow us to do really cool thing. To learn more on pointers and how they actually work, go to the C++ reference page to read more on pointers [here](http://www.cplusplus.com/doc/tutorial/pointers/).
 
 Once we call ```image.getPixels()``` we have the pixel information, which is the width and height of the image we a referencing. If we wanted to get the pixel information of a specific pixel, we would think of it as looking into a grid, width by height, and each pixel is a cell in this grid.
 
-// IMAGE HERE LIKE A GRID FROM THE REFERENCE LINK IN PATRICIO'S NOTE
+The complex stuff here is how we can process the pixels one by one like the other example going through the double loop, we need to "translate" from x/y to and index of the pixels of the image. For that the complete code will be:
+
+	void testApp::update(){
+    	videoIn.update();
+    
+    	if (videoIn.isFrameNew()){
+        	unsigned char *pixels = videoIn.getPixels();
+        
+        	int width = videoIn.getWidth();
+        	int height = videoIn.getHeight();
+        
+        	for (int x = 0; x < width; x++){
+            	for(int y = 0; y < height; y++){
+                
+                	int i = y * width + x;
+                
+                	pixels[i * 3 + 0] = 255 - pixels[i * 3 + 0];
+                	pixels[i * 3 + 1] = 255 - pixels[i * 3 + 1];
+                	pixels[i * 3 + 2] = 255 - pixels[i * 3 + 2];
+            	}
+        	}
+        
+        	imageOut.setFromPixels(pixels, width, height, OF_IMAGE_COLOR);
+    	}
+	}
+
 
 If we have an image that is five by four pixels large, we could find out the color of the pixel located at x=2 and y=3, like this:
 
@@ -55,44 +203,6 @@ If we have an image that is five by four pixels large, we could find out the col
 	blue pixel	= 68+2
 	
 	alpha pixel	= 68+3 
-	
-Once we understand how to get the location of a single pixel, then we can use that same logic to call on all the pixels in the image
-    
-    for (int i = 0; i < image.getWidth(); i += 4){
-        for (int j = 0; j < image.getHeight(); j += 4){
-            unsigned char r = pixels[(j * int(vidPlayer.getWidth()) + i) * 3];
-            unsigned char g = pixels[(j * int(vidPlayer.getWidth()) + i) * 3 + 1];
-            unsigned char b = pixels[(j * int(vidPlayer.getWidth()) + i) * 3 + 2];
-            
-            ofColor myColor;
-            myColor.r = r;
-            myColor.g = g;
-            myColor.b = b;
-
-So in the example code above we go through each pixel and then pull out the inidividual RGB channels into another ```unsigned char``` variable. We could do anything with these colors now, and in this case we place them into an ```ofColor``` variable. The math does seem complex at first, but like we said it is the old school way of doing things.
-
-### New School style 
- 
-	ofPixels pixels = image.getPixelsRef();	
-	getPixelsRef(); // returns to ofPixels
-
-```getPixelsRef()``` has functions where we can have access to color, as well as have the ability to change color within specific pixels of our image. It is similar to what we discussed in the old school way of getting pixel information.
-
-// j talking about images being a long array of pixels here  [j*w+i], by asigning an x and y
-
-** I tell the reader to refer to the old school way of finding pixels -JP **
-
-> openframeworks works by passing by reference. 
->
-> If you change the pixels you will need to call the update()
-
-** I'm not quite sure on how to elaborate on that "passing by reference" -JP **
-
-Now in order to understand the new style, we have to talk about where the image is being stored in the computer. We store the image in two places which are dynamic, changing.
-The texture is stored in the GPU (ex: 4GB RAM), that is our graphics card and the pixels are stored in the CPU (ex: 512mb ATI), or the computer memory. These two places are storing copies of the original image, so we can use them and manipulate them.
-
-A lot of times we see the word ```Ref``` in OF functions, and that would be passing by reference as opposed to passing by value. Passing by value, aka passing by copy literally makes a copy of the variable and stores it in the memory whereas passing by reference only passes the address of that object, which reduces the load on our processor by a lot. 
-A good example of usage of this would be modifying pixels of a video. For example, if we use pass by value, we will be copying a frame of 640 by 480 large video, 60 times a second, which is not efficient at all. Instead, using pass by reference reduces he processing overhead by a lot lot lot.
 
 
 ## Textures
