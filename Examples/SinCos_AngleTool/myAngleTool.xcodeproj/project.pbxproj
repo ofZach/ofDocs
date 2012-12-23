@@ -325,7 +325,7 @@
 					"-lpthread",
 					"-mtune=native",
 				);
-				SDKROOT = macosx10.7;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.7.sdk";
 			};
 			name = Debug;
 		};
@@ -355,7 +355,7 @@
 					"-lpthread",
 					"-mtune=native",
 				);
-				SDKROOT = macosx10.7;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.7.sdk";
 			};
 			name = Release;
 		};
@@ -442,7 +442,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)Debug";
-				SDKROOT = macosx10.7;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.7.sdk";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -529,7 +529,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.7;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.7.sdk";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

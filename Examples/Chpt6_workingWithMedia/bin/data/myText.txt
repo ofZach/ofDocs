@@ -1,0 +1,3 @@
+Hi, how are you?
+oF can take text from .txt files and use it.
+
